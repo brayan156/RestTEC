@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Telefonos")]
     public class TelefonosController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Telefonos.json");
@@ -40,7 +41,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].ID_cliente == telefonos.ID_cliente)
+                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
                 {
                     existe = true;
                     respuesta = "registro ya existente";
@@ -48,7 +49,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (telefonos.ID_cliente == null)
+            if (telefonos.ID_cliente == 0 || telefonos.Telefono == 0)
             {
                 respuesta = "registro necesita un identificador";
             }
@@ -80,7 +81,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].ID_cliente == telefonos.ID_cliente)
+                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
                 {
                     lista[i] = telefonos;
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
@@ -115,7 +116,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].ID_cliente == telefonos.ID_cliente)
+                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

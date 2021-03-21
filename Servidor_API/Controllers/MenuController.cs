@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Menu")]
     public class MenuController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Menu.json");
@@ -48,7 +49,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (menu.Numero_menu == null)
+            if (menu.Numero_menu == 0)
             {
                 respuesta = "registro necesita un identificador";
             }

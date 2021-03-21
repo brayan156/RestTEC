@@ -2,7 +2,7 @@
 {
     public class Plato
     {
-        public string Numero_plato { get; set; }
+        public int Numero_plato { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
 
@@ -12,7 +12,7 @@
 
         }
 
-        public Plato(string numeroPlato, string nombre, string descripcion)
+        public Plato(int numeroPlato, string nombre, string descripcion)
         {
             Numero_plato = numeroPlato;
             Nombre = nombre;

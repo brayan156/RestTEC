@@ -9,8 +9,10 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Factura")]
     public class FacturaController : ApiController
     {
+
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Factura.json");
         // GET api/values
         [HttpGet]
@@ -48,7 +50,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (factura.Id == null)
+            if (factura.Id == 0)
             {
                 respuesta = "registro necesita un identificador";
             }

@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Platos_en_Menu")]
     public class Platos_en_MenuController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Platos_en_Menu.json");
@@ -40,7 +41,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].N_plato == plato_en_Menu.N_plato)
+                if (lista[i].N_plato == plato_en_Menu.N_plato && lista[i].N_Menu == plato_en_Menu.N_Menu)
                 {
                     existe = true;
                     respuesta = "registro ya existente";
@@ -48,9 +49,9 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (plato_en_Menu.N_plato == null)
+            if (0 == plato_en_Menu.N_plato || 0 == plato_en_Menu.N_Menu)
             {
-                respuesta = "registro necesita un identificador";
+                respuesta = "registro necesita cada identificador";
             }
             else if (!existe)
             {
@@ -80,7 +81,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].N_plato == plato_en_Menu.N_plato)
+                if (lista[i].N_plato == plato_en_Menu.N_plato && lista[i].N_Menu == plato_en_Menu.N_Menu)
                 {
                     lista[i] = plato_en_Menu;
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
@@ -115,7 +116,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].N_plato == plato_en_Menu.N_plato)
+                if (lista[i].N_plato == plato_en_Menu.N_plato && lista[i].N_Menu == plato_en_Menu.N_Menu)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

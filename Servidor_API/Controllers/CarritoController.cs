@@ -43,21 +43,21 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Id == carrito.Id && lista[i].Id_cliente == carrito.Id_cliente )
+                if (lista[i].Id == carrito.Id || lista[i].Id_cliente == carrito.Id_cliente )
                 {
                     n_compra += 1;
                 }
             }
 
             carrito.N_compra = n_compra;
-            if (carrito.Id == null)
+            if (carrito.Id == 0 || carrito.Id_cliente == 0)
             {
-                respuesta = "registro necesita un identificador";
+                respuesta = "registro necesita cada identificador";
             }
             else if (!existe)
             {
                 lista.Add(carrito);
-                respuesta = "registro ingresado correctamente";
+                respuesta = "registro ingresado correctamente, su numero de compra es:"+n_compra.ToString();
             }
 
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
@@ -82,7 +82,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Id == carrito.Id)
+                if (lista[i].Id == carrito.Id && lista[i].Id_cliente == carrito.Id_cliente && lista[i].N_compra == carrito.N_compra)
                 {
                     lista[i] = carrito;
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
@@ -117,7 +117,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Id == carrito.Id)
+                if (lista[i].Id == carrito.Id && lista[i].Id_cliente == carrito.Id_cliente && lista[i].N_compra == carrito.N_compra)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

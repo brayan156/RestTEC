@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Carrito_almacena")]
     public class Carrito_almacenaController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Carrito_almacena.json");

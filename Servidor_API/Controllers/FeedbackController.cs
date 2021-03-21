@@ -9,8 +9,10 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Feedback")]
     public class FeedbackController : ApiController
     {
+
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Feedback.json");
         // GET api/values
         [HttpGet]
@@ -48,7 +50,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (feedback.Id_pedido == null)
+            if (feedback.Id_pedido == 0)
             {
                 respuesta = "registro necesita un identificador";
             }

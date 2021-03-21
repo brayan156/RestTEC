@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Pedido")]
     public class PedidoController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Pedido.json");
@@ -48,7 +49,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (pedido.Numero == null)
+            if (pedido.Numero == 0)
             {
                 respuesta = "registro necesita un identificador";
             }

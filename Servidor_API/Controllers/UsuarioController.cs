@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Usuario")]
     public class UsuarioController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Usuario.json");
@@ -40,7 +41,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Cedula == usuario.Cedula)
+                if (lista[i].Cedula == usuario.Cedula )
                 {
                     existe = true;
                     respuesta = "registro ya existente";
@@ -48,7 +49,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (usuario.Cedula == null)
+            if (usuario.Cedula == 0)
             {
                 respuesta = "registro necesita un identificador";
             }

@@ -9,6 +9,7 @@ using Servidor_API.clases;
 
 namespace Servidor_API.Controllers
 {
+    [Route("Plato")]
     public class PlatoController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Plato.json");
@@ -48,7 +49,7 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (plato.Numero_plato == null)
+            if (plato.Numero_plato == 0)
             {
                 respuesta = "registro necesita un identificador";
             }
