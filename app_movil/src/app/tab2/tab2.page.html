@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Carrito
+    </ion-title>
+    <ion-buttons slot='end'>
+      <ion-button (click)='dismiss()'>Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Jala para actualizar"
+      refreshingSpinner="circles" refreshingText="Actualizando...">
+    </ion-refresher-content>
+
+  </ion-refresher>
+  <ion-list>
+    <ion-item-sliding>
+      <ion-card *ngFor="let plato of menu">
+        <ion-card-header>
+          <ion-card-subtitle>{{plato.tipo}}</ion-card-subtitle>
+          <ion-card-title>{{plato.plato}}, ₡{{plato.precio}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-input type="number" min="0" value={{plato.cant}} (input)='cambioValor($event.target.value, plato)'>Cant.
+          </ion-input>
+          {{plato.descripcion}}
+          Contiene {{plato.calorias}} calorias.
+        </ion-card-content>
+      </ion-card>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color='danger'>
+    <ion-button (click)='comprar()'  fill="clear" expand="full" color='light'>
+      <ion-title>
+        Total: ₡{{calculateTotal()}}
+      </ion-title>
+    </ion-button>
+
+
+  </ion-toolbar>
+</ion-footer>

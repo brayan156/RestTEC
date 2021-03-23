@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Menú
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let plato of menu" >
+    <ion-card-header>
+      <ion-card-title>{{plato.plato}}, ₡{{plato.precio}}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip color="tertiary">
+          <ion-label color="dark">{{plato.tipo}}</ion-label>
+        </ion-chip>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{plato.descripcion}}
+      Contiene {{plato.calorias}} calorias.
+    </ion-card-content>
+    <ion-button expand="block" size="small" (click)=agregarCarrito(plato)>
+      <ion-icon name="add-circle"></ion-icon> Agregar
+    </ion-button>
+  </ion-card>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)='presentModal()'>
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
