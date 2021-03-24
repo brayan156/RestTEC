@@ -68,7 +68,6 @@ export class Tab2Page {
       });
       await alert.present();
     }
-
     
   }
 

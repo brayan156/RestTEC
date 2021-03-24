@@ -3,6 +3,7 @@ import { AlertController, IonButton, ModalController } from '@ionic/angular';
 import { proxyInputs } from '@ionic/angular/directives/proxies-utils';
 import { FeedbackPage } from '../feedback/feedback.page';
 import { Feedback } from '../objetos/feedback';
+import { TrackingPage } from '../tracking/tracking.page';
 
 @Component({
   selector: 'app-tab3',
@@ -54,6 +55,13 @@ export class Tab3Page {
     });
     return await modal.present();
     
+  }
+
+  async mostrarPedidoEnProgreso() {
+    const modal = await this.modalController.create({
+      component: TrackingPage,
+    });
+    return await modal.present();
   }
 
 
