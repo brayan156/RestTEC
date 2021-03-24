@@ -9,6 +9,8 @@ import { Carrito } from "../objetos/carrito";
 import { Telefonos } from '../objetos/telefonos';
 import { Pedido } from "../objetos/pedido";
 import { Feedback } from "../objetos/feedback";
+import { CarritoGenera } from "../objetos/carrito-genera";
+import { CarritoAlmacena } from "../objetos/carrito-almacena";
 
 @Injectable({
   providedIn: 'root'
@@ -132,14 +134,63 @@ export class ObjetosService {
   }
 
 
+ 
+
+  //obtiene todos los carrito_genera del id del carrito del cliente
+  public obtener_carritos_genera() {
+    let lista_carrito_genera: CarritoGenera[] = [];
+    this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera/Id_carrito/"+this.carrito.Id).subscribe(data => {
+      lista_carrito_genera = data;
+    });
+    return lista_carrito_genera;
+  }
+
   // obtiene todos los pedidos del cliente
   public obtener_pedidos() {
-    let pedidos: Pedido[] = [];
-    this.http.get<Pedido[]>(this.Url + "Pedido/pedidos_carrito/"+this.carrito.Id).subscribe(data => {
-      pedidos = data;
+    let lista_carrito_genera: CarritoGenera[] = [];
+    let lista_pedidos: Pedido[] = [];
+    this.http.get<Pedido[]>(this.Url + "Pedido").subscribe(data => {
+      lista_carrito_genera.forEach(carritoGenera => {
+        data.forEach(pedido => {
+          if (pedido.Numero === carritoGenera.Id_pedido) {
+            lista_pedidos.push(pedido);
+          }
+        });
+      });
     });
-    return pedidos;
+    return lista_pedidos;
   }
+
+
+  //obtiene el carrito de un pedido
+  public obtener_carrito_pedido(N_pedido: number) {
+    var car:Carrito=new Carrito
+    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
+      this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
+        for (let i = 0; i < carritos.length; i++) {
+          if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
+            car = carritos[i];
+            break;
+          }
+        }
+      })
+    });
+    return car;
+  }
+
+
+  //obtiene los numeros de plato y la cantidad comprada de un pedido
+  public obtener_almacen_pedido(N_pedido: number) {
+    var almacen:CarritoAlmacena[]=[]
+    let carrito: Carrito = this.obtener_carrito_pedido(N_pedido);
+    this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + carrito.Id + "/" + carrito.N_compra)
+      .subscribe(carritos_almacena => {
+        almacen= carritos_almacena;
+      });
+    return almacen;
+  }
+
+
 
   //funcion a llamar cuando se le da al boton para decir que recibio el producto guardar el id del pedido para crear el feedback
   public pedido_recibido(pedido:Pedido) {
