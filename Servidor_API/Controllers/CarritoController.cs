@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using Servidor_API.clases;
@@ -24,11 +25,57 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
+        [Route("Carrito/obtener_carrito_actual_cedula/{cedula_cliente:int}")]
+        [HttpGet]
+        public Carrito Getby_cedula_cliente(int cedula_cliente)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Carrito>();
+            }
+            bool existe = false;
+            Carrito carrito = new Carrito();
+            int n_compra = 0;
+            int[] ids_carrito = {};
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (!ids_carrito.Contains(lista[i].Id))
+                {
+                    ids_carrito.Append(lista[i].Id);
+                }
+                if (lista[i].Id_cliente == cedula_cliente)
+                {
+                    if (lista[i].N_compra > n_compra)
+                    {
+                        carrito = lista[i];
+                        n_compra = carrito.N_compra;
+                        existe = true;
+                    }
+                }
+            }
+
+            if (!existe)
+            {
+                carrito.Id=ids_carrito.Length + 1;
+                carrito.N_compra = 1;
+                carrito.Id_cliente = cedula_cliente;
+                carrito.Monto = 0;
+                lista.Add(carrito);
+                jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
+                System.IO.File.WriteAllText(path, jsontext);
+            }
+            return carrito;
+
+        }
 
         // POST api/values
 
         [HttpPost]
-        public string Post([FromBody] Carrito carrito)
+        public Carrito Post([FromBody] Carrito carrito)
         {
             string respuesta = "";
 
@@ -63,7 +110,7 @@ namespace Servidor_API.Controllers
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
 
-            return respuesta;
+            return carrito;
         }
 
         // PUT api/values/5

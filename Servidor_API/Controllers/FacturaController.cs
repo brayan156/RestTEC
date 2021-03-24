@@ -28,7 +28,7 @@ namespace Servidor_API.Controllers
         // POST api/values
 
         [HttpPost]
-        public string Post([FromBody] Factura factura)
+        public Factura Post([FromBody] int monto)
         {
             string respuesta = "";
 
@@ -38,32 +38,18 @@ namespace Servidor_API.Controllers
             {
                 lista = new List<Factura>();
             }
-            bool existe = false;
 
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id == factura.Id)
-                {
-                    existe = true;
-                    respuesta = "registro ya existente";
-                    break;
-                }
-            }
-
-            if (factura.Id == 0)
-            {
-                respuesta = "registro necesita un identificador";
-            }
-            else if (!existe)
-            {
-                lista.Add(factura);
-                respuesta = "registro ingresado correctamente";
-            }
-
+            Factura factura=new Factura();
+            factura.Id = lista.Count + 1;
+            factura.Día = DateTime.Now.Day.ToString();
+            factura.Año= DateTime.Now.Year.ToString();
+            factura.Mes= DateTime.Now.Month.ToString();
+            factura.Hora= DateTime.Now.TimeOfDay.ToString();
+            lista.Add(factura);
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
 
-            return respuesta;
+            return factura;
         }
 
         // PUT api/values/5

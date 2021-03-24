@@ -23,6 +23,38 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
+        [Route("Menu/nmenu/{numero_menu:int}")]
+        [HttpGet]
+        public Menu Getbyplato(int numero_menu)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Menu> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Menu>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Menu>();
+            }
+            bool existe = false;
+            Menu menu = new Menu();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Numero_menu == numero_menu)
+                {
+                    menu = lista[i];
+                    existe = true;
+                    respuesta = "registro editado exitosamente";
+                    break;
+                }
+            }
+
+            if (!existe)
+            {
+                menu.Numero_menu = 0;
+            }
+            return menu;
+
+        }
 
         // POST api/values
 
