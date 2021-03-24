@@ -8,10 +8,10 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="tu@email.com" ngModel required></ion-input>
+              <ion-input [(ngModel)]="this.correo"  [ngModelOptions]="{standalone: true}" type="email" placeholder="tu@email.com" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Constraseña" ngModel required></ion-input>
+              <ion-input [(ngModel)]="this.password"  [ngModelOptions]="{standalone: true}" type="password" placeholder="Constraseña" ngModel required></ion-input>
             </ion-item>
           </div>
           <div padding>

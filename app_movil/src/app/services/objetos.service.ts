@@ -110,6 +110,7 @@ export class ObjetosService {
         });
       }
     });
+    return this.cliente;
   }
 
   //funcion para registrarse, añade un nuevo cliente mandarlo a la parte de login luego de esto

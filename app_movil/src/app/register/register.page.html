@@ -8,20 +8,38 @@
           </div>
           <div padding>
             <ion-item>
-              <ion-input  name="name" type="text" placeholder="Nombre" ngModel required></ion-input>
+              <ion-input  [(ngModel)]="this.newClient.Primer_Nombre"  [ngModelOptions]="{standalone: true}" type="text" placeholder="Nombre" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="email" type="email" placeholder="tu@email.com" ngModel required></ion-input>
+              <ion-input   [(ngModel)]="this.newClient.Apellido" [ngModelOptions]="{standalone: true}" type="text" placeholder="Apellido" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="password" type="password" placeholder="Contraseña" ngModel required></ion-input>
+              <ion-input   [(ngModel)]="this.newClient.Cedula" [ngModelOptions]="{standalone: true}" type="text" placeholder="Cedula" ngModel required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input name="confirm" type="password" placeholder="Contraseña" ngModel required></ion-input>
+              <ion-input   [(ngModel)]="this.newClient.Provincia" [ngModelOptions]="{standalone: true}" type="text" placeholder="Provincia" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input   [(ngModel)]="this.newClient.Canton"  [ngModelOptions]="{standalone: true}" type="text" placeholder="Canton" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input   [(ngModel)]="this.newClient.Distrito" [ngModelOptions]="{standalone: true}" type="text" placeholder="Distrito" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-datetime  displayFormat="MM/DD/YYYY" [(ngModel)]="this.birthDate"  [ngModelOptions]="{standalone: true}"value="2021-10-01" display-timezone="utc" placeholder="Fecha de nacimiento"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-input   [(ngModel)]="this.newClientPhone.Telefono" [ngModelOptions]="{standalone: true}" type="tel" placeholder="Telefono" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input  [(ngModel)]="this.newClient.Email" [ngModelOptions]="{standalone: true}" type="email" placeholder="tu@email.com" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input  [(ngModel)]="this.newClient.Password"  [ngModelOptions]="{standalone: true}"type="password" placeholder="Repite tu contraseña" ngModel required></ion-input>
             </ion-item>
           </div>
           <div padding>
-            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">Registrarme</ion-button>
+            <ion-button  size="large" type="submit"  [disabled]="form.invalid" expand="block">Registrarme</ion-button>
           </div>
         </ion-col>
       </ion-row>

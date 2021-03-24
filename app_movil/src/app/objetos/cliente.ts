@@ -3,7 +3,7 @@ export class Cliente {
   Primer_Nombre: String;
   Apellido: String;
   Email: String;
-  Contraseña: String;
+  Password: String;
   AñoNacimiento: String;
   Mes_Nacimiento: String;
   Día_Nacimiento: String;
