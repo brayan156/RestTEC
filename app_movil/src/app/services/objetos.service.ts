@@ -58,11 +58,6 @@ export class ObjetosService {
     cant: 1
   }
 
-
-
-
-
-
   getMenu() {
     return this.menu;
   }

@@ -19,8 +19,9 @@ export class LoginPage implements OnInit {
   }
 
   login(form) {
-   
-    if (this.objetos.validar_cliente(this.correo, this.password).Cedula !== 0) {
+    let validateClient = this.objetos.validar_cliente(this.correo, this.password)
+    if (validateClient.Cedula != null) {
+      console.log(validateClient.Cedula);
       this.router.navigateByUrl('/menu/tabs/tab2');
       this.objetos.ingresarmenu(this.objetos.getplatos_menu());
     } else {
@@ -31,7 +32,7 @@ export class LoginPage implements OnInit {
 
   async presentAlert() {
     const alert = await this.alert.create({
-      header: 'Datos inválidss',
+      header: 'Datos inválidos',
       subHeader: 'Por favor corrija sus datos',
       buttons: ['OK']
     });
