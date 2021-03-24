@@ -31,27 +31,45 @@ export class Tab2Page {
       nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
     })
     nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
-    console.log(nombresDePlatosRecibidos);
-    const alert = await this.alertController.create({
-      header: '¿Deseas realizar este pedido?',
-      message: nombresDePlatosRecibidos,
-      buttons: [
-        {
-          text: 'No, agregaré más platos.',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-          }
-        }, {
-          text: 'Obvio ¡Qué hambre!',
-          handler: () => {
-            this.router.navigateByUrl("/menu/tabs/tab3");
-          }
-        }
-      ]
-    });
 
-    await alert.present();
+    if (total == 0) {
+      const alert = await this.alertController.create({
+        header: 'Agrega platos para continuar.',
+        message: 'Incrementa la cantidad de cualquier plato para generar un pedido.',
+        buttons: [
+          {
+            text: 'Entendido.',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+            }
+          }
+        ]
+      });
+      await alert.present();
+    } else {
+      const alert = await this.alertController.create({
+        header: '¿Deseas realizar este pedido?',
+        message: nombresDePlatosRecibidos,
+        buttons: [
+          {
+            text: 'No, agregaré más platos.',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+            }
+          }, {
+            text: 'Obvio ¡Qué hambre!',
+            handler: () => {
+              this.router.navigateByUrl("/menu/tabs/tab3");
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+
+    
   }
 
   //Calculate Total
