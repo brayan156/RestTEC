@@ -81,6 +81,7 @@ export class ObjetosService {
         plato_app.plato = plato.Nombre;
         plato_app.descripcion = plato.Descripcion;
         plato_app.n_plato = plato.Numero_plato;
+        plato_app.tiempo_preparacion = plato.Tiempo_preparacion;
         this.http.get<PlatosEnMenu>(this.Url + "Platos_en_Menu/nplato/" + plato.Numero_plato).subscribe(datos_menu => {
           if (datos_menu.N_Menu !== 0) {
             plato_app.calorias = datos_menu.Calorias;
@@ -99,10 +100,10 @@ export class ObjetosService {
   //funcion para verificar el login y obtener el id de su carrito y por la compra en la que va
   public validar_cliente(correo: String, contraseña: String) {
 
-    this.http.get<Cliente>(this.Url + "Cliente/validar_cliente" + correo + "/" + contraseña).subscribe(data => {
+    this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña).subscribe(data => {
       this.cliente = data;
       if (this.cliente.Cedula !== 0) {
-        this.http.get<Carrito>(this.Url + "Carrito/obtener_carrito_actual_cedula" + this.cliente.Cedula).subscribe(carrito => {
+        this.http.get<Carrito>(this.Url + "Carrito/obtener_carrito_actual_cedula/" + this.cliente.Cedula).subscribe(carrito => {
           this.carrito = carrito;
         });
       }
@@ -122,7 +123,7 @@ export class ObjetosService {
             let tel: Telefonos = new Telefonos;
             tel.ID_cliente = cliente.Cedula;
             tel.Telefono = telofono;
-            this.http.post(this.Url + "Telefonos", tel);
+            this.http.post<String>(this.Url + "Telefonos", tel);
           });
         }
       });
@@ -134,7 +135,7 @@ export class ObjetosService {
   // obtiene todos los pedidos del cliente
   public obtener_pedidos() {
     let pedidos: Pedido[] = [];
-    this.http.get<Pedido[]>(this.Url + "Pedido/pedidos_carrito"+this.carrito.Id).subscribe(data => {
+    this.http.get<Pedido[]>(this.Url + "Pedido/pedidos_carrito/"+this.carrito.Id).subscribe(data => {
       pedidos = data;
     });
     return pedidos;

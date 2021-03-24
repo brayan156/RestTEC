@@ -24,6 +24,39 @@ namespace Servidor_API.Controllers
         }
 
 
+        [Route("Cliente/validar_cliente/{email:int}/{contraseña:int}")]
+        [HttpGet]
+        public Cliente ValidarCliente(string email,string contraseña)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Cliente> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cliente>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Cliente>();
+            }
+            bool existe = false;
+            Cliente cliente = new Cliente();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Email == email & lista[i].Contraseña==contraseña)
+                {
+                    cliente = lista[i];
+                    existe = true;
+                    respuesta = "registro editado exitosamente";
+                    break;
+                }
+            }
+
+            if (!existe)
+            {
+                cliente.Cedula = 0;
+            }
+            return cliente;
+
+        }
+
         // POST api/values
 
         [HttpPost]

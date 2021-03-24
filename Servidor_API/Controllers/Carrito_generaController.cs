@@ -24,8 +24,36 @@ namespace Servidor_API.Controllers
         }
 
 
-        // POST api/values
+        [Route("Carrito_genera/Id_carrito/{id_carrito:int}")]
+        [HttpGet]
+        public List<Carrito_genera> Getby_idcarrito(int id_carrito)
+        {
+            string respuesta = "";
 
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito_genera> lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_genera>>(jsontext);
+            if (lista_pedidos == null)
+            {
+                lista_pedidos = new List<Carrito_genera>();
+            }
+            bool existe = false;
+            List<Carrito_genera> carrito_genera = new List<Carrito_genera>();
+            for (int i = 0; i < lista_pedidos.Count; i++)
+            {
+                if (lista_pedidos[i].Id_carrito == id_carrito)
+                {
+                    carrito_genera.Add( lista_pedidos[i]);
+                    existe = true;
+                    respuesta = "registro editado exitosamente";
+                }
+            }
+            return carrito_genera;
+
+        }
+
+
+
+        // POST api/values
         [HttpPost]
         public string Post([FromBody] Carrito_genera carrito_genera)
         {
@@ -66,6 +94,7 @@ namespace Servidor_API.Controllers
 
             return respuesta;
         }
+
 
         // PUT api/values/5
         [HttpPut]
