@@ -16,7 +16,7 @@ import { CarritoGenera } from "../objetos/carrito-genera";
 })
 export class DataService {
 
-  pedidoEnProgreso = {};
+  pedidoEnProgreso = [];
   // Esta es la lista que almacena lo que esta dentro del carrito
   private data: PlatoApp[] = [];
   menu = [
@@ -115,12 +115,12 @@ export class DataService {
       Tiempo_restante: 5,
       Cedula_chef_asignado: 1234
     };
-    this.pedidoEnProgreso = pedido;
+    this.pedidoEnProgreso.push(pedido);
   }
 
   getPedidoEnProgreso() {
     const tmp = this.pedidoEnProgreso;
-    this.pedidoEnProgreso = {};
+    this.pedidoEnProgreso = [];
     return tmp;
   }
 

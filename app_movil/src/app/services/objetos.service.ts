@@ -17,7 +17,9 @@ import { CarritoAlmacena } from "../objetos/carrito-almacena";
 })
 export class ObjetosService {
 
-  menu = [
+  menu = []
+
+  tmpMenu = [
     {
       plato: "Lentejas con platano maduro",
       descripcion: "Deliciosas lentejas en sopa, con pimienta que le da cierto picor." ,
@@ -59,7 +61,7 @@ export class ObjetosService {
   }
 
   getMenu() {
-    return this.menu;
+    return this.tmpMenu;
   }
 
   public ingresarmenu(platos) {

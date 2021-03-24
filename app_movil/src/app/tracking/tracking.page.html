@@ -7,15 +7,33 @@
 
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="refrescarPedido($event)">
-    <ion-refresher-content
-      pullingIcon="chevron-down-circle-outline"
-      pullingText="Refrescar"
-      refreshingSpinner="circles"
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Refrescar" refreshingSpinner="circles"
       refreshingText="">
-
-
-
-
     </ion-refresher-content>
   </ion-refresher>
+
+  <ion-card >
+    <ion-card-content *ngFor="let pedido of pedidosEnProgreso">
+      <p>
+        <ion-label color='success'>
+          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.Estado}} </strong>
+        </ion-label>
+      </p>
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon> {{pedido.Tiempo_restante}}
+      </p>
+      <p>
+        <ion-icon name="fast-food"></ion-icon> {{pedido.Cedula_chef_asignado}}
+      </p>
+      <hr size="8" width="100%" color="grey">
+
+      <ion-list *ngFor='let plato of pedido.pedido'>
+        <ion-item>
+          <p>{{plato.plato}}</p>
+        </ion-item>
+      </ion-list>
+      <hr size="8" width="100%" color="grey">
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
