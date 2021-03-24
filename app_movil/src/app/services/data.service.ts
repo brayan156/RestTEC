@@ -16,6 +16,32 @@ export class DataService {
 
   // Esta es la lista que almacena lo que esta dentro del carrito
   private data: PlatoApp[] = [];
+  menu = [
+    {
+      plato: "Lentejas con platano maduro",
+      descripcion: "Deliciosas lentejas en sopa, con pimienta que le da cierto picor." ,
+      precio: "800",
+      calorias: "200",
+      tipo: "almuerzo",
+      cant: 0
+    },
+    {
+      plato: "Sopa azteca",
+      descripcion: "Una sopita tradicional de méxico a base de un caldo de tomate." ,
+      precio: "650",
+      calorias: "250",
+      tipo: "cena",
+      cant: 0
+    },
+    {
+      plato: "Cereal con leche",
+      descripcion: "Kelloggs con banano y leche deslactosada." ,
+      precio: "300",
+      calorias: "150",
+      tipo: "desayuno",
+      cant: 0
+    }
+  ]
 
   constructor(private http: HttpClient,private objetos:ObjetosService) { }
 
@@ -35,7 +61,7 @@ export class DataService {
     }
   }
   getData() {
-    return this.data;
+    return this.menu;
   }
 
   //funcion a llamar cuando se compra sirve para cambiar de numero de pedido y crear la factura a mostrar al cliente 

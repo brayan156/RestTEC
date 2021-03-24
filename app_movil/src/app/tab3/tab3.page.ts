@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { AlertController, IonButton, ModalController } from '@ionic/angular';
+import { proxyInputs } from '@ionic/angular/directives/proxies-utils';
+import { FeedbackPage } from '../feedback/feedback.page';
+import { Feedback } from '../objetos/feedback';
 
 @Component({
   selector: 'app-tab3',
@@ -7,11 +11,12 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public modalController: ModalController) {}
 
+  @ViewChild(IonButton) calificacion: IonButton;
   pedidosMuestra = [
     {
-      menu: 'Lentejas con plátano maduro',
+      menu: ['Lentejas con plátano maduro', 'Sopa azteca', 'Cereal con leche'],
       fecha: '3 de marzo',
       chef: 'Juan Carlos',
       estado: 'Preparando',
@@ -19,7 +24,7 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     },
     {
-      menu: 'Sopa azteca',
+      menu: ['Sopa azteca'],
       fecha: '1 de marzo',
       chef: 'Pipe',
       estado: 'Preparado',
@@ -27,7 +32,7 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     },
     {
-      menu: 'Cereal con leche',
+      menu: ['Cereal con leche'],
       fecha: '28 de febrero',
       chef: 'Pipe',
       estado: 'Preparado',
@@ -35,4 +40,22 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     }
   ]
+
+
+  feedback() {
+  }
+
+  async presentarFeedback(pedido) {
+    const modal = await this.modalController.create({
+      component: FeedbackPage,
+      componentProps: {
+        platos: pedido
+      }
+    });
+    return await modal.present();
+    
+  }
+
+
+
 }

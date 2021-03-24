@@ -1,9 +1,9 @@
 export class PlatoApp {
-  plato: String;
-  descripcion: String;
-  precio: String;
-  calorias: String;
-  tipo: String;
+  plato: string;
+  descripcion: string;
+  precio: string;
+  calorias: string;
+  tipo: string;
   cant: number;
   n_plato: number;
 }

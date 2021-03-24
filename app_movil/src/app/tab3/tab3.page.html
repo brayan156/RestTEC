@@ -7,28 +7,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Pedidos</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-
-
   <ion-card *ngFor="let pedido of pedidosMuestra">
-    <ion-card-header>
-      <ion-card-subtitle>{{pedido.estado}}</ion-card-subtitle>
-      <ion-card-title>{{pedido.menu}}</ion-card-title>
-    </ion-card-header>
-
     <ion-card-content>
-      {{pedido.fecha}}.
-      Chef: {{pedido.chef}}.
-      Tiempo transcurrido: {{pedido.tiempo_estimado}}.
+      <p>
+        <ion-label color='success'>
+          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.estado}} </strong>
+        </ion-label>
+      </p>
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon> {{pedido.fecha}}
+      </p>
+      <p>
+        <ion-icon name="fast-food"></ion-icon> {{pedido.chef}}
+      </p>
+      <ion-button (click)=presentarFeedback(pedido.menu)  shape="round" size='small'>Feedback</ion-button>
+      <p> </p>
+      <hr size="8" width="100%" color="grey">
+
+      <ion-list *ngFor='let plato of pedido.menu'>
+        <ion-item>
+          <p>{{plato}}</p>
+        </ion-item>
+      </ion-list>
+      <hr size="8" width="100%" color="grey">
     </ion-card-content>
   </ion-card>
-
-
 
   <!-- <app-explore-container name="Aquí verás tus Pedidos"></app-explore-container> -->
 </ion-content>

@@ -16,8 +16,8 @@ export class LoginPage implements OnInit {
   }
 
   login(form) {
-    this.router.navigateByUrl('/menu/tabs/tab1');
-    this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+    this.router.navigateByUrl('/menu/tabs/tab2');
+    //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
   }
 
 }

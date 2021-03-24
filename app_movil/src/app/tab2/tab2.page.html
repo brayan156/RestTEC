@@ -3,9 +3,6 @@
     <ion-title>
       Carrito
     </ion-title>
-    <ion-buttons slot='end'>
-      <ion-button (click)='dismiss()'>Cerrar</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -17,30 +14,30 @@
     </ion-refresher-content>
 
   </ion-refresher>
-  <ion-list>
-    <ion-item-sliding>
-      <ion-card *ngFor="let plato of menu">
-        <ion-card-header>
-          <ion-card-subtitle>{{plato.tipo}}</ion-card-subtitle>
-          <ion-card-title>{{plato.plato}}, ₡{{plato.precio}}</ion-card-title>
-        </ion-card-header>
 
-        <ion-card-content>
-          <ion-input type="number" min="0" value={{plato.cant}} (input)='cambioValor($event.target.value, plato)'>Cant.
-          </ion-input>
-          {{plato.descripcion}}
-          Contiene {{plato.calorias}} calorias.
-        </ion-card-content>
-      </ion-card>
-    </ion-item-sliding>
-  </ion-list>
+  <ion-card *ngFor="let plato of menu">
+    <ion-card-header>
+      <ion-card-title>{{plato.plato}}, ₡{{plato.precio}}</ion-card-title>
+      <ion-card-subtitle> <ion-chip color="tertiary">
+        <ion-label color="dark">{{plato.tipo}}</ion-label>
+      </ion-chip></ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-input  type="number" min="0" value={{plato.cant}} (input)='cambioValor($event.target.value, plato)'>Cantidad:
+      </ion-input>
+      {{plato.descripcion}}
+      Contiene {{plato.calorias}} calorias.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color='danger'>
-    <ion-button (click)='comprar()'  fill="clear" expand="full" color='light'>
+    <ion-button (click)='comprar()' fill="clear" expand="full" color='light'>
       <ion-title>
-        Total: ₡{{calculateTotal()}}
+        Comprar: ₡{{calculateTotal().saldo}}
       </ion-title>
     </ion-button>
 

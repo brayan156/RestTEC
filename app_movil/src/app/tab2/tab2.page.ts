@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { WebElementPromise } from 'selenium-webdriver';
+import { Pedido } from '../objetos/pedido';
+import { PlatoApp } from '../objetos/plato-app';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -18,25 +20,60 @@ export class Tab2Page {
 
 
   constructor(private dataService: DataService,
-    private modalController: ModalController,
-    private router: Router) {
+    private router: Router,
+    public alertController: AlertController) {
+    this.menu = this.dataService.getData()
   }
   
+  async presentAlertConfirm(platos: PlatoApp[], total: number) {
+    var nombresDePlatosRecibidos: string = '';
+    platos.forEach(plato => {
+      nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
+    })
+    nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
+    console.log(nombresDePlatosRecibidos);
+    const alert = await this.alertController.create({
+      header: '¿Deseas realizar este pedido?',
+      message: nombresDePlatosRecibidos,
+      buttons: [
+        {
+          text: 'No, agregaré más platos.',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Obvio ¡Qué hambre!',
+          handler: () => {
+            this.router.navigateByUrl("/menu/tabs/tab3");
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   //Calculate Total
   calculateTotal() {
     var total = 0;
+    var platos: PlatoApp[] = [];
     this.menu.forEach(element => {
-      console.log(element.precio);
-      total += (parseInt(element.precio) * parseInt(element.cant));
+      if (element.cant > 0) {
+        total += (parseInt(element.precio) * parseInt(element.cant));
+        platos.push(element);
+      }
+      
     });
-    console.log(total);
-    return total;
+    return { saldo: total, pedido: platos };
   }
 
-  //Realizar comprar
+  //Realizar compra
   comprar() {
-    this.router.navigateByUrl("/menu/tabs/tab3");
-    this.dismiss();
+    var pedido = this.calculateTotal();
+    this.presentAlertConfirm(pedido.pedido, pedido.saldo);
+    
+    //this.dismiss();
   }
 
 
@@ -57,12 +94,12 @@ export class Tab2Page {
     });
   }
 
-  // Dismiss Modal
-  dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss({
-      'dismissed': true
-    });
-  }
+  // // Dismiss Modal
+  // dismiss() {
+  //   // using the injected ModalController this page
+  //   // can "dismiss" itself and optionally pass back data
+  //   this.modalController.dismiss({
+  //     'dismissed': true
+  //   });
+  // }
 }
