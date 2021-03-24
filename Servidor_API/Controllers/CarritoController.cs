@@ -22,6 +22,10 @@ namespace Servidor_API.Controllers
             string jsontext = System.IO.File.ReadAllText(path);
             List<Carrito> lista = new List<Carrito>();
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Carrito>();
+            }
             return lista;
         }
 

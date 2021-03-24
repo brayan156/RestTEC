@@ -24,6 +24,73 @@ namespace Servidor_API.Controllers
         }
 
 
+        [Route("Carrito_genera/nfactura/{n_factura:int}")]
+        [HttpGet]
+        public Carrito_genera Getby_nfactura(int n_factura)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito_genera> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_genera>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Carrito_genera>();
+            }
+            bool existe = false;
+            Carrito_genera carrito_genera = new Carrito_genera();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Id_Factura == n_factura)
+                {
+                    carrito_genera = lista[i];
+                    existe = true;
+                    respuesta = "registro editado exitosamente";
+                    break;
+                }
+            }
+
+            if (!existe)
+            {
+                carrito_genera.Id_Factura = 0;
+            }
+            return carrito_genera;
+
+        }
+
+        [Route("Carrito_genera/npedido/{n_pedido:int}")]
+        [HttpGet]
+        public Carrito_genera Getby_npedido(int n_pedido)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito_genera> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_genera>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Carrito_genera>();
+            }
+            bool existe = false;
+            Carrito_genera carrito_genera = new Carrito_genera();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                if (lista[i].Id_pedido == n_pedido)
+                {
+                    carrito_genera = lista[i];
+                    existe = true;
+                    respuesta = "registro editado exitosamente";
+                    break;
+                }
+            }
+
+            if (!existe)
+            {
+                carrito_genera.Id_pedido = 0;
+            }
+            return carrito_genera;
+
+        }
+
+
         [Route("Carrito_genera/Id_carrito/{id_carrito:int}")]
         [HttpGet]
         public List<Carrito_genera> Getby_idcarrito(int id_carrito)

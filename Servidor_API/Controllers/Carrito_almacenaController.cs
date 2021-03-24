@@ -22,7 +22,31 @@ namespace Servidor_API.Controllers
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
             return lista;
         }
+        [Route("Carrito_almacena/carrito/{id_carrito:int}/{n_compra:int}")]
+        [HttpGet]
+        public List<Carrito_almacena> Getby_carrito(int id_carrito, int n_compra)
+        {
+            string respuesta = "";
 
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito_almacena> lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
+            if (lista_pedidos == null)
+            {
+                lista_pedidos = new List<Carrito_almacena>();
+            }
+            bool existe = false;
+            List<Carrito_almacena> lista_carrito_almacena = new List<Carrito_almacena>();
+            for (int i = 0; i < lista_pedidos.Count; i++)
+            {
+                if (lista_pedidos[i].Id_carrito == id_carrito & lista_pedidos[i].N_compra == n_compra)
+                {
+                    lista_carrito_almacena.Add(lista_pedidos[i]);
+                    existe = true;
+                }
+            }
+            return lista_carrito_almacena;
+
+        }
 
         // POST api/values
 
