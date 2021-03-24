@@ -6,4 +6,5 @@ export class PlatoApp {
   tipo: String;
   cant: number;
   n_plato: number;
+  tiempo_preparacion: number;
 }

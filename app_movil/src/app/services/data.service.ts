@@ -8,6 +8,8 @@ import { CarritoAlmacena } from "../objetos/carrito-almacena";
 import { ObjetosService } from '../services/objetos.service';
 import { Carrito } from "../objetos/carrito";
 import { Factura } from "../objetos/factura";
+import { Pedido } from "../objetos/pedido";
+import { CarritoGenera } from "../objetos/carrito-genera";
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +44,10 @@ export class DataService {
   public comprar() {
     var platos: CarritoAlmacena[] = [];
     var factura: Factura = new Factura;
-    var platos_con_nombre=[]
+    var platos_con_nombre = []
+    var tiempo_total = 0;
     this.data.forEach(plato_app => {
+      tiempo_total += plato_app.tiempo_preparacion * plato_app.cant;
       let plato_almacena: CarritoAlmacena = new CarritoAlmacena;
       plato_almacena.N_plato = plato_app.n_plato;
       plato_almacena.Cantidad = plato_app.cant;
@@ -54,11 +58,21 @@ export class DataService {
       let plato_con_nombre = { cantidad:plato_almacena.Cantidad , nombre:plato_app.plato};
       platos_con_nombre.push(plato_con_nombre);
     });
-    this.http.post<Factura>(this.Url + "Carrito/comprar", this.objetos.carrito.N_compra).subscribe(fact => {
-      this.objetos.carrito.N_compra += 1;
-      this.objetos.carrito.Monto = 0;
+
+    this.http.post<Carrito>(this.Url + "Carrito", this.objetos.carrito);
+    this.http.post<Factura>(this.Url + "Factura", this.objetos.carrito.Monto).subscribe(fact => {
+
       factura = fact;
+      this.http.post<Pedido>(this.Url + "Pedido", tiempo_total).subscribe(pedido => {
+        let carrito_genera: CarritoGenera = new CarritoGenera;
+        carrito_genera.N_compra = this.objetos.carrito.N_compra;
+        carrito_genera.Id_carrito = this.objetos.carrito.Id;
+        carrito_genera.Id_Factura = factura.Id;
+        this.http.post<String>(this.Url + "Carrito_genera", carrito_genera);
+        this.objetos.carrito.N_compra += 1;
+        this.objetos.carrito.Monto = 0;
     });
+  });
     return { detalle:factura, plato_y_cantidad:platos_con_nombre};
   }
 
