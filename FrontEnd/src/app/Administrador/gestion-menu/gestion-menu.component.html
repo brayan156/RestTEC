@@ -1,0 +1,87 @@
+<div>
+  <app-navbar-administrador></app-navbar-administrador>
+</div>
+<div>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="input-group">
+      <input type="text" class="form-control margenes" placeholder="Nombre del plato" aria-label="Nombre" aria-describedby="basic-addon1">
+      <input type="text" class="form-control margenes" placeholder="Precio" aria-label="Precio" aria-describedby="basic-addon2">
+      <input type="text" class="form-control margenes" placeholder="Cantidad de calorias" aria-label="Calorias" aria-describedby="basic-addon3">
+      <input type="text" class="form-control margenes" placeholder="Tipo de plato" aria-label="Tipo" aria-describedby="basic-addon4">
+      <button class="btn btn-dark margenes" type="submit">Buscar</button>
+    </div>
+  </nav>
+</div >
+<div *ngFor="let item of contenido">
+  <div class="modal.show()" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{item.nombrePlato}}</h5>
+        </div>
+        <div class="modal-body">
+          <p>Tipo de plato:{{item.tipoPlato}}</p>
+          <p>Calorias:{{item.calorias}}</p>
+          <p>₡: {{item.precioPlato}}</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-dark margenes" type="submit" data-bs-toggle="modal" data-bs-target="#crearPlato">Agregar al menu</button>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#actualizarDatos">Actualizar datos</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarDatos">Eliminar del menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Actualizar datos-->
+<div class="modal fade" id="actualizarDatos" tabindex="-1" aria-labelledby="actualizarDatosLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="actualizarDatosLabel">Nombre del plato</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Cambiar tipo del plato</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Actualizar descripcion del plato</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark">Guardar Cambios</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar Plato-->
+<div  class="modal fade" id="eliminarDatos" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarDatosID">El plato ha sido eliminado del menu con exito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal crear Plato-->
+<div  class="modal fade" id="crearPlato" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearPlatoID">El plato ha sido agregado al menu con exito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+</div>
