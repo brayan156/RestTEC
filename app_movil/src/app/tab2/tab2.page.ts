@@ -62,6 +62,7 @@ export class Tab2Page {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
               this.router.navigateByUrl("/menu/tabs/tab3");
+              this.dataService.nuevoPedido(platos, total);
             }
           }
         ]

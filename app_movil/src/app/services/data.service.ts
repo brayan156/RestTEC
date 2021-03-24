@@ -16,12 +16,13 @@ import { CarritoGenera } from "../objetos/carrito-genera";
 })
 export class DataService {
 
+  pedidoEnProgreso = {};
   // Esta es la lista que almacena lo que esta dentro del carrito
   private data: PlatoApp[] = [];
   menu = [
     {
       plato: "Lentejas con platano maduro",
-      descripcion: "Deliciosas lentejas en sopa, con pimienta que le da cierto picor." ,
+      descripcion: "Deliciosas lentejas en sopa, con pimienta que le da cierto picor.",
       precio: "800",
       calorias: "200",
       tipo: "almuerzo",
@@ -29,7 +30,7 @@ export class DataService {
     },
     {
       plato: "Sopa azteca",
-      descripcion: "Una sopita tradicional de méxico a base de un caldo de tomate." ,
+      descripcion: "Una sopita tradicional de méxico a base de un caldo de tomate.",
       precio: "650",
       calorias: "250",
       tipo: "cena",
@@ -37,7 +38,7 @@ export class DataService {
     },
     {
       plato: "Cereal con leche",
-      descripcion: "Kelloggs con banano y leche deslactosada." ,
+      descripcion: "Kelloggs con banano y leche deslactosada.",
       precio: "300",
       calorias: "150",
       tipo: "desayuno",
@@ -45,7 +46,7 @@ export class DataService {
     }
   ]
 
-  constructor(private http: HttpClient,private objetos:ObjetosService) { }
+  constructor(private http: HttpClient, private objetos: ObjetosService) { }
 
   Url = 'https://192.168.1.2:45455/';
 
@@ -81,7 +82,7 @@ export class DataService {
       plato_almacena.N_compra = this.objetos.carrito.N_compra;
       platos.push(plato_almacena);
       this.http.post<String>(this.Url + "Carrito_almacena", plato_almacena);
-      let plato_con_nombre = { cantidad:plato_almacena.Cantidad , nombre:plato_app.plato};
+      let plato_con_nombre = { cantidad: plato_almacena.Cantidad, nombre: plato_app.plato };
       platos_con_nombre.push(plato_con_nombre);
     });
 
@@ -97,9 +98,30 @@ export class DataService {
         this.http.post<String>(this.Url + "Carrito_genera", carrito_genera);
         this.objetos.carrito.N_compra += 1;
         this.objetos.carrito.Monto = 0;
+      });
     });
-  });
-    return { detalle:factura, plato_y_cantidad:platos_con_nombre};
+    return { detalle: factura, plato_y_cantidad: platos_con_nombre };
+  }
+
+
+  nuevoPedido(platos: PlatoApp[], total: number) {
+    const pedido = {
+      pedido: platos,
+      saldo: total,
+      Numero: 1,
+      Estado: 'En progreso',
+      Tiempo_estimado: 5,
+      Tiempo_transcurrido: 0,
+      Tiempo_restante: 5,
+      Cedula_chef_asignado: 1234
+    };
+    this.pedidoEnProgreso = pedido;
+  }
+
+  getPedidoEnProgreso() {
+    const tmp = this.pedidoEnProgreso;
+    this.pedidoEnProgreso = {};
+    return tmp;
   }
 
 }

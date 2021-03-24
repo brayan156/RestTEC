@@ -34,9 +34,11 @@
   </ion-card>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)=mostrarPedidoEnProgreso()>
+    <ion-badge color="danger" style="left: -3px;top:-3px; z-index: 3; position: absolute;">{{this.getPedidosEnProgreso()}}</ion-badge>
     <ion-fab-button>
       <ion-icon name="hourglass-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  
   <!-- <app-explore-container name="Aquí verás tus Pedidos"></app-explore-container> -->
 </ion-content>

@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { AlertController, IonButton, ModalController } from '@ionic/angular';
+import { AlertController, IonBadge, IonButton, ModalController } from '@ionic/angular';
 import { proxyInputs } from '@ionic/angular/directives/proxies-utils';
 import { FeedbackPage } from '../feedback/feedback.page';
 import { Feedback } from '../objetos/feedback';
+import { DataService } from '../services/data.service';
 import { TrackingPage } from '../tracking/tracking.page';
 
 @Component({
@@ -11,18 +12,19 @@ import { TrackingPage } from '../tracking/tracking.page';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
-  constructor(public modalController: ModalController) {}
+  pedidosEnProgreso = 0;
+  constructor(public modalController: ModalController, private dataService: DataService) {}
 
   @ViewChild(IonButton) calificacion: IonButton;
   pedidosMuestra = [
     {
+      id: 1,
       menu: ['Lentejas con plátano maduro', 'Sopa azteca', 'Cereal con leche'],
       fecha: '3 de marzo',
       chef: 'Juan Carlos',
       estado: 'Preparando',
-      tiempo_transcurrido: '1min',
-      tiempo_estimado: '5min'
+      tiempo_transcurrido: 1,
+      tiempo_estimado: 5
     },
     {
       menu: ['Sopa azteca'],
@@ -42,6 +44,17 @@ export class Tab3Page {
     }
   ]
 
+  setPedidosEnProgreso() {
+    this.pedidosEnProgreso += 1;
+  }
+
+  getPedidosEnProgreso() {
+    var result = null;
+    if (this.pedidosEnProgreso > 0) {
+      result = this.pedidosEnProgreso;
+    }
+    return result;
+  }
 
   feedback() {
   }
@@ -58,10 +71,16 @@ export class Tab3Page {
   }
 
   async mostrarPedidoEnProgreso() {
+    var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
+    if (pedidoEnProgreso != {}) { this.setPedidosEnProgreso() };
     const modal = await this.modalController.create({
       component: TrackingPage,
+      componentProps: {
+        pedido: pedidoEnProgreso
+      }
     });
     return await modal.present();
+    
   }
 
 
