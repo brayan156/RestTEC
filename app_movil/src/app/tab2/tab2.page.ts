@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { WebElementPromise } from 'selenium-webdriver';
+import { FacturaPage } from '../factura/factura.page';
 import { Factura } from '../objetos/factura';
 import { Pedido } from '../objetos/pedido';
 import { PlatoApp } from '../objetos/plato-app';
@@ -24,20 +25,34 @@ export class Tab2Page {
   constructor(private dataService: DataService,
     private router: Router,
     public alertController: AlertController,
-    private objetos: ObjetosService) {
+    private objetos: ObjetosService,
+    public modalController: ModalController) {
       
-    // this.menu = this.dataService.getData()
-    this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+    this.menu = this.dataService.getData()
+    //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+  }
+
+
+  async mostrarFactura(factura: Factura, platos: PlatoApp[]) {
+    const facturaModal = await this.modalController.create({
+      component: FacturaPage,
+      componentProps: {
+        factura: factura,
+        platos: platos
+      }
+    });
+    return await facturaModal.present();
+    
   }
 
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
-    var nombresDePlatosRecibidos: string = '';
-    platos.forEach(plato => {
-      nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
-    })
-    let factura = this.dataService.comprar(platos);
+    // var nombresDePlatosRecibidos: string = '';
+    // platos.forEach(plato => {
+    //   nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
+    // })
+    let factura = this.dataService.comprar(platos, total);
     console.log(factura);
-    nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
+    // nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
 
     if (total == 0) {
       const alert = await this.alertController.create({
@@ -56,8 +71,8 @@ export class Tab2Page {
       await alert.present();
     } else {
       const alert = await this.alertController.create({
-        header: '¿Deseas realizar este pedido?',
-        message: nombresDePlatosRecibidos,
+        header: '¿Deseas continuar con este pedido?',
+        message: '',
         buttons: [
           {
             text: 'No, agregaré más platos.',
@@ -68,9 +83,7 @@ export class Tab2Page {
           }, {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
-              this.router.navigateByUrl("/menu/tabs/tab3");
-              this.router.navigateByUrl("tracking");
-              this.dataService.nuevoPedido(platos, total);
+              this.mostrarFactura(factura.detalle, platos);
             }
           }
         ]
@@ -79,6 +92,7 @@ export class Tab2Page {
     }
 
   }
+
 
   //Calculate Total
   calculateTotal() {
@@ -119,6 +133,9 @@ export class Tab2Page {
       cont += 1
     });
   }
+
+
+
 
   // // Dismiss Modal
   // dismiss() {

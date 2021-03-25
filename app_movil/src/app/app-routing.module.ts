@@ -20,6 +20,10 @@ const routes: Routes = [
   },  {
     path: 'feedback',
     loadChildren: () => import('./feedback/feedback.module').then( m => m.FeedbackPageModule)
+  },
+  {
+    path: 'factura',
+    loadChildren: () => import('./factura/factura.module').then( m => m.FacturaPageModule)
   }
 
 ];

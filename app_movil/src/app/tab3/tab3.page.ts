@@ -12,6 +12,8 @@ import { TrackingPage } from '../tracking/tracking.page';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  cont = 0;
+  pedidoEnProgresoModal: HTMLIonModalElement;
   pedidosEnProgreso = 0;
   constructor(public modalController: ModalController, private dataService: DataService) {}
 
@@ -44,8 +46,8 @@ export class Tab3Page {
     }
   ]
 
-  setPedidosEnProgreso() {
-    this.pedidosEnProgreso += 1;
+  setPedidosEnProgreso(len) {
+    this.pedidosEnProgreso = len;
   }
 
   getPedidosEnProgreso() {
@@ -59,28 +61,34 @@ export class Tab3Page {
   feedback() {
   }
 
-  async presentarFeedback(pedido) {
+  async presentarFeedback(pedido, id) {
     const modal = await this.modalController.create({
       component: FeedbackPage,
       componentProps: {
         platos: pedido
       }
     });
+    document.getElementById(id).disabled = true;;
+    button.disabled = true;
     return await modal.present();
     
   }
 
   async mostrarPedidoEnProgreso() {
     var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
-    if (pedidoEnProgreso != []) { this.setPedidosEnProgreso() };
-    const modal = await this.modalController.create({
+    if (pedidoEnProgreso != []) { this.setPedidosEnProgreso(pedidoEnProgreso.length) };
+    this.pedidoEnProgresoModal = await this.modalController.create({
       component: TrackingPage,
       componentProps: {
         pedido: pedidoEnProgreso
       }
     });
-    return await modal.present();
+    return await this.pedidoEnProgresoModal.present();
     
+  }
+
+  getProgresoModal() {
+    return this.pedidoEnProgresoModal;
   }
 
 

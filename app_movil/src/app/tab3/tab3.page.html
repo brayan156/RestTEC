@@ -20,7 +20,7 @@
       <p>
         <ion-icon name="fast-food"></ion-icon> {{pedido.chef}}
       </p>
-      <ion-button (click)=presentarFeedback(pedido.menu)  shape="round" size='small'>Feedback</ion-button>
+      <ion-button  id={{this.cont+=1}} (click)=presentarFeedback(pedido.menu, {{this.cont+=1}}) shape="round" size='small'>Feedback</ion-button>
       <p> </p>
       <hr size="8" width="100%" color="grey">
 

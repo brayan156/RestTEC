@@ -66,33 +66,33 @@ export class DataService {
       plato_almacena.Id_carrito = this.objetos.carrito.Id;
       plato_almacena.N_compra = this.objetos.carrito.N_compra;
       platos.push(plato_almacena);
-      this.http.post<String>(this.Url + "Carrito_almacena", plato_almacena).subscribe(car => {
-          console.log("plato almacenado");
-        }
-      );
+      // this.http.post<String>(this.Url + "Carrito_almacena", plato_almacena).subscribe(car => {
+      //     console.log("plato almacenado");
+      //   }
+      // );
       let plato_con_nombre = { cantidad: plato_almacena.Cantidad, nombre: plato_app.plato };
       platos_con_nombre.push(plato_con_nombre);
     });
 
-    this.http.post<Carrito>(this.Url + "Carrito", this.objetos.carrito).subscribe(c => {
-      console.log("nuevo carro")
-    });
-    this.http.post<Factura>(this.Url + "Factura", total).subscribe(fact => {
+    // this.http.post<Carrito>(this.Url + "Carrito", this.objetos.carrito).subscribe(c => {
+    //   console.log("nuevo carro")
+    // });
+    // this.http.post<Factura>(this.Url + "Factura", total).subscribe(fact => {
 
-      factura = fact;
-      this.http.post<Pedido>(this.Url + "Pedido", tiempo_total).subscribe(pedido => {
-        let carrito_genera: CarritoGenera = new CarritoGenera;
-        carrito_genera.N_compra = this.objetos.carrito.N_compra;
-        carrito_genera.Id_carrito = this.objetos.carrito.Id;
-        carrito_genera.Id_Factura = factura.Id;
-        this.http.post<String>(this.Url + "Carrito_genera", carrito_genera).subscribe(g => {
-          console.log("todo armado");
-        });
-        this.objetos.carrito.N_compra += 1;
-        this.objetos.carrito.Monto = 0;
-      });
-    });
-    return { detalle: factura.Id, plato_y_cantidad: platos_con_nombre };
+    //   factura = fact;
+    //   this.http.post<Pedido>(this.Url + "Pedido", tiempo_total).subscribe(pedido => {
+    //     let carrito_genera: CarritoGenera = new CarritoGenera;
+    //     carrito_genera.N_compra = this.objetos.carrito.N_compra;
+    //     carrito_genera.Id_carrito = this.objetos.carrito.Id;
+    //     carrito_genera.Id_Factura = factura.Id;
+    //     this.http.post<String>(this.Url + "Carrito_genera", carrito_genera).subscribe(g => {
+    //       console.log("todo armado");
+    //     });
+    //     this.objetos.carrito.N_compra += 1;
+    //     this.objetos.carrito.Monto = 0;
+    //   });
+    // });
+    return { detalle: factura, plato_y_cantidad: platos_con_nombre };
   }
 
 
@@ -108,12 +108,19 @@ export class DataService {
       Cedula_chef_asignado: 1234
     };
     this.pedidoEnProgreso.push(pedido);
+
   }
 
   getPedidoEnProgreso() {
     const tmp = this.pedidoEnProgreso;
-    this.pedidoEnProgreso = [];
     return tmp;
   }
 
+  setPedidosEnProgreso(lista) {
+    this.pedidoEnProgreso = lista;
+  }
+
+  getData() {
+    return this.menu;
+  }
 }

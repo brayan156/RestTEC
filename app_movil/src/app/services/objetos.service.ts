@@ -156,16 +156,16 @@ export class ObjetosService {
   //obtiene el carrito de un pedido
   public obtener_carrito_pedido(N_pedido: number) {
     var car:Carrito=new Carrito
-    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
-      this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
-        for (let i = 0; i < carritos.length; i++) {
-          if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
-            car = carritos[i];
-            break;
-          }
-        }
-      })
-    });
+    // this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
+    //   this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
+    //     for (let i = 0; i < carritos.length; i++) {
+    //       if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
+    //         car = carritos[i];
+    //         break;
+    //       }
+    //     }
+    //   })
+    // });
     return car;
   }
 
@@ -174,10 +174,10 @@ export class ObjetosService {
   public obtener_almacen_pedido(N_pedido: number) {
     var almacen:CarritoAlmacena[]=[]
     let carrito: Carrito = this.obtener_carrito_pedido(N_pedido);
-    this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + carrito.Id + "/" + carrito.N_compra)
-      .subscribe(carritos_almacena => {
-        almacen= carritos_almacena;
-      });
+    // this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + carrito.Id + "/" + carrito.N_compra)
+    //   .subscribe(carritos_almacena => {
+    //     almacen= carritos_almacena;
+    //   });
     return almacen;
   }
 
@@ -185,11 +185,11 @@ export class ObjetosService {
 
   //funcion a llamar cuando se le da al boton para decir que recibio el producto guardar el id del pedido para crear el feedback
   public pedido_recibido(pedido:Pedido) {
-    this.http.put(this.Url + "Pedido", pedido);
+    //this.http.put(this.Url + "Pedido", pedido);
   }
 
   //funcion para enviar el feedback a la base datos colocar los datos necesarios
   public dar_feedback(feedback: Feedback) {
-    this.http.post(this.Url + "Feedback", feedback);
+    //this.http.post(this.Url + "Feedback", feedback);
   }
 }
