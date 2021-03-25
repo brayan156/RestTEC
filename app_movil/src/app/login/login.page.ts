@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     setTimeout(() => {
       console.log('Async operation has ended');
     }, 2000);
-  }
+  
     console.log(validateClient.Cedula);
     if ( validateClient.Cedula != null && validateClient.Cedula != 0 ) {
       this.router.navigateByUrl('/menu/tabs/tab2');
