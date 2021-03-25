@@ -1,45 +1,26 @@
-<div>
-  <app-navbar-cheft></app-navbar-cheft>
-</div>
-<div>
-  <div class="modal.show()" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Codigo del Pedido</h5>
-          <small>Nombre del cheft</small>
-        </div>
-        <div class="modal-body">
-          <p>Datos del pedido</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#aceptarPedido">Aceptar pedido</button>
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#darControl">Dar control</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-navbar-chef></app-navbar-chef>
+
+<!--  -->
+<div class="row">
+  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    ID-DEL-PEDIDO (Cedula del cheft)
+  </button>
 </div>
 
-<!-- Modal crear Plato-->
-<div  class="modal fade" id="aceptarPedido" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
+<!---->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="aceptarPedidoID">Pedido aceptado</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">ID-DEL-PEDIDO</h5>
+        <small>Tiempo Restante</small>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal crear Plato-->
-<div  class="modal fade" id="darControl" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="darControlID">Esperanddo que algun chef acepte el pedido</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        CUERPO-DEL-PEDIDO
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Reasignar Pedido</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar Pedido reasignado</button>
       </div>
     </div>
   </div>

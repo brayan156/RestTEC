@@ -9,7 +9,7 @@ import {LoginComunication} from '../Comunicacion/LoginComunication';
 })
 export class FormUsuarioComponent implements OnInit {
 
-  manejoLogin: LoginComunication = new LoginComunication('', '');
+  manejoLogin: LoginComunication = new LoginComunication('', '' , '');
 
   constructor(
     private router: Router

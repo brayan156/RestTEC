@@ -4,9 +4,10 @@ export class LoginComunication {
   tipo: string;
   cedula: string;
 
-  public constructor(correo, password) {
+  public constructor(correo, password, tipo) {
     this.correoElectronico = correo;
     this.password = password;
+    this.tipo = tipo;
   }
 
   public setTipo(dato: string): void {
