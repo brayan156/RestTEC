@@ -5,6 +5,7 @@ import { WebElementPromise } from 'selenium-webdriver';
 import { Pedido } from '../objetos/pedido';
 import { PlatoApp } from '../objetos/plato-app';
 import { DataService } from '../services/data.service';
+import { ObjetosService } from '../services/objetos.service';
 
 @Component({
   selector: 'app-tab2',
@@ -21,17 +22,21 @@ export class Tab2Page {
 
   constructor(private dataService: DataService,
     private router: Router,
-    public alertController: AlertController) {
-    this.menu = this.dataService.getData()
+    public alertController: AlertController,
+    private objetos: ObjetosService) {
+    
+    //this.menu = this.dataService.getData()
+     this.menu=this.objetos.getplatos_menu();
   }
-  
+
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
+    this.objetos.carrito.Monto=total
     var nombresDePlatosRecibidos: string = '';
     platos.forEach(plato => {
       nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
     })
     nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
-
+    console.log(this.dataService.comprar(platos,total));
     if (total == 0) {
       const alert = await this.alertController.create({
         header: 'Agrega platos para continuar.',
@@ -69,7 +74,7 @@ export class Tab2Page {
       });
       await alert.present();
     }
-    
+
   }
 
   //Calculate Total
@@ -81,7 +86,7 @@ export class Tab2Page {
         total += (parseInt(element.precio) * parseInt(element.cant));
         platos.push(element);
       }
-      
+
     });
     return { saldo: total, pedido: platos };
   }
@@ -90,7 +95,7 @@ export class Tab2Page {
   comprar() {
     var pedido = this.calculateTotal();
     this.presentAlertConfirm(pedido.pedido, pedido.saldo);
-    
+
     //this.dismiss();
   }
 
@@ -104,11 +109,11 @@ export class Tab2Page {
   doRefresh(event) {
     var cont = 0;
     this.menu.forEach(element => {
-      
+
       if (element.cant == 0) {
-        this.menu.splice(cont,1);
+        this.menu.splice(cont, 1);
       }
-      cont +=1
+      cont += 1
     });
   }
 

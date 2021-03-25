@@ -72,7 +72,7 @@ export class Tab3Page {
 
   async mostrarPedidoEnProgreso() {
     var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
-    if (pedidoEnProgreso != {}) { this.setPedidosEnProgreso() };
+    if (pedidoEnProgreso != []) { this.setPedidosEnProgreso() };
     const modal = await this.modalController.create({
       component: TrackingPage,
       componentProps: {

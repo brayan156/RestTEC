@@ -17,7 +17,9 @@ import { CarritoAlmacena } from "../objetos/carrito-almacena";
 })
 export class ObjetosService {
 
-  menu = [
+  menu = []
+
+  tmpMenu = [
     {
       plato: "Lentejas con platano maduro",
       descripcion: "Deliciosas lentejas en sopa, con pimienta que le da cierto picor." ,
@@ -59,7 +61,7 @@ export class ObjetosService {
   }
 
   getMenu() {
-    return this.menu;
+    return this.tmpMenu;
   }
 
   public ingresarmenu(platos) {
@@ -97,15 +99,8 @@ export class ObjetosService {
   //funcion para verificar el login y obtener el id de su carrito y por la compra en la que va
   public validar_cliente(correo: String, contraseña: String) {
 
-    this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña).subscribe(data => {
-      this.cliente = data;
-      if (this.cliente.Cedula !== 0) {
-        this.http.get<Carrito>(this.Url + "Carrito/obtener_carrito_actual_cedula/" + this.cliente.Cedula).subscribe(carrito => {
-          this.carrito = carrito;
-        });
-      }
-    });
-    return this.cliente;
+    return this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña);
+
   }
 
   //funcion para registrarse, añade un nuevo cliente mandarlo a la parte de login luego de esto
@@ -118,7 +113,7 @@ export class ObjetosService {
         respuesta = resp;
         if (respuesta === "registro ingresado correctamente") {
           telefonos.forEach(telofono => {
-            let tel: Telefonos = new Telefonos;
+            let tel: Telefonos = new Telefonos();
             tel.ID_cliente = cliente.Cedula;
             tel.Telefono = telofono;
             this.http.post<String>(this.Url + "Telefonos", tel);

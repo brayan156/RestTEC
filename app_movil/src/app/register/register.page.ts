@@ -12,7 +12,7 @@ import { ObjetosService } from '../services/objetos.service';
 export class RegisterPage implements OnInit {
 
   newClient: Cliente = new Cliente();
-  newClientPhone: Telefonos = new Telefonos();
+  newClientPhone: number;
   birthDate: string;
   constructor(private router: Router, private objetosService: ObjetosService) { }
 
@@ -21,13 +21,13 @@ export class RegisterPage implements OnInit {
   }
 
   register(form) {
-    this.router.navigateByUrl('/menu/tabs/tab2');
+    this.router.navigateByUrl('');
     this.newClient.AñoNacimiento = (this.birthDate.slice(0, 4));
     this.newClient.Mes_Nacimiento = (this.birthDate.slice(5, 7));
     this.newClient.Día_Nacimiento = (this.birthDate.slice(8, 10));
 
     var clientPhones = [
-      this.newClientPhone.Telefono
+      this.newClientPhone
     ]
     this.objetosService.crear_cliente(this.newClient, clientPhones);
   }

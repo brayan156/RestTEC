@@ -11,7 +11,7 @@ export class TrackingPage implements OnInit {
   pedidosEnProgreso = [];
 
   @Input() pedido;
-  constructor(public modalController: ModalController) { this.pedidosEnProgreso.push(this.pedido)}
+  constructor(public modalController: ModalController) { this.pedidosEnProgreso = this.pedido}
 
   ngOnInit() {
   }
@@ -21,7 +21,8 @@ export class TrackingPage implements OnInit {
   }
 
   refrescarPedido(evento) {
-    
+    console.log(this.pedido);
+    this.pedidosEnProgreso = this.pedido;
   }
 
 }
