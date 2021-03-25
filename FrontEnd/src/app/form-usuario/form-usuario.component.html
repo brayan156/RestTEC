@@ -1,18 +1,28 @@
+<!--From para aceder al tipo de vista chef o admisnistrador segun sea necesario para el usuario que esta introduciendo
+   los datos-->
 <div class="col-6">
   <div class="container">
     <div class="col align-self-start">
       <form>
         <div class= "row">
-          <label>
-            Correo Electronico:
-          </label>
+
           <input type="email" name="email" class="email_From" id="InputEmail1" placeholder="Correo Electronico"
                  aria-label="CorreoElectronico" required="" #Correo ="ngModel" [(ngModel)] = "manejoLogin.correoElectronico">
         </div>
         <div class="row">
-          <label>Contraseña</label>
           <input type="password" name="password" class="pasword_Emanil" id="InputPassword" placeholder="Contraseña"
                  aria-label="contraseña"required="" #password ="ngModel" [(ngModel)] = "manejoLogin.password" >
+        </div>
+        <div class="col-sm">
+          <input type="radio" class="form-check-input" id="Radio1" name="radio1" value="admi" #radio1 ="ngModel"
+                 [(ngModel)] = "manejoLogin.tipo">
+          <label>Admin</label>
+        </div>
+
+        <div class="col-sm">
+          <input type="radio" class="form-check-input" id="Radio2" name="radio1" value="chef" #radio1 ="ngModel"
+                 [(ngModel)] = "manejoLogin.tipo">
+          <label>Chef</label>
         </div>
         <div class="row" class = "button">
           <button type="submit" class="btn btn-primary" (click)="goTo()">Entrar</button>
