@@ -6,16 +6,33 @@ import { IonRange, ModalController } from '@ionic/angular';
   templateUrl: './feedback.page.html',
   styleUrls: ['./feedback.page.scss'],
 })
-export class FeedbackPage implements OnInit {
+  
+
+export class FeedbackPage {
+
+    /**
+   * Fefedback page consiste en un modal que muestra 
+   * un boton y un ion-range para calificar el pedido.
+   */
+
+  /**
+   * Desde su componenente padre (tab Pedidos) recibe
+   * los platos que debe desplegar en la factura.
+   */
   @Input() platos;
+
+
   @ViewChild(IonRange) calificacion: IonRange;
 
-  
+  /**
+   * Constructor, inyectamos los controladores necesarios
+   * @param modalController 
+   */  
   constructor(public modalController: ModalController) { }
 
-  ngOnInit() {
-  }
-
+  /**
+   * Cierra el modal
+   */
   dismiss() {
     this.modalController.dismiss();
     console.log(this.calificacion.value);
