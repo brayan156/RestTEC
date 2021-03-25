@@ -13,8 +13,8 @@ import { TrackingPage } from '../tracking/tracking.page';
 })
 export class Tab3Page {
   cont = 0;
-  pedidoEnProgresoModal: HTMLIonModalElement;
   pedidosEnProgreso = 0;
+  disableButton = false;
   constructor(public modalController: ModalController, private dataService: DataService) {}
 
   @ViewChild(IonButton) calificacion: IonButton;
@@ -29,6 +29,7 @@ export class Tab3Page {
       tiempo_estimado: 5
     },
     {
+      id: 2,
       menu: ['Sopa azteca'],
       fecha: '1 de marzo',
       chef: 'Pipe',
@@ -37,6 +38,7 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     },
     {
+      id: 3,
       menu: ['Cereal con leche'],
       fecha: '28 de febrero',
       chef: 'Pipe',
@@ -59,37 +61,48 @@ export class Tab3Page {
   }
 
   feedback() {
+    
   }
 
-  async presentarFeedback(pedido, id) {
+  async presentarFeedback(plato) {
+    this.disableButton = true;
+    console.log(this.pedidosMuestra);
+    var tmp = [];
+    this.pedidosMuestra.forEach(pedido => {
+      console.log(pedido.id);
+      console.log(plato.id);
+      if (pedido.id === plato.id) { pedido.estado = 'Preparado'; tmp.push(pedido) }
+      else { tmp.push(pedido)}
+    })
+    this.pedidosMuestra = tmp;
+    console.log(this.pedidosMuestra);
     const modal = await this.modalController.create({
       component: FeedbackPage,
       componentProps: {
-        platos: pedido
+        platos: plato.menu
       }
     });
-    document.getElementById(id).disabled = true;;
-    button.disabled = true;
-    return await modal.present();
-    
+    ;
+    return await modal.present();    
   }
 
   async mostrarPedidoEnProgreso() {
     var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
     if (pedidoEnProgreso != []) { this.setPedidosEnProgreso(pedidoEnProgreso.length) };
-    this.pedidoEnProgresoModal = await this.modalController.create({
+    const pedidoEnProgresoModal = await this.modalController.create({
       component: TrackingPage,
       componentProps: {
         pedido: pedidoEnProgreso
       }
     });
-    return await this.pedidoEnProgresoModal.present();
+    return await pedidoEnProgresoModal.present();
     
   }
 
-  getProgresoModal() {
-    return this.pedidoEnProgresoModal;
+  doRefresh() {
+    
   }
+
 
 
 
