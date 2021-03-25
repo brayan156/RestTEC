@@ -101,9 +101,11 @@ export class ObjetosService {
 
     this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña).subscribe(data => {
       this.cliente = data;
+      console.log("adios");
       if (this.cliente.Cedula !== 0) {
         this.http.get<Carrito>(this.Url + "Carrito/obtener_carrito_actual_cedula/" + this.cliente.Cedula).subscribe(carrito => {
           this.carrito = carrito;
+          console.log("hola");
         });
       }
     });
