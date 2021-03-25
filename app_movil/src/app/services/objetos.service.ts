@@ -118,12 +118,18 @@ export class ObjetosService {
     } else {
       this.http.post<String>(this.Url + "Cliente", cliente).subscribe(resp => {
         respuesta = resp;
+        console.log(respuesta);
         if (respuesta === "registro ingresado correctamente") {
           telefonos.forEach(telofono => {
-            let tel: Telefonos = new Telefonos;
+            let tel: Telefonos = new Telefonos();
+            console.log("entre aqui");
             tel.ID_cliente = cliente.Cedula;
             tel.Telefono = telofono;
-            this.http.post<String>(this.Url + "Telefonos", tel);
+            this.http.post<String>(this.Url + "Telefonos", tel).subscribe(puesta => {
+              console.log("llegamos");
+              console.log(puesta);
+              });
+            console.log("llegue aqui");
           });
         }
       });
