@@ -11,8 +11,6 @@ export class PedidosSistemaAdmiComponent implements OnInit {
   public contenido;
 
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-    console.log(pedidosActivosSistema.sacar_nombre_cantidad(1));
-
   }
 
   ngOnInit(): void {

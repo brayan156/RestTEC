@@ -172,7 +172,7 @@ export class ObjetosService {
 
   //obtiene los numeros de plato y la cantidad comprada de un pedido
   public obtener_almacen_pedido(N_pedido: number) {
-    var almacen: CarritoAlmacena[] = [];
+    var almacen:CarritoAlmacena[]=[]
     let carrito: Carrito = this.obtener_carrito_pedido(N_pedido);
     this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + carrito.Id + "/" + carrito.N_compra)
       .subscribe(carritos_almacena => {
