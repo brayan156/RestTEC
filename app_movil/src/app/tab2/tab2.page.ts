@@ -27,7 +27,7 @@ export class Tab2Page {
     public alertController: AlertController,
     private objetos: ObjetosService,
     public modalController: ModalController) {
-      
+
     this.menu = this.dataService.getData()
     //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
   }
@@ -42,7 +42,7 @@ export class Tab2Page {
       }
     });
     return await facturaModal.present();
-    
+
   }
 
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
@@ -83,7 +83,7 @@ export class Tab2Page {
           }, {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
-              this.mostrarFactura(factura.detalle, platos);
+              this.presentFinalAlert(factura.detalle, platos);
             }
           }
         ]
@@ -92,6 +92,23 @@ export class Tab2Page {
     }
 
   }
+
+  async presentFinalAlert(factura: Factura, platos: PlatoApp[]) {
+    const alert = await this.alertController.create({
+      header: 'Compra realizada ¡Veamos la factura!',
+      message: '',
+      buttons: [
+        {
+          text: 'Continuar',
+          handler: () => {
+            this.mostrarFactura(factura, platos);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
 
   //Calculate Total
