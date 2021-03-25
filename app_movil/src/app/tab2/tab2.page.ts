@@ -25,17 +25,18 @@ export class Tab2Page {
     public alertController: AlertController,
     private objetos: ObjetosService) {
     
-    this.menu = this.dataService.getData()
-    // this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+    //this.menu = this.dataService.getData()
+     this.menu=this.objetos.getplatos_menu();
   }
 
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
+    this.objetos.carrito.Monto=total
     var nombresDePlatosRecibidos: string = '';
     platos.forEach(plato => {
       nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
     })
     nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
-
+    console.log(this.dataService.comprar(platos,total));
     if (total == 0) {
       const alert = await this.alertController.create({
         header: 'Agrega platos para continuar.',

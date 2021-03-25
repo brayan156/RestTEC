@@ -18,7 +18,6 @@ export class DataService {
 
   pedidoEnProgreso = [];
   // Esta es la lista que almacena lo que esta dentro del carrito
-  private data: PlatoApp[] = [];
   menu = [
     {
       plato: "Lentejas con platano maduro",
@@ -51,29 +50,15 @@ export class DataService {
   Url = 'https://192.168.1.2:45455/';
 
   // Aqui recibe platos para agregarlos al carrito conforme recibe
-  setData(platoEntrante) {
-    if (this.data.length == 0) { this.data.push(platoEntrante) } else {
-      this.data.forEach(plato => {
-        if (plato.plato == platoEntrante.plato) {
-          plato.cant += 1;
-          console.log(plato.cant, 'salud')
-        } else {
-          this.data.push(platoEntrante);
-        }
-      })
-    }
-  }
-  getData() {
-    return this.menu;
-  }
+
 
   //funcion a llamar cuando se compra sirve para cambiar de numero de pedido y crear la factura a mostrar al cliente 
-  public comprar() {
+  public comprar(data:PlatoApp[], total:number) {
     var platos: CarritoAlmacena[] = [];
     var factura: Factura = new Factura;
     var platos_con_nombre = []
     var tiempo_total = 0;
-    this.data.forEach(plato_app => {
+    data.forEach(plato_app => {
       tiempo_total += plato_app.tiempo_preparacion * plato_app.cant;
       let plato_almacena: CarritoAlmacena = new CarritoAlmacena;
       plato_almacena.N_plato = plato_app.n_plato;
@@ -81,13 +66,18 @@ export class DataService {
       plato_almacena.Id_carrito = this.objetos.carrito.Id;
       plato_almacena.N_compra = this.objetos.carrito.N_compra;
       platos.push(plato_almacena);
-      this.http.post<String>(this.Url + "Carrito_almacena", plato_almacena);
+      this.http.post<String>(this.Url + "Carrito_almacena", plato_almacena).subscribe(car => {
+          console.log("plato almacenado");
+        }
+      );
       let plato_con_nombre = { cantidad: plato_almacena.Cantidad, nombre: plato_app.plato };
       platos_con_nombre.push(plato_con_nombre);
     });
 
-    this.http.post<Carrito>(this.Url + "Carrito", this.objetos.carrito);
-    this.http.post<Factura>(this.Url + "Factura", this.objetos.carrito.Monto).subscribe(fact => {
+    this.http.post<Carrito>(this.Url + "Carrito", this.objetos.carrito).subscribe(c => {
+      console.log("nuevo carro")
+    });
+    this.http.post<Factura>(this.Url + "Factura", total).subscribe(fact => {
 
       factura = fact;
       this.http.post<Pedido>(this.Url + "Pedido", tiempo_total).subscribe(pedido => {
@@ -95,12 +85,14 @@ export class DataService {
         carrito_genera.N_compra = this.objetos.carrito.N_compra;
         carrito_genera.Id_carrito = this.objetos.carrito.Id;
         carrito_genera.Id_Factura = factura.Id;
-        this.http.post<String>(this.Url + "Carrito_genera", carrito_genera);
+        this.http.post<String>(this.Url + "Carrito_genera", carrito_genera).subscribe(g => {
+          console.log("todo armado");
+        });
         this.objetos.carrito.N_compra += 1;
         this.objetos.carrito.Monto = 0;
       });
     });
-    return { detalle: factura, plato_y_cantidad: platos_con_nombre };
+    return { detalle: factura.Id, plato_y_cantidad: platos_con_nombre };
   }
 
 
