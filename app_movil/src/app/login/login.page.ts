@@ -19,11 +19,14 @@ export class LoginPage implements OnInit {
   }
 
   login(form) {
-    let validateClient = this.objetos.validar_cliente(this.correo, this.password)
+    let validateClient = this.objetos.validar_cliente(this.correo, this.password);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+    }, 2000);
+  }
+    console.log(validateClient.Cedula);
     if ( validateClient.Cedula != null && validateClient.Cedula != 0 ) {
-      console.log(validateClient.Cedula);
       this.router.navigateByUrl('/menu/tabs/tab2');
-      
     } else {
       this.presentAlert();
     };
