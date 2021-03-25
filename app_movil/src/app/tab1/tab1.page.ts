@@ -21,7 +21,7 @@ export class Tab1Page {
 
   
 
-  agregarCarrito(plato) {
+/*  agregarCarrito(plato) {
     //console.log(plato)
     this.dataService.setData(plato);
     this.presentToast(plato.plato);
@@ -47,5 +47,5 @@ export class Tab1Page {
   }
 
 
-
+*/
 }
