@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {PedidosActivosService} from '../pedidos-activos.service';
-import {GestionDePlatosService} from '../gestion-de-platos.service';
-import {GestionMenuService} from '../gestion-menu.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,11 +9,8 @@ import {GestionMenuService} from '../gestion-menu.service';
 })
 export class AppComponent {
   title = 'restTEC';
-  constructor(private pedidosActivos: PedidosActivosService, private gestionPedidos: GestionDePlatosService ,
-              private gestionMenu: GestionMenuService){
+  constructor(private pedidosActivos: PedidosActivosService){
     pedidosActivos.cargarJson();
-    gestionMenu.cargarJson();
-    gestionPedidos.cargarJson();
   }
 }
 

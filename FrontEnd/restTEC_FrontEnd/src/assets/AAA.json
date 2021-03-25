@@ -1,27 +1,18 @@
-[{
-  "name": "#12HAJ",
-  "plato1": "GalloPintox2",
-  "plato2": "Carne en salsa",
-  "plato3": "Hamburguesa con papas",
-  "plato4": "Pollo Frito",
-  "plato5": "",
-  "precio1": "5000",
-  "precio2": "4000",
-  "precio3": "2000",
-  "precio4": "2500",
-  "precio5": ""
-},
+[
   {
-    "name": "#12NCJ",
-    "plato1": "GalloPinto",
-    "plato2": "Carne en salsa",
-    "plato3": "Hamburguesa con papas",
-    "plato4": "Pollo Frito",
-    "plato5": "Yogurt con granola",
-    "precio1": "2500",
-    "precio2": "4000",
-    "precio3": "2000",
-    "precio4": "2500",
-    "precio5": "1500"
+    "Numero": 1,
+    "Estado": "sin asignar",
+    "Tiempo_estimado": 145,
+    "Tiempo_transcurrido": 0,
+    "Tiempo_restante": 0,
+    "Cedula_chef_asignado": 0
+  },
+  {
+    "Numero": 2,
+    "Estado": "sin asignar",
+    "Tiempo_estimado": 70,
+    "Tiempo_transcurrido": 0,
+    "Tiempo_restante": 0,
+    "Cedula_chef_asignado": 0
   }
 ]
