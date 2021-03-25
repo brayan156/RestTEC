@@ -4,7 +4,7 @@
     {
         public int Cedula { get; set; }
         public string Email { get; set; }
-        public string Contraseña { get; set; }
+        public string Password { get; set; }
         public string Rol { get; set; }
 
 
@@ -13,11 +13,11 @@
 
         }
 
-        public Usuario(int cedula, string email, string contraseña,string rol)
+        public Usuario(int cedula, string email, string password,string rol)
         {
             Cedula = cedula;
             Email = email;
-            Contraseña = contraseña;
+            Password = password;
             Rol = rol;
         }
     }

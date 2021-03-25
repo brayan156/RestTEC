@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -30,7 +31,7 @@ namespace Servidor_API.Controllers
         public string Post([FromBody] Telefonos telefonos)
         {
             string respuesta = "";
-
+            Debug.WriteLine("inicio");
             string jsontext = System.IO.File.ReadAllText(path);
             List<Telefonos> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Telefonos>>(jsontext);
             if (lista == null)
@@ -43,6 +44,7 @@ namespace Servidor_API.Controllers
             {
                 if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
                 {
+                    Debug.WriteLine("existe");
                     existe = true;
                     respuesta = "registro ya existente";
                     break;
@@ -55,6 +57,7 @@ namespace Servidor_API.Controllers
             }
             else if (!existe)
             {
+                Debug.WriteLine("crear");
                 lista.Add(telefonos);
                 respuesta = "registro ingresado correctamente";
             }

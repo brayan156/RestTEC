@@ -24,7 +24,7 @@ namespace Servidor_API.Controllers
         }
 
 
-        [Route("Cliente/validar_cliente/{email:int}/{contraseña:int}")]
+        [Route("Cliente/validar_cliente/{email}/{contraseña}")]
         [HttpGet]
         public Cliente ValidarCliente(string email,string contraseña)
         {
@@ -40,7 +40,7 @@ namespace Servidor_API.Controllers
             Cliente cliente = new Cliente();
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Email == email & lista[i].Contraseña==contraseña)
+                if (lista[i].Email == email & lista[i].Password==contraseña)
                 {
                     cliente = lista[i];
                     existe = true;

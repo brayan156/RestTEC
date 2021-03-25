@@ -45,6 +45,7 @@ namespace Servidor_API.Controllers
             factura.Año= DateTime.Now.Year.ToString();
             factura.Mes= DateTime.Now.Month.ToString();
             factura.Hora= DateTime.Now.TimeOfDay.ToString();
+            factura.Monto=monto;
             lista.Add(factura);
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);

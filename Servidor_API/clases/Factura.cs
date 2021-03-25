@@ -3,7 +3,7 @@
     public class Factura
     {
         public int Id { get; set; }
-        public string Monto { get; set; }
+        public int Monto { get; set; }
         public string Año { get; set; }
         public string Mes { get; set; }
         public string Día { get; set; }
@@ -15,7 +15,7 @@
 
         }
 
-        public Factura(int id, string monto, string año, string mes, string dia, string hora)
+        public Factura(int id, int monto, string año, string mes, string dia, string hora)
         {
             Id = id;
             Monto = monto;

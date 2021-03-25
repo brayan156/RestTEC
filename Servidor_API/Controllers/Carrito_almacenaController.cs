@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,6 +18,7 @@ namespace Servidor_API.Controllers
         [HttpGet]
         public List<Carrito_almacena> Get()
         {
+            
             string jsontext = System.IO.File.ReadAllText(path);
             List<Carrito_almacena> lista = new List<Carrito_almacena>();
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
@@ -47,12 +49,26 @@ namespace Servidor_API.Controllers
             return lista_carrito_almacena;
 
         }
-
+        public static bool IsFileReady(string filename)
+        {
+            // If the file can be opened for exclusive access it means that the file
+            // is no longer locked by another process.
+            try
+            {
+                using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+                    return inputStream.Length > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         // POST api/values
 
         [HttpPost]
-        public string Post([FromBody] Carrito_almacena carrito_almacena)
+        public string Post([FromBody] Carrito_almacena[] carrito_almacena)
         {
+
             string respuesta = "";
 
             string jsontext = System.IO.File.ReadAllText(path);
@@ -63,25 +79,9 @@ namespace Servidor_API.Controllers
             }
             bool existe = false;
 
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_carrito == carrito_almacena.Id_carrito && lista[i].N_compra == carrito_almacena.N_compra && lista[i].N_plato == carrito_almacena.N_plato)
-                {
-                    existe = true;
-                    respuesta = "registro ya existente";
-                    break;
-                }
-            }
-
-            if (0 == carrito_almacena.Id_carrito || 0 == carrito_almacena.N_compra || 0 == carrito_almacena.N_plato)
-            {
-                respuesta = "registro necesita cada identificador";
-            }
-            else if (!existe)
-            {
-                lista.Add(carrito_almacena);
-                respuesta = "registro ingresado correctamente";
-            }
+            lista.AddRange(carrito_almacena);
+            respuesta = "registro ingresado correctamente";
+            
 
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
