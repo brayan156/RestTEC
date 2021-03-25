@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { WebElementPromise } from 'selenium-webdriver';
+import { Factura } from '../objetos/factura';
 import { Pedido } from '../objetos/pedido';
 import { PlatoApp } from '../objetos/plato-app';
 import { DataService } from '../services/data.service';
@@ -24,9 +25,9 @@ export class Tab2Page {
     private router: Router,
     public alertController: AlertController,
     private objetos: ObjetosService) {
-    
-    this.menu = this.dataService.getData()
-    // this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+      
+    // this.menu = this.dataService.getData()
+    this.objetos.ingresarmenu(this.objetos.getplatos_menu());
   }
 
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
@@ -34,6 +35,8 @@ export class Tab2Page {
     platos.forEach(plato => {
       nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
     })
+    let factura = this.dataService.comprar(platos);
+    console.log(factura);
     nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
 
     if (total == 0) {
@@ -66,6 +69,7 @@ export class Tab2Page {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
               this.router.navigateByUrl("/menu/tabs/tab3");
+              this.router.navigateByUrl("tracking");
               this.dataService.nuevoPedido(platos, total);
             }
           }

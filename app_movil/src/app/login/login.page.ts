@@ -23,8 +23,6 @@ export class LoginPage implements OnInit {
   }
 
   login(form) {
-
-
       this.objetos.validar_cliente(this.correo, this.password).subscribe(data => {
         this.objetos.cliente = data;
         console.log(this.objetos.cliente.Primer_Nombre);
