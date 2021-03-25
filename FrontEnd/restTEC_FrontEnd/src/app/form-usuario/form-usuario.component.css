@@ -1,9 +1,10 @@
 .container{
   top: 50px;
   left: 50px;
-  background: lightblue;
+  background: grey;
   padding: 30px;
-  margin-top:200px;
+  border: white 5px outset;
+  margin-top:300px;
   align-items: center;
 }
 
@@ -14,12 +15,17 @@
 .pasword_Emanil{
   padding: 5px;
   margin: 10px;
+
 }
 .button{
   padding: 10px;
+
 }
 
 .col-6{
   margin: 0 auto;
 }
+
+
+
 

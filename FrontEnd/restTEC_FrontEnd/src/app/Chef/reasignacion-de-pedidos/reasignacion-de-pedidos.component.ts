@@ -11,5 +11,11 @@ export class ReasignacionDePedidosComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  reasignarPlato(): void{
+    alert('El plato ha sido ha reasigando');
+  }
+  aceptarPlato(): void{
+    alert('El plato ha sido aceptado');
+  }
 
 }

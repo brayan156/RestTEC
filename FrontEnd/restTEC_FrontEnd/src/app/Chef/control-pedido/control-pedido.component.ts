@@ -11,5 +11,7 @@ export class ControlPedidoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  terminaPlato(): void{
+    alert('El plato ha sido terminado y esta listo para recoger');
+  }
 }

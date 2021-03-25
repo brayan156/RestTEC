@@ -11,5 +11,12 @@ export class TomaDePedidosComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  aceptarPlato(): void{
+    alert('El plato ha sido aceptado');
+  }
+  rechazarPlato(): void{
+    alert('El plato ha sido rexchzado');
+  }
+
 
 }

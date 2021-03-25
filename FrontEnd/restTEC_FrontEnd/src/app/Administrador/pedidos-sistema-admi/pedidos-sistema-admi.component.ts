@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {PedidosActivosService} from "../../pedidos-activos.service";
+import {PedidosActivosService} from '../../pedidos-activos.service';
 
 @Component({
   selector: 'app-pedidos-sistema-admi',

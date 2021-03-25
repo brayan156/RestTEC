@@ -1,12 +1,15 @@
 <app-navbar-administrador></app-navbar-administrador>
 <!--  -->
-<div *ngFor="let item of contenido">
-  <div class="row" >
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-      {{item.Numero}}({{item.Cedula_chef_asignado}}o)
-    </button>
+<div class="opacidad">
+  <div *ngFor="let item of contenido">
+    <div class="row col margenes" >
+      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        {{item.Numero}}({{item.Cedula_chef_asignado}}o)
+      </button>
+    </div>
   </div>
+</div>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -18,11 +21,9 @@
           CUERPO-DEL-PEDIDO
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-</div>
 <!-- -->
-

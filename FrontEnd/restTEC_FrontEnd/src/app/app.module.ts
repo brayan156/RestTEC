@@ -18,6 +18,10 @@ import { PedidosSistemaAdmiComponent } from './Administrador/pedidos-sistema-adm
 import { GestionDeTipoDePlatosComponent } from './Administrador/gestion-de-tipo-de-platos/gestion-de-tipo-de-platos.component';
 import { GestionDelMenuComponent } from './Administrador/gestion-del-menu/gestion-del-menu.component';
 import { Top10MasVendidosComponent } from './Administrador/top10-mas-vendidos/top10-mas-vendidos.component';
+import { Top10masGananciasComponent } from './Administrador/top10mas-ganancias/top10mas-ganancias.component';
+import { Top10FeedbackComponent } from './Administrador/top10-feedback/top10-feedback.component';
+import { Top10mejoresClientesComponent } from './Administrador/top10mejores-clientes/top10mejores-clientes.component';
+
 
 // @ts-ignore
 @NgModule({
@@ -37,6 +41,9 @@ import { Top10MasVendidosComponent } from './Administrador/top10-mas-vendidos/to
     GestionDeTipoDePlatosComponent,
     GestionDelMenuComponent,
     Top10MasVendidosComponent,
+    Top10masGananciasComponent,
+    Top10FeedbackComponent,
+    Top10mejoresClientesComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,4 +12,14 @@ export class GestionDelMenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  eliminarPlato(): void{
+    alert('El plato ha sido eliminado del menu');
+  }
+  agredarPlato(): void{
+    alert('El plato ha sido agregado al menu');
+  }
+  actualizarPlato(): void{
+    alert('El plato ha sido actualizado con exito');
+  }
+
 }
