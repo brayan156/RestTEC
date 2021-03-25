@@ -7,22 +7,11 @@
         <div class= "row">
 
           <input type="email" name="email" class="email_From" id="InputEmail1" placeholder="Correo Electronico"
-                 aria-label="CorreoElectronico" required="" #Correo ="ngModel" [(ngModel)] = "manejoLogin.correoElectronico">
+                 aria-label="CorreoElectronico" required="" #Correo ="ngModel" [(ngModel)] = "manejoLogin.Email">
         </div>
         <div class="row">
           <input type="password" name="password" class="pasword_Emanil" id="InputPassword" placeholder="Contraseña"
-                 aria-label="contraseña"required="" #password ="ngModel" [(ngModel)] = "manejoLogin.password" >
-        </div>
-        <div class="col-sm">
-          <input type="radio" class="form-check-input" id="Radio1" name="radio1" value="admi" #radio1 ="ngModel"
-                 [(ngModel)] = "manejoLogin.tipo">
-          <label>Admin</label>
-        </div>
-
-        <div class="col-sm">
-          <input type="radio" class="form-check-input" id="Radio2" name="radio1" value="chef" #radio1 ="ngModel"
-                 [(ngModel)] = "manejoLogin.tipo">
-          <label>Chef</label>
+                 aria-label="contraseña"required="" #password ="ngModel" [(ngModel)] = "manejoLogin.Password" >
         </div>
         <div class="row" class = "button">
           <button type="submit" class="btn btn-primary" (click)="goTo()">Entrar</button>

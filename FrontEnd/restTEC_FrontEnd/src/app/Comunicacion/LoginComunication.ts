@@ -1,19 +1,23 @@
 export class LoginComunication {
-  correoElectronico: string;
-  password: string;
-  tipo: string;
-  cedula: string;
+  Email: string;
+  Password: string;
+  Rol: string;
+  Cedula: number;
 
-  public constructor(correo, password, tipo) {
-    this.correoElectronico = correo;
-    this.password = password;
-    this.tipo = tipo;
+
+
+  public constructor(correo, Password, Rol) {
+    this.Email = correo;
+    this.Password = Password;
+    this.Rol = Rol;
   }
 
   public setTipo(dato: string): void {
-    this.tipo = dato;
+    this.Rol = dato;
   }
-  public setCedula(dato: string): void{
-    this.cedula = dato;
+  public setCedula(dato: number): void{
+    this.Cedula = dato;
   }
+
+
 }

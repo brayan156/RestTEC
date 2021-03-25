@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {LoginComunication} from '../Comunicacion/LoginComunication';
+import { LoginComunication } from '../Comunicacion/LoginComunication';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-form-usuario',
@@ -10,17 +11,23 @@ import {LoginComunication} from '../Comunicacion/LoginComunication';
 export class FormUsuarioComponent implements OnInit {
 
   manejoLogin: LoginComunication = new LoginComunication('', '' , '');
-
+  Url = 'https://192.168.1.2:45455/';
   constructor(
-    private router: Router
-  ) {
+    private router: Router, private http: HttpClient) {
   }
   ngOnInit(): void {
   }
-  goTo(): void{
-    if (this.manejoLogin.tipo === 'admi') {
-      this.router.navigate([ '/administrador']); }
-    else if (this.manejoLogin.tipo === 'chef'){
-      this.router.navigate([ '/chef']); }
+  goTo(): void {
+    this.http.get<LoginComunication>(this.Url + "Usuario/validar_Usuario/" + this.manejoLogin.Email + "/" + this.manejoLogin.Password).subscribe(
+      usuario => {
+        this.manejoLogin.Cedula = usuario.Cedula;
+        if (usuario.Rol === 'Admin') {
+          this.router.navigate(['/administrador']);
+        } else if (usuario.Rol === 'Chef') {
+          this.router.navigate(['/chef']);
+        } else {
+          //aqui va una alerta
+        }
+      });
   }
 }
