@@ -11,6 +11,8 @@ export class PedidosSistemaAdmiComponent implements OnInit {
   public contenido;
 
   constructor(private pedidosActivosSistema: PedidosActivosService) {
+    console.log(pedidosActivosSistema.obtener_carritos_genera());
+
   }
 
   ngOnInit(): void {
