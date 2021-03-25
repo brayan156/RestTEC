@@ -29,6 +29,7 @@ export class RegisterPage implements OnInit {
     var clientPhones = [
       this.newClientPhone
     ]
+    console.log(clientPhones);
     this.objetosService.crear_cliente(this.newClient, clientPhones);
   }
 

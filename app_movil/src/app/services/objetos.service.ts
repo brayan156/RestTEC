@@ -101,7 +101,7 @@ export class ObjetosService {
 
     this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña).subscribe(data => {
       this.cliente = data;
-      if (this.cliente.Cedula !== 0) {
+      if (this.cliente.Cedula != null && this.cliente.Cedula != 0) {
         this.http.get<Carrito>(this.Url + "Carrito/obtener_carrito_actual_cedula/" + this.cliente.Cedula).subscribe(carrito => {
           this.carrito = carrito;
         });
@@ -120,7 +120,7 @@ export class ObjetosService {
         respuesta = resp;
         if (respuesta === "registro ingresado correctamente") {
           telefonos.forEach(telofono => {
-            let tel: Telefonos = new Telefonos;
+            let tel: Telefonos = new Telefonos();
             tel.ID_cliente = cliente.Cedula;
             tel.Telefono = telofono;
             this.http.post<String>(this.Url + "Telefonos", tel);

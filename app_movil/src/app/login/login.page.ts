@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
 
   login(form) {
     let validateClient = this.objetos.validar_cliente(this.correo, this.password)
-    if ( validateClient.Cedula != 0 ) {
+    if ( validateClient.Cedula != null && validateClient.Cedula != 0 ) {
       console.log(validateClient.Cedula);
       this.router.navigateByUrl('/menu/tabs/tab2');
       
