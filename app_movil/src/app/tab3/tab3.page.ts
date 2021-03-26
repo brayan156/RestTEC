@@ -15,9 +15,19 @@ export class Tab3Page {
   cont = 0;
   pedidosEnProgreso = 0;
   disableButton = false;
+
+  /**
+   * Constructor
+   * @param modalController 
+   * @param dataService 
+   */
   constructor(public modalController: ModalController, private dataService: DataService) {}
 
   @ViewChild(IonButton) calificacion: IonButton;
+
+  /**
+   * Un Objeto para desplegar pedidos viejos
+   */
   pedidosMuestra = [
     {
       id: 1,
@@ -48,10 +58,19 @@ export class Tab3Page {
     }
   ]
 
+  /**
+   * Incrementa la cantidad de pedidos en progreso.
+   * Esta variable es la que se despliega en el badge.
+   * @param len 
+   */
   setPedidosEnProgreso(len) {
     this.pedidosEnProgreso = len;
   }
 
+  /**
+   * Retorna el contador de pedidos en progreso.
+   * @returns 
+   */
   getPedidosEnProgreso() {
     var result = null;
     if (this.pedidosEnProgreso > 0) {
@@ -64,6 +83,11 @@ export class Tab3Page {
     
   }
 
+  /**
+   * Presenta el modal del feedback
+   * @param plato 
+   * @returns 
+   */
   async presentarFeedback(plato) {
     this.disableButton = true;
     console.log(this.pedidosMuestra);
@@ -86,6 +110,10 @@ export class Tab3Page {
     return await modal.present();    
   }
 
+  /**
+   * Depsliega el modal para pedido en progreso.
+   * @returns 
+   */
   async mostrarPedidoEnProgreso() {
     var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
     if (pedidoEnProgreso != []) { this.setPedidosEnProgreso(pedidoEnProgreso.length) };

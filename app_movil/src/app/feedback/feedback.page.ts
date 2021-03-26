@@ -11,13 +11,13 @@ import { IonRange, ModalController } from '@ionic/angular';
 export class FeedbackPage {
 
     /**
-   * Fefedback page consiste en un modal que muestra 
+   * Feedback page consiste en un modal que muestra 
    * un boton y un ion-range para calificar el pedido.
    */
 
   /**
    * Desde su componenente padre (tab Pedidos) recibe
-   * los platos que debe desplegar en la factura.
+   * los platos que debe desplegar en el feedback.
    */
   @Input() platos;
 

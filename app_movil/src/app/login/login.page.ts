@@ -15,13 +15,30 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LoginPage implements OnInit {
 
+  /**
+   * Login Page consiste en el controlador de la tab de login 
+   */
   correo: string;
   password: string;
+
+  /**
+   * Constructor
+   * @param router 
+   * @param objetos 
+   * @param alert 
+   * @param http 
+   */
   constructor(private router: Router, private objetos: ObjetosService, private alert: AlertController, private http: HttpClient) { }
 
   ngOnInit() {
   }
 
+  /**
+   * Realiza el post y el get para efectuar el ingreso de un cliente.
+   * Valida los datos que quieren ingresar.
+   * Si no tiene un carrito, genera y asigna uno para el cliente.
+   * @param form 
+   */
   login(form) {
       // this.objetos.validar_cliente(this.correo, this.password).subscribe(data => {
       //   this.objetos.cliente = data;
@@ -40,6 +57,10 @@ export class LoginPage implements OnInit {
       this.router.navigateByUrl('/menu/tabs/tab2');
   }
 
+  /**
+   *Funcion auxiliar para validar los clientes.
+   * @param validateClient 
+   */
   login_aux(validateClient) {
     if (validateClient.Cedula != null && validateClient.Cedula != 0) {
       this.router.navigateByUrl('/menu/tabs/tab2');
@@ -48,6 +69,10 @@ export class LoginPage implements OnInit {
     };
   }
 
+  /**
+   * En caso de que la validacion del usuario falle, 
+   * se despliega una alerta.
+   */
   async presentAlert() {
     const alert = await this.alert.create({
       header: 'Datos inválidos',

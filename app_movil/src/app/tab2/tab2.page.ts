@@ -21,7 +21,14 @@ export class Tab2Page {
   @Input() menu: any;
 
 
-
+  /**
+   * Constructor
+   * @param dataService 
+   * @param router 
+   * @param alertController 
+   * @param objetos 
+   * @param modalController 
+   */
   constructor(private dataService: DataService,
     private router: Router,
     public alertController: AlertController,
@@ -32,7 +39,12 @@ export class Tab2Page {
     //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
   }
 
-
+  /**
+   * Despliega un modal para ver la factura
+   * @param factura 
+   * @param platos 
+   * @returns 
+   */
   async mostrarFactura(factura: Factura, platos: PlatoApp[]) {
     const facturaModal = await this.modalController.create({
       component: FacturaPage,
@@ -45,6 +57,13 @@ export class Tab2Page {
 
   }
 
+
+  /**
+   * Despliega una alerta de confirmacion para corroborar que el cliente quiera 
+   * continuar con la compra
+   * @param platos 
+   * @param total 
+   */
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
     // var nombresDePlatosRecibidos: string = '';
     // platos.forEach(plato => {
@@ -93,6 +112,11 @@ export class Tab2Page {
 
   }
 
+  /**
+   * Segunda alerta de confirmacion
+   * @param factura 
+   * @param platos 
+   */
   async presentFinalAlert(factura: Factura, platos: PlatoApp[]) {
     const alert = await this.alertController.create({
       header: 'Compra realizada ¡Veamos la factura!',
@@ -111,7 +135,10 @@ export class Tab2Page {
 
 
 
-  //Calculate Total
+  /**
+   * Calcula el total de la factura
+   * @returns 
+   */
   calculateTotal() {
     var total = 0;
     var platos: PlatoApp[] = [];
@@ -125,7 +152,9 @@ export class Tab2Page {
     return { saldo: total, pedido: platos };
   }
 
-  //Realizar compra
+  /**
+   * Realiza la compra
+   */
   comprar() {
     var pedido = this.calculateTotal();
     this.presentAlertConfirm(pedido.pedido, pedido.saldo);
@@ -134,12 +163,19 @@ export class Tab2Page {
   }
 
 
-  // Refresh input
+  /**
+   * Actualiza el valor de la cantidad de un plato
+   * @param valor 
+   * @param plato 
+   */
   cambioValor(valor, plato) {
     plato.cant = parseInt(valor);
   }
 
-  //Refresh
+  /**
+   * Funcion para refrescar el ion refresher
+   * @param event 
+   */
   doRefresh(event) {
     var cont = 0;
     this.menu.forEach(element => {

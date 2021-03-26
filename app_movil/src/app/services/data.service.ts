@@ -17,7 +17,9 @@ import { CarritoGenera } from "../objetos/carrito-genera";
 export class DataService {
 
   pedidoEnProgreso = [];
-  // Esta es la lista que almacena lo que esta dentro del carrito
+  /**
+   * / Esta es la lista que almacena lo que esta dentro del carrito
+   */
   menu = [
     {
       plato: "Lentejas con platano maduro",
@@ -45,6 +47,11 @@ export class DataService {
     }
   ]
 
+  /**
+   * Constructor
+   * @param http 
+   * @param objetos 
+   */
   constructor(private http: HttpClient, private objetos: ObjetosService) { }
 
   Url = 'https://192.168.1.2:45455/';
@@ -52,7 +59,12 @@ export class DataService {
   // Aqui recibe platos para agregarlos al carrito conforme recibe
 
 
-  //funcion a llamar cuando se compra sirve para cambiar de numero de pedido y crear la factura a mostrar al cliente 
+  /**
+   * /funcion a llamar cuando se compra sirve para cambiar de numero de pedido y crear la factura a mostrar al cliente 
+   * @param data 
+   * @param total 
+   * @returns 
+   */
   public comprar(data:PlatoApp[], total:number) {
     var platos: CarritoAlmacena[] = [];
     var factura: Factura = new Factura;
@@ -95,7 +107,11 @@ export class DataService {
     return { detalle: factura, plato_y_cantidad: platos_con_nombre };
   }
 
-
+  /**
+   * Genera un pedido nuevo
+   * @param platos 
+   * @param total 
+   */
   nuevoPedido(platos: PlatoApp[], total: number) {
     const pedido = {
       pedido: platos,

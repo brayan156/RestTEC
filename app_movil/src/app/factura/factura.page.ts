@@ -10,9 +10,24 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./factura.page.scss'],
 })
 export class FacturaPage implements OnInit {
+    /**
+   * Factura page consiste en un modal que muestra 
+   * los platos y el total del pedido
+   */
+
+  /**
+   * Desde su componenente padre (tab Carrito) recibe
+   * los platos que debe desplegar en la factura.
+   */
   @Input() platos;
   @Input() factura;
 
+  /**
+   * Constructor inyectado
+   * @param modalController
+   * @param router 
+   * @param dataService 
+   */
   constructor(public modalController: ModalController,
     private router: Router,
     private dataService: DataService) { }
@@ -20,6 +35,9 @@ export class FacturaPage implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Cierra la factura y lo redirige a la tab de pedidos
+   */
   dismiss() {
     this.modalController.dismiss();
     this.router.navigateByUrl("/menu/tabs/tab3");

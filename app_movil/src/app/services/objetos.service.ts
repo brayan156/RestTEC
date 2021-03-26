@@ -19,6 +19,9 @@ export class ObjetosService {
 
   menu = []
 
+  /**
+   * Lista de menu temporal para desplegar al inicio de la aplicacion
+   */
   tmpMenu = [
     {
       plato: "Lentejas con platano maduro",
@@ -46,6 +49,10 @@ export class ObjetosService {
     }
   ]
 
+  /**
+   * Constructor
+   * @param http 
+   */
   constructor(private http: HttpClient) { }
 
   public cliente: Cliente = new Cliente;
@@ -60,16 +67,27 @@ export class ObjetosService {
     cant: 1
   }
 
+  /**
+   * Retorna el menu temporal
+   * @returns 
+   */
   getMenu() {
     return this.tmpMenu;
   }
 
+  /**
+   * Establece el menu
+   * @param platos 
+   */
   public ingresarmenu(platos) {
     this.menu = platos;
   }
 
 
-  //funcion que contruye los platos a mostrar al cliente
+  /**
+   * Construye los platos para mostrar al cliente
+   * @returns 
+   */
   public getplatos_menu() {
     let lista_app: PlatoApp[] = new Array<PlatoApp>();
     var lista_platos: Plato[] = new Array<Plato>();
@@ -96,14 +114,24 @@ export class ObjetosService {
     return lista_app;
   }
 
-  //funcion para verificar el login y obtener el id de su carrito y por la compra en la que va
+  /**
+   * verificar el login y obtener el id de su carrito y por la compra en la que va
+   * @param correo 
+   * @param contraseña 
+   * @returns 
+   */
   public validar_cliente(correo: String, contraseña: String) {
 
     return this.http.get<Cliente>(this.Url + "Cliente/validar_cliente/" + correo + "/" + contraseña);
 
   }
 
-  //funcion para registrarse, añade un nuevo cliente mandarlo a la parte de login luego de esto
+  /**
+   * registrarse, añade un nuevo cliente mandarlo a la parte de login luego de esto
+   * @param cliente 
+   * @param telefonos 
+   * @returns 
+   */
   public crear_cliente(cliente: Cliente, telefonos:number[]) {
     let respuesta:String = "";
     if (telefonos === []) {
@@ -127,7 +155,10 @@ export class ObjetosService {
 
  
 
-  //obtiene todos los carrito_genera del id del carrito del cliente
+  /**
+   * obtiene todos los carrito_genera del id del carrito del cliente
+   * @returns 
+   */
   public obtener_carritos_genera() {
     let lista_carrito_genera: CarritoGenera[] = [];
     this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera/Id_carrito/"+this.carrito.Id).subscribe(data => {
@@ -136,7 +167,10 @@ export class ObjetosService {
     return lista_carrito_genera;
   }
 
-  // obtiene todos los pedidos del cliente
+  /**
+   * obtiene todos los pedidos del cliente
+   * @returns 
+   */ 
   public obtener_pedidos() {
     let lista_carrito_genera: CarritoGenera[] = [];
     let lista_pedidos: Pedido[] = [];
@@ -153,7 +187,11 @@ export class ObjetosService {
   }
 
 
-  //obtiene el carrito de un pedido
+  /**
+   * obtiene el carrito de un pedido
+   * @param N_pedido 
+   * @returns 
+   */
   public obtener_carrito_pedido(N_pedido: number) {
     var car:Carrito=new Carrito
     // this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
@@ -170,7 +208,11 @@ export class ObjetosService {
   }
 
 
-  //obtiene los numeros de plato y la cantidad comprada de un pedido
+  /**
+   * obtiene los numeros de plato y la cantidad comprada de un pedido
+   * @param N_pedido 
+   * @returns 
+   */
   public obtener_almacen_pedido(N_pedido: number) {
     var almacen:CarritoAlmacena[]=[]
     let carrito: Carrito = this.obtener_carrito_pedido(N_pedido);
@@ -183,12 +225,18 @@ export class ObjetosService {
 
 
 
-  //funcion a llamar cuando se le da al boton para decir que recibio el producto guardar el id del pedido para crear el feedback
+  /**
+   * llamar cuando se le da al boton para decir que recibio el producto guardar el id del pedido para crear el feedback
+   * @param pedido 
+   */
   public pedido_recibido(pedido:Pedido) {
     //this.http.put(this.Url + "Pedido", pedido);
   }
 
-  //funcion para enviar el feedback a la base datos colocar los datos necesarios
+  /**
+   * enviar el feedback a la base datos colocar los datos necesarios
+   * @param feedback 
+   */
   public dar_feedback(feedback: Feedback) {
     //this.http.post(this.Url + "Feedback", feedback);
   }

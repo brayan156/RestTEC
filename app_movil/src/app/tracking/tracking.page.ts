@@ -9,19 +9,35 @@ import { DataService } from '../services/data.service';
 })
 export class TrackingPage implements OnInit {
 
+  /**
+   * Variable para mantener los pedidos en progreso
+   */
   pedidosEnProgreso = [];
 
   @Input() pedido;
+
+  /**
+   * Constructor
+   * @param modalController 
+   * @param dataService 
+   */
   constructor(public modalController: ModalController, private dataService: DataService) { }
+
 
   ngOnInit() {
   }
 
+  /**
+   * Desactiva la pestaña de pedido en progreso
+   */
   dismiss() {
     this.modalController.dismiss();
   }
 
-
+  /**
+   * Actualiza los botones de Feedback para desactivarlos
+   * @param evento 
+   */
   refrescarPedido(evento) {
     console.log(this.pedido);
     this.pedidosEnProgreso = this.dataService.getPedidoEnProgreso();
