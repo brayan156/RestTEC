@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidosActivosService } from "../../pedidos-activos.service";
 import { Plato } from "../../form-usuario/Comunicacion/plato";
+import { HttpClient } from "@angular/common/http";
+
+
 
 
 @Component({
@@ -9,12 +12,17 @@ import { Plato } from "../../form-usuario/Comunicacion/plato";
   styleUrls: ['./gestion-de-tipo-de-platos.component.css']
 })
 export class GestionDeTipoDePlatosComponent implements OnInit {
-  constructor( private service:PedidosActivosService) { }
-  public platos: Plato[];
-  public plato:Plato;
+  constructor(private service: PedidosActivosService, private http: HttpClient) { }
 
+
+
+  public platos: Plato[]=[];
+  public plato:Plato=new Plato;
+  Url = 'https://192.168.1.2:45455/';
   ngOnInit(): void {
-    this.platos=this.service.obtener_platos();
+    this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
+      this.platos = data;
+    });
   }
   crearPlato(descripicon: string, nombre: string,tiempo_preparacion:number): void {
     let plato: Plato = new Plato;
@@ -23,6 +31,7 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Tiempo_preparacion = tiempo_preparacion;
     this.service.crearplato(plato).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
+        this.ngOnInit();
         this.platoCreado();
       } else {
         alert(respuesta);
@@ -43,11 +52,17 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Numero_plato = id;
     this.service.editarplato(plato).subscribe(respuesta => {
       alert(respuesta);
+      this.ngOnInit();
     });
   }
+
+  ver() {
+  }
+
   eliminarPlato(id:number): void {
     this.service.eliminarplato(id).subscribe(respuesta => {
       alert(respuesta);
+      this.ngOnInit();
     });
   }
 }

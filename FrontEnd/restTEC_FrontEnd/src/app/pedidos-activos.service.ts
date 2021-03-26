@@ -100,6 +100,7 @@ export class PedidosActivosService {
     var platos: Plato[] = [];
     this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
       platos = data;
+      console.log(platos);
     });
     return platos;
   }
@@ -108,7 +109,7 @@ export class PedidosActivosService {
     return this.http.post<String>(this.Url + "Plato",plato);
   }
   public eliminarplato(id: number) {
-    return this.http.delete<String>(this.Url + "Plato" + id);
+    return this.http.delete<String>(this.Url + "Plato/" + id);
   }
   public editarplato(plato: Plato) {
     return this.http.put<String>(this.Url + "Plato",plato);
@@ -118,7 +119,7 @@ export class PedidosActivosService {
     return this.http.post<String>(this.Url + "Menu", menu);
   }
   public eliminarmenu(id: number) {
-    return this.http.delete<String>(this.Url + "Menu" + id);
+    return this.http.delete<String>(this.Url + "Menu/" + id);
   }
   public editarmenu(menu: Menu) {
     return this.http.put<String>(this.Url + "Menu", menu);

@@ -26,7 +26,7 @@ export class FormUsuarioComponent implements OnInit {
         } else if (usuario.Rol === 'Chef') {
           this.router.navigate(['/chef']);
         } else {
-          //aqui va una alerta
+          alert('Correo o Password invalido');
         }
       });
   }
