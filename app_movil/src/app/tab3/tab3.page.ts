@@ -5,6 +5,7 @@ import { FeedbackPage } from '../feedback/feedback.page';
 import { Feedback } from '../objetos/feedback';
 import { DataService } from '../services/data.service';
 import { TrackingPage } from '../tracking/tracking.page';
+import { ObjetosService } from "../services/objetos.service";
 
 @Component({
   selector: 'app-tab3',
@@ -21,15 +22,20 @@ export class Tab3Page implements OnInit {
    * @param modalController 
    * @param dataService 
    */
-  constructor(public modalController: ModalController, private dataService: DataService) {}
+  constructor(public modalController: ModalController,
+    private dataService: DataService,
+    private objetos: ObjetosService) {
+    this.pedidosMuestra = this.objetos.obtener_pedidos();
+    console.log(this.pedidosMuestra);
+  }
 
   @ViewChild(IonButton) calificacion: IonButton;
 
   /**
    * Un Objeto para desplegar pedidos viejos
    */
-  pedidosMuestra = [
-    {
+  pedidosMuestra = [];
+    /*{
       id: 1,
       menu: ['Lentejas con plátano maduro', 'Sopa azteca', 'Cereal con leche'],
       fecha: '3 de marzo',
@@ -56,7 +62,7 @@ export class Tab3Page implements OnInit {
       tiempo_transcurrido: '1,5min',
       tiempo_estimado: '5min'
     }
-  ]
+  ]*/
 
 
 
@@ -105,7 +111,7 @@ export class Tab3Page implements OnInit {
     const modal = await this.modalController.create({
       component: FeedbackPage,
       componentProps: {
-        platos: plato.menu
+        platos: plato
       }
     });
     ;
@@ -134,7 +140,8 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit() {
-  
+
+
   }
 
 

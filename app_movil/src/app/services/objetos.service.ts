@@ -130,26 +130,51 @@ export class ObjetosService {
   //obtiene todos los carrito_genera del id del carrito del cliente
   public obtener_carritos_genera() {
     let lista_carrito_genera: CarritoGenera[] = [];
-    this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera/Id_carrito/"+this.carrito.Id).subscribe(data => {
+    this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera/Id_carrito/" + this.carrito.Id).subscribe(data => {
       lista_carrito_genera = data;
     });
-    return lista_carrito_genera;
+    return lista_carrito_genera
   }
 
   // obtiene todos los pedidos del cliente
   public obtener_pedidos() {
     let lista_carrito_genera: CarritoGenera[] = [];
     let lista_pedidos: Pedido[] = [];
-    this.http.get<Pedido[]>(this.Url + "Pedido").subscribe(data => {
-      lista_carrito_genera.forEach(carritoGenera => {
-        data.forEach(pedido => {
-          if (pedido.Numero === carritoGenera.Id_pedido) {
-            lista_pedidos.push(pedido);
-          }
-        });
+    var lista_pedidos_platos = [];
+    this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera/Id_carrito/" + this.carrito.Id).subscribe(data => {
+      lista_carrito_genera = data;
+      this.http.get<Pedido[]>(this.Url + "Pedido").subscribe(data => {
+        this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito_id/" + this.carrito.Id)
+          .subscribe(carritos_almacena => {
+            this.http.get<Plato[]>(this.Url + "Plato").subscribe(lista_platos => {
+              let almacen: CarritoAlmacena[] = carritos_almacena;
+              var platos: Plato[] = lista_platos;
+              lista_carrito_genera.forEach(carritoGenera => {
+                data.forEach(pedido => {
+                if (pedido.Numero === carritoGenera.Id_pedido) {
+                  lista_pedidos.push(pedido);
+                  let platos_con_nombre = [];
+                  almacen.forEach(dato_almacen => {
+                    if (dato_almacen.N_compra === carritoGenera.N_compra) {
+                      platos.forEach(plato => {
+                      if (plato.Numero_plato === dato_almacen.N_plato) {
+                        var plato_con_nombre = { cantidad: dato_almacen.Cantidad, nombre: plato.Nombre };
+                        platos_con_nombre.push(plato_con_nombre);
+                        console.log(plato_con_nombre);
+                      }
+                    });
+                  }
+                });
+                  let ped_plat = { pedido: pedido, l_platos: platos_con_nombre };
+                lista_pedidos_platos.push(ped_plat);
+              }
+            });
+          });
+            });
+          });
       });
     });
-    return lista_pedidos;
+    return lista_pedidos_platos;
   }
 
   public sacar_nombre_cantidad_pedido(N_pedido: number) {
@@ -230,11 +255,13 @@ export class ObjetosService {
 
   //funcion a llamar cuando se le da al boton para decir que recibio el producto guardar el id del pedido para crear el feedback
   public pedido_recibido(pedido:Pedido) {
-    this.http.put(this.Url + "Pedido", pedido);
+    this.http.put(this.Url + "Pedido", pedido).subscribe(
+      p=>console.log("finalice pedido"));
   }
 
   //funcion para enviar el feedback a la base datos colocar los datos necesarios
   public dar_feedback(feedback: Feedback) {
-    this.http.post(this.Url + "Feedback", feedback);
+    this.http.post(this.Url + "Feedback", feedback).subscribe(
+      f => console.log("di feedback"));
   }
 }

@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
          } else { this.presentAlert();
          };
        });
-      this.router.navigateByUrl('/menu/tabs/tab2');
+      /*this.router.navigateByUrl('/menu/tabs/tab2');*/
   }
 
   /**

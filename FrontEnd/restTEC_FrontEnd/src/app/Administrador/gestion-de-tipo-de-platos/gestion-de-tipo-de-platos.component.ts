@@ -10,7 +10,7 @@ import { Plato } from "../../form-usuario/Comunicacion/plato";
 })
 export class GestionDeTipoDePlatosComponent implements OnInit {
   constructor( private service:PedidosActivosService) { }
-  public platos: Plato;
+  public platos: Plato[];
 
 
   ngOnInit(): void {
