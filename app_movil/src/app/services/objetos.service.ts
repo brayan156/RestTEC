@@ -73,26 +73,26 @@ export class ObjetosService {
   public getplatos_menu() {
     let lista_app: PlatoApp[] = new Array<PlatoApp>();
     var lista_platos: Plato[] = new Array<Plato>();
-    // this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
-    //   lista_platos = data;
-    //   lista_platos.forEach(plato => {
-    //     let plato_app: PlatoApp = new PlatoApp;
-    //     plato_app.plato = plato.Nombre;
-    //     plato_app.descripcion = plato.Descripcion;
-    //     plato_app.n_plato = plato.Numero_plato;
-    //     plato_app.tiempo_preparacion = plato.Tiempo_preparacion;
-    //     this.http.get<PlatosEnMenu>(this.Url + "Platos_en_Menu/nplato/" + plato.Numero_plato).subscribe(datos_menu => {
-    //       if (datos_menu.N_Menu !== 0) {
-    //         plato_app.calorias = datos_menu.Calorias;
-    //         plato_app.precio = datos_menu.Precio.toString();
-    //         this.http.get<Menu>(this.Url + "Menu/nmenu/" + datos_menu.N_Menu).subscribe(menu => {
-    //           plato_app.tipo = menu.Tipo;
-    //           lista_app.push(plato_app);
-    //         });
-    //       }
-    //     });
-    //   });
-    // });
+     this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
+       lista_platos = data;
+       lista_platos.forEach(plato => {
+         let plato_app: PlatoApp = new PlatoApp;
+         plato_app.plato = plato.Nombre;
+         plato_app.descripcion = plato.Descripcion;
+         plato_app.n_plato = plato.Numero_plato;
+         plato_app.tiempo_preparacion = plato.Tiempo_preparacion;
+         this.http.get<PlatosEnMenu>(this.Url + "Platos_en_Menu/nplato/" + plato.Numero_plato).subscribe(datos_menu => {
+           if (datos_menu.N_Menu !== 0) {
+             plato_app.calorias = datos_menu.Calorias;
+             plato_app.precio = datos_menu.Precio.toString();
+             this.http.get<Menu>(this.Url + "Menu/nmenu/" + datos_menu.N_Menu).subscribe(menu => {
+               plato_app.tipo = menu.Tipo;
+               lista_app.push(plato_app);
+             });
+           }
+         });
+       });
+     });
     return lista_app;
   }
 
