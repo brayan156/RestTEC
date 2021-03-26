@@ -1,4 +1,6 @@
 <app-navbar-administrador></app-navbar-administrador>
+
+
 <div class="opacidad">
   <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
@@ -68,32 +70,24 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <input type="text" class="form-control" id="nombrePlatoID" placeholder="Nombre del nuevo plato" #Nombre ="ngModel" [(ngModel)] = "platos.Nombre">
+        <input type="text" class="form-control" id="nombrePlatoID" placeholder="Nombre del nuevo plato" #Nombre ="ngModel" [(ngModel)] = "plato.Nombre">
       </div>
       <div class="modal-body">
-        <div>
-          <select class="form-select form-select-lg mb-3" #Tipo ="ngModel" [(ngModel)] = "">
-            <option selected>Tipo de plato</option>
-            <option value="Desayuno">Desayuno</option>
-            <option value="Almuerzo">Almuerzo</option>
-            <option value="Cena">Cena</option>
-          </select>
-        </div>
 
         <label>Tiempo de preparacion:</label>
         <div class="input-group mb-3">
           <span class="input-group-text">min</span>
-          <input type="number" class="form-control" #Tiempo ="ngModel" [(ngModel)] = "platos.Tiempo_preparacion">
+          <input type="number" class="form-control" #Tiempo ="ngModel" [(ngModel)] = "plato.Tiempo_preparacion">
         </div>
 
         <div>
           <label>Descripcion del plato:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #descripcion ="ngModel" [(ngModel)] = "platos.Descripcion"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #descripcion ="ngModel" [(ngModel)] = "plato.Descripcion"></textarea>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="crearPlato(platos.Nombre , platos.Descripcion , platos.Tiempo_preparacion)">Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="crearPlato(plato.Nombre , plato.Descripcion , plato.Tiempo_preparacion)">Aceptar</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>

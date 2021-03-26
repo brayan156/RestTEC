@@ -11,7 +11,7 @@ import { Plato } from "../../form-usuario/Comunicacion/plato";
 export class GestionDeTipoDePlatosComponent implements OnInit {
   constructor( private service:PedidosActivosService) { }
   public platos: Plato[];
-
+  public plato:Plato;
 
   ngOnInit(): void {
     this.platos=this.service.obtener_platos();
