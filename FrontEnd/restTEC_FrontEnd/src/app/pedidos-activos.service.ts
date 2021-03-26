@@ -5,6 +5,8 @@ import { CarritoAlmacena } from "./form-usuario/Comunicacion/carrito-almacena";
 import { Plato } from "./form-usuario/Comunicacion/plato";
 import { Carrito } from "./form-usuario/Comunicacion/carrito";
 import { CarritoGenera } from "./form-usuario/Comunicacion/carrito-genera";
+import { Menu } from "./form-usuario/Comunicacion/menu";
+import { PlatosEnMenu } from "./form-usuario/Comunicacion/platos-en-menu";
 
 @Injectable({
   providedIn: 'root'
@@ -110,6 +112,26 @@ export class PedidosActivosService {
   }
   public editarplato(plato: Plato) {
     return this.http.put<String>(this.Url + "Plato",plato);
+  }
+
+  public crearmenu(menu: Menu) {
+    return this.http.post<String>(this.Url + "Menu", menu);
+  }
+  public eliminarmenu(id: number) {
+    return this.http.delete<String>(this.Url + "Menu" + id);
+  }
+  public editarmenu(menu: Menu) {
+    return this.http.put<String>(this.Url + "Menu", menu);
+  }
+
+  public crearplatoenmenu(platoenmenu: PlatosEnMenu) {
+    return this.http.post<String>(this.Url + "Platos_en_Menu", platoenmenu);
+  }
+  public eliminarplatoenmenu(id: number) {
+    return this.http.delete<String>(this.Url + "Platos_en_Menu/" + id);
+  }
+  public editarplatoenmenu(platoenmenu: PlatosEnMenu) {
+    return this.http.put<String>(this.Url + "Platos_en_Menu", platoenmenu);
   }
 
 }
