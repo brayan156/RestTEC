@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, IonBadge, IonButton, ModalController } from '@ionic/angular';
 import { proxyInputs } from '@ionic/angular/directives/proxies-utils';
 import { FeedbackPage } from '../feedback/feedback.page';
@@ -11,7 +11,7 @@ import { TrackingPage } from '../tracking/tracking.page';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
   cont = 0;
   pedidosEnProgreso = 0;
   disableButton = false;
@@ -57,6 +57,8 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     }
   ]
+
+
 
   /**
    * Incrementa la cantidad de pedidos en progreso.
@@ -131,7 +133,9 @@ export class Tab3Page {
     
   }
 
-
+  ngOnInit() {
+  
+  }
 
 
 }
