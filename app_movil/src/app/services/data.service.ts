@@ -117,8 +117,11 @@ export class DataService {
 
   getPedidoEnProgreso() {
     const tmp = this.pedidoEnProgreso;
-    this.pedidoEnProgreso = [];
     return tmp;
+  }
+
+  setPedidosEnProgreso(tmpList) {
+    this.pedidoEnProgreso = tmpList;
   }
 
   getData() {
