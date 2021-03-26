@@ -1,3 +1,7 @@
+
+/**
+ * Construye la tabla Pedido
+ */
 export class Pedido {
   Numero  : number;
   Estado  : String;

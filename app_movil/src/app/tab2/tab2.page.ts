@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { WebElementPromise } from 'selenium-webdriver';
+import { FacturaPage } from '../factura/factura.page';
+import { Factura } from '../objetos/factura';
 import { Pedido } from '../objetos/pedido';
 import { PlatoApp } from '../objetos/plato-app';
 import { DataService } from '../services/data.service';
@@ -19,24 +21,58 @@ export class Tab2Page {
   @Input() menu: any;
 
 
-
+  /**
+   * Constructor
+   * @param dataService 
+   * @param router 
+   * @param alertController 
+   * @param objetos 
+   * @param modalController 
+   */
   constructor(private dataService: DataService,
     private router: Router,
     public alertController: AlertController,
-    private objetos: ObjetosService) {
-    
-    //this.menu = this.dataService.getData()
-     this.menu=this.objetos.getplatos_menu();
+    private objetos: ObjetosService,
+    public modalController: ModalController) {
+
+    this.menu = this.dataService.getData()
+    //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
   }
 
+  /**
+   * Despliega un modal para ver la factura
+   * @param factura 
+   * @param platos 
+   * @returns 
+   */
+  async mostrarFactura(factura: Factura, platos: PlatoApp[]) {
+    const facturaModal = await this.modalController.create({
+      component: FacturaPage,
+      componentProps: {
+        factura: factura,
+        platos: platos
+      }
+    });
+    return await facturaModal.present();
+
+  }
+
+
+  /**
+   * Despliega una alerta de confirmacion para corroborar que el cliente quiera 
+   * continuar con la compra
+   * @param platos 
+   * @param total 
+   */
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
-    this.objetos.carrito.Monto = total
-    var nombresDePlatosRecibidos: string = '';
-    platos.forEach(plato => {
-      nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
-    })
-    nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
-    console.log(this.dataService.comprar(platos,total));
+    // var nombresDePlatosRecibidos: string = '';
+    // platos.forEach(plato => {
+    //   nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
+    // })
+    let factura = this.dataService.comprar(platos, total);
+    console.log(factura);
+    // nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
+
     if (total == 0) {
       const alert = await this.alertController.create({
         header: 'Agrega platos para continuar.',
@@ -54,8 +90,8 @@ export class Tab2Page {
       await alert.present();
     } else {
       const alert = await this.alertController.create({
-        header: '¿Deseas realizar este pedido?',
-        message: nombresDePlatosRecibidos,
+        header: '¿Deseas continuar con este pedido?',
+        message: '',
         buttons: [
           {
             text: 'No, agregaré más platos.',
@@ -66,8 +102,7 @@ export class Tab2Page {
           }, {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
-              this.router.navigateByUrl("/menu/tabs/tab3");
-              this.dataService.nuevoPedido(platos, total);
+              this.presentFinalAlert(factura.detalle, platos);
             }
           }
         ]
@@ -77,7 +112,33 @@ export class Tab2Page {
 
   }
 
-  //Calculate Total
+  /**
+   * Segunda alerta de confirmacion
+   * @param factura 
+   * @param platos 
+   */
+  async presentFinalAlert(factura: Factura, platos: PlatoApp[]) {
+    const alert = await this.alertController.create({
+      header: 'Compra realizada ¡Veamos la factura!',
+      message: '',
+      buttons: [
+        {
+          text: 'Continuar',
+          handler: () => {
+            this.mostrarFactura(factura, platos);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+
+
+  /**
+   * Calcula el total de la factura
+   * @returns 
+   */
   calculateTotal() {
     var total = 0;
     var platos: PlatoApp[] = [];
@@ -91,7 +152,9 @@ export class Tab2Page {
     return { saldo: total, pedido: platos };
   }
 
-  //Realizar compra
+  /**
+   * Realiza la compra
+   */
   comprar() {
     var pedido = this.calculateTotal();
     this.presentAlertConfirm(pedido.pedido, pedido.saldo);
@@ -100,12 +163,19 @@ export class Tab2Page {
   }
 
 
-  // Refresh input
+  /**
+   * Actualiza el valor de la cantidad de un plato
+   * @param valor 
+   * @param plato 
+   */
   cambioValor(valor, plato) {
     plato.cant = parseInt(valor);
   }
 
-  //Refresh
+  /**
+   * Funcion para refrescar el ion refresher
+   * @param event 
+   */
   doRefresh(event) {
     var cont = 0;
     this.menu.forEach(element => {
@@ -116,6 +186,9 @@ export class Tab2Page {
       cont += 1
     });
   }
+
+
+
 
   // // Dismiss Modal
   // dismiss() {

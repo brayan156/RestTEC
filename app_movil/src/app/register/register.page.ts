@@ -9,17 +9,32 @@ import { ObjetosService } from '../services/objetos.service';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
+
+/**
+ * Esta pagina genera la tab para realizar el registro de un cliente.
+ */
 export class RegisterPage implements OnInit {
 
   newClient: Cliente = new Cliente();
   newClientPhone: number;
   birthDate: string;
+
+  /**
+   * Constructor
+   * @param router 
+   * @param objetosService 
+   */
   constructor(private router: Router, private objetosService: ObjetosService) { }
 
 
   ngOnInit() {
   }
 
+  /**
+   * Valida los datos ingresados y realiza las navegaciones dentro del 
+   * app
+   * @param form 
+   */
   register(form) {
     this.router.navigateByUrl('');
     this.newClient.AñoNacimiento = (this.birthDate.slice(0, 4));

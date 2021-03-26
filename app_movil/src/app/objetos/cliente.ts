@@ -1,3 +1,6 @@
+/**
+ * Este objeto construye la tabla del cliente
+ */
 export class Cliente {
   Cedula: number;
   Primer_Nombre: String;

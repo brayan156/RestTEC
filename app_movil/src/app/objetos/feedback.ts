@@ -1,3 +1,6 @@
+/**
+ * Construye el objeto Feedback
+ */
 export class Feedback {
   Calificacion : number;
   Año: String;
