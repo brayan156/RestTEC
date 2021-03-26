@@ -33,6 +33,7 @@ export class FacturaPage implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit() {
+    this.factura = this.dataService.factura;
   }
 
   /**

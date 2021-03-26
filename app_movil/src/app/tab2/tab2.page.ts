@@ -35,8 +35,9 @@ export class Tab2Page {
     private objetos: ObjetosService,
     public modalController: ModalController) {
 
-    this.menu = this.dataService.getData()
-    //this.objetos.ingresarmenu(this.objetos.getplatos_menu());
+    this.menu = this.objetos.getplatos_menu();
+    console.log(this.objetos.carrito.Id);
+    console.log(this.objetos.carrito.N_compra);
   }
 
   /**
@@ -49,8 +50,9 @@ export class Tab2Page {
     const facturaModal = await this.modalController.create({
       component: FacturaPage,
       componentProps: {
-        factura: factura,
+        factura:factura,
         platos: platos
+
       }
     });
     return await facturaModal.present();
@@ -69,10 +71,8 @@ export class Tab2Page {
     // platos.forEach(plato => {
     //   nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
     // })
-    let factura = this.dataService.comprar(platos, total);
-    console.log(factura);
-    // nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
 
+    // nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat('por ₡').concat(total.toString());
     if (total == 0) {
       const alert = await this.alertController.create({
         header: 'Agrega platos para continuar.',
@@ -102,6 +102,8 @@ export class Tab2Page {
           }, {
             text: 'Obvio ¡Qué hambre!',
             handler: () => {
+              let factura = this.dataService.comprar(platos, total);
+              console.log(factura);
               this.presentFinalAlert(factura.detalle, platos);
             }
           }
