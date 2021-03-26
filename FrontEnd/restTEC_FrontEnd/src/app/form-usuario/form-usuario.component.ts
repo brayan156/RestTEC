@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { LoginComunication } from '../Comunicacion/LoginComunication';
 import { HttpClient } from "@angular/common/http";
+import { LoginComunication } from "./Comunicacion/LoginComunication";
 
 @Component({
   selector: 'app-form-usuario',
