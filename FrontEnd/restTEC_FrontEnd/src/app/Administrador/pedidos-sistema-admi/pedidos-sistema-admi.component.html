@@ -4,7 +4,8 @@
   <div *ngFor="let item of contenido">
     <div class="row col margenes" >
       <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item.Numero)">
-        {{item.Numero}}({{item.Cedula_chef_asignado}})
+        ID del Pedido:{{item.Numero}}
+        <small>Cedula-Cheft:({{item.Cedula_chef_asignado}})</small>
       </button>
     </div>
   </div>
@@ -14,11 +15,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ID-DEL-PEDIDO(CEDULA-CHEFT)</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ID del Pedido:</h5>
           <small>Tiempo del pedido:</small>
         </div>
         <div *ngFor = "let valor of platos_con_nombre" class="modal-body">
-          {{valor.nombre}}{{valor.cantidad}}
+          Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
