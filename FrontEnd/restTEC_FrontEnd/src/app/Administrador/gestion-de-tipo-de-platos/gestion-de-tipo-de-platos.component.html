@@ -37,6 +37,7 @@
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editarPlatoMenu">EDITAR PLATO</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ELIMINAR PLATO</button>
       </div>
+
     </div>
   </div>
 </div>
@@ -69,19 +70,27 @@
       <div class="modal-header">
         <input type="text" class="form-control" id="nombrePlatoID" placeholder="Nombre del nuevo plato">
       </div>
-      <div>
-        <select class="form-select form-select-lg mb-3">
-          <option selected>Tipo de plato</option>
-          <option value="Desayuno">Desayuno</option>
-          <option value="Almuerzo">Almuerzo</option>
-          <option value="Cena">Cena</option>
-        </select>
-      </div>
       <div class="modal-body">
+        <div>
+          <select class="form-select form-select-lg mb-3">
+            <option selected>Tipo de plato</option>
+            <option value="Desayuno">Desayuno</option>
+            <option value="Almuerzo">Almuerzo</option>
+            <option value="Cena">Cena</option>
+          </select>
+        </div>
+
+        <label>Tiempo de preparacion:</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">min</span>
+          <input type="number" class="form-control">
+        </div>
+
         <div>
           <label>Descripcion del plato:</label>
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
         </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Aceptar</button>

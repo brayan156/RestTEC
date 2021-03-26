@@ -8,25 +8,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="pedidosSistema">Pedidos en el sistema</a>
+          <a class="nav-link btn btn-light" (click)="navegation('pedidosSistema')" >Pedidos en el sistema</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="getionDePlatos">Gestion De Tipos De Platos</a>
+          <a class="nav-link btn btn-light"  (click)="navegation('getionDePlatos')">Gestion De Tipos De Platos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="gestionMenu">Gestion Del Menu</a>
+          <a class="nav-link btn btn-light" (click)="navegation('gestionMenu')" >Gestion Del Menu</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="top10MasVendidos">Top 10 platos mas vendidos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="top10MasGanancias">Top 10 platos con mas ganacinas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="top10MejorFeedback">Top 10 platos con mejor feedback</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link btn-light" routerLink="top10MejoresClientes">Top 10 mejores clientes</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            TOP 10
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item btn btn-light" (click)="navegation('top10MasVendidos')">Top 10 platos mas vendidos</a></li>
+            <li><a class="dropdown-item btn btn-light" (click)="navegation('top10MasGanancias')">Top 10 platos con mas ganacinas</a></li>
+            <li><a class="dropdown-item btn-light" (click)="navegation('top10MejorFeedback')">Top 10 platos con mejor feedback</a></li>
+            <li><a class="dropdown-item btn btn-light" (click)="navegation('top10MejoresClientes')">Top 10 mejores clientes</a></li>
+          </ul>
         </li>
       </ul>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" routerLink="">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormUsuarioComponent } from "../../form-usuario/form-usuario.component";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar-chef',
@@ -8,10 +8,13 @@ import { FormUsuarioComponent } from "../../form-usuario/form-usuario.component"
 })
 export class NavbarChefComponent implements OnInit {
 
-  constructor() { }
-
-
+  constructor(private route: Router){
+  }
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  navegation(route){
+    this.route.navigateByUrl('/chef/'.concat(route));
+  }
 }
