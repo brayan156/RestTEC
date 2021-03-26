@@ -1,0 +1,31 @@
+.container{
+  top: 50px;
+  left: 50px;
+  background: grey;
+  padding: 30px;
+  border: white 5px outset;
+  margin-top:300px;
+  align-items: center;
+}
+
+.email_From{
+  padding: 5px;
+  margin: 10px;
+}
+.pasword_Emanil{
+  padding: 5px;
+  margin: 10px;
+
+}
+.button{
+  padding: 10px;
+
+}
+
+.col-6{
+  margin: 0 auto;
+}
+
+
+
+

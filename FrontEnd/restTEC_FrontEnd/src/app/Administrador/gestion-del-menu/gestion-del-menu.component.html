@@ -1,0 +1,69 @@
+<app-navbar-administrador></app-navbar-administrador>
+<div class="opacidad">
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          TIPO-DE-PLATO
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <div class="row">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              NOMBRE DEL PLATO
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nombre DEL PLATO</h5>
+        <small>TIPO DE PLATO</small>
+      </div>
+      <div class="modal-body">
+        <h5>PRECIO:</h5>
+        <h5>CALORIAS:</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >AGREGAR AL MENU</button>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editarPlatoMenu">EDITAR PLATO</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >ELIMINAR PLATO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editarPlatoMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarPlatoMenuLabel">EDITAR: NOMBRE DEL PLATO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>Precio</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">₡</span>
+          <input type="number" class="form-control">
+        </div>
+        <label>Calorias</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">₡</span>
+          <input type="number" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+

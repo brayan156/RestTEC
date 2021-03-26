@@ -1,1 +1,21 @@
-[{"Id":2,"Monto":1000,"N_compra":1,"Id_cliente":1},{"Id":1,"Monto":2000,"N_compra":1,"Id_cliente":1}]
+[
+  
+  {
+    "Id": 1,
+    "Monto": 0,
+    "N_compra": 1,
+    "Id_cliente": 203330333
+  },
+  {
+    "Id": 1,
+    "Monto": 1900,
+    "N_compra": 2,
+    "Id_cliente": 203330333
+  },
+  {
+    "Id": 1,
+    "Monto": 1350,
+    "N_compra": 3,
+    "Id_cliente": 203330333
+  }
+]

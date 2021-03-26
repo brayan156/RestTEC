@@ -1,0 +1,19 @@
+[
+  
+  {
+    "Numero": 1,
+    "Estado": "sin asignar",
+    "Tiempo_estimado": 145,
+    "Tiempo_transcurrido": 0,
+    "Tiempo_restante": 0,
+    "Cedula_chef_asignado": 0
+  },
+  {
+    "Numero": 2,
+    "Estado": "sin asignar",
+    "Tiempo_estimado": 70,
+    "Tiempo_transcurrido": 0,
+    "Tiempo_restante": 0,
+    "Cedula_chef_asignado": 0
+  }
+]

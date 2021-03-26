@@ -1,0 +1,20 @@
+[
+  {
+    "Cedula": 201110111,
+    "Email": "brayan@gmail.com",
+    "Password": "1234",
+    "Rol": "Admin"
+  },
+  {
+    "Cedula": 202220222,
+    "Email": "tomas@gmail.com",
+    "Password": "password",
+    "Rol": "Chef"
+  },
+  {
+    "Cedula": 209990999,
+    "Email": "juan@gmail.com",
+    "Password": "1111",
+    "Rol": "Chef"
+  }
+]

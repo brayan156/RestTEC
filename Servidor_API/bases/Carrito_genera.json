@@ -1,0 +1,15 @@
+[
+  {
+    "Id_carrito": 1,
+    "Id_Factura": 1,
+    "Id_pedido": 1,
+    "N_compra": 1
+  },
+  {
+    "Id_carrito": 1,
+    "Id_Factura": 2,
+    "Id_pedido": 2,
+    "N_compra": 2
+  }
+
+]

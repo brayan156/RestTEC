@@ -26,7 +26,7 @@ namespace Servidor_API.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post([FromBody]  int tiempo_estimado)
+        public Pedido Post([FromBody]  int tiempo_estimado)
         {
 
 
@@ -48,7 +48,7 @@ namespace Servidor_API.Controllers
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
             string respuesta = "pedido realizado";
-            return respuesta;
+            return pedido;
         }
 
         // PUT api/values/5
