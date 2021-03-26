@@ -109,15 +109,17 @@ export class ObjetosService {
     if (telefonos === []) {
       respuesta = "se requiere al menos un telefono";
     } else {
-      this.http.post<String>(this.Url + "Cliente", cliente).subscribe(resp => {
+     return this.http.post<String>(this.Url + "Cliente", cliente).subscribe(resp => {
         respuesta = resp;
         if (respuesta === "registro ingresado correctamente") {
+          let ntelefonos: Telefonos [] = [];
           telefonos.forEach(telofono => {
             let tel: Telefonos = new Telefonos();
             tel.ID_cliente = cliente.Cedula;
             tel.Telefono = telofono;
-            this.http.post<String>(this.Url + "Telefonos", tel);
+            ntelefonos.push(tel);
           });
+            this.http.post<String>(this.Url + "Telefonos", ntelefonos);
         }
       });
     }
@@ -215,7 +217,7 @@ export class ObjetosService {
   //obtiene el carrito de un pedido
   public obtener_carrito_pedido(N_pedido: number) {
     var car:Carrito=new Carrito
-    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
+    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/npedido/" + N_pedido).subscribe(carrito_genera => {
       this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
         for (let i = 0; i < carritos.length; i++) {
           if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
@@ -233,7 +235,7 @@ export class ObjetosService {
   public obtener_almacen_pedido(N_pedido: number) {
     var almacen:CarritoAlmacena[]=[]
     var car: Carrito = new Carrito
-    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
+    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/npedido/" + N_pedido).subscribe(carrito_genera => {
       this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
         for (let i = 0; i < carritos.length; i++) {
           if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
