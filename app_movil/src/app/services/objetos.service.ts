@@ -173,11 +173,24 @@ export class ObjetosService {
   //obtiene los numeros de plato y la cantidad comprada de un pedido
   public obtener_almacen_pedido(N_pedido: number) {
     var almacen:CarritoAlmacena[]=[]
-    let carrito: Carrito = this.obtener_carrito_pedido(N_pedido);
-    this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + carrito.Id + "/" + carrito.N_compra)
-      .subscribe(carritos_almacena => {
-        almacen= carritos_almacena;
-      });
+    var car: Carrito = new Carrito
+    this.http.get<CarritoGenera>(this.Url + "Carrito_genera/n_pedido/" + N_pedido).subscribe(carrito_genera => {
+      this.http.get<Carrito[]>(this.Url + "Carrito").subscribe(carritos => {
+        for (let i = 0; i < carritos.length; i++) {
+          if (carritos[i].N_compra === carrito_genera.N_compra && carritos[i].Id === carrito_genera.Id_carrito) {
+            car = carritos[i];
+            break;
+          }
+        }
+        this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena/carrito/" + car.Id + "/" + car.N_compra)
+          .subscribe(carritos_almacena => {
+            almacen = carritos_almacena;
+          });
+
+
+      })
+    });
+
     return almacen;
   }
 

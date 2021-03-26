@@ -30,7 +30,7 @@ export class Tab2Page {
   }
 
   async presentAlertConfirm(platos: PlatoApp[], total: number) {
-    this.objetos.carrito.Monto=total
+    this.objetos.carrito.Monto = total
     var nombresDePlatosRecibidos: string = '';
     platos.forEach(plato => {
       nombresDePlatosRecibidos = nombresDePlatosRecibidos.concat(plato.plato).concat(', ');
