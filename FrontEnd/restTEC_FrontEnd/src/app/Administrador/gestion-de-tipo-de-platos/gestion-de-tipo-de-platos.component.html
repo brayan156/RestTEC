@@ -68,11 +68,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <input type="text" class="form-control" id="nombrePlatoID" placeholder="Nombre del nuevo plato">
+        <input type="text" class="form-control" id="nombrePlatoID" placeholder="Nombre del nuevo plato" #Nombre ="ngModel" [(ngModel)] = "platos.Nombre">
       </div>
       <div class="modal-body">
         <div>
-          <select class="form-select form-select-lg mb-3">
+          <select class="form-select form-select-lg mb-3" #Tipo ="ngModel" [(ngModel)] = "">
             <option selected>Tipo de plato</option>
             <option value="Desayuno">Desayuno</option>
             <option value="Almuerzo">Almuerzo</option>
@@ -83,17 +83,17 @@
         <label>Tiempo de preparacion:</label>
         <div class="input-group mb-3">
           <span class="input-group-text">min</span>
-          <input type="number" class="form-control">
+          <input type="number" class="form-control" #Tiempo ="ngModel" [(ngModel)] = "platos.Tiempo_preparacion">
         </div>
 
         <div>
           <label>Descripcion del plato:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" #descripcion ="ngModel" [(ngModel)] = "platos.Descripcion"></textarea>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Aceptar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="crearPlato(platos.Nombre , platos.Descripcion , platos.Tiempo_preparacion)">Aceptar</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
       </div>
     </div>

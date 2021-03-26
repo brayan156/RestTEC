@@ -10,7 +10,7 @@ import { Plato } from "../../form-usuario/Comunicacion/plato";
 })
 export class GestionDeTipoDePlatosComponent implements OnInit {
   constructor( private service:PedidosActivosService) { }
-  public platos;
+  public platos: Plato;
 
 
   ngOnInit(): void {
@@ -23,13 +23,15 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Tiempo_preparacion = tiempo_preparacion;
     this.service.crearplato(plato).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
-        alert('El plato ha sido creado con exito');
+        this.platoCreado();
       } else {
         alert(respuesta);
       }
     });
   }
-
+  platoCreado(): void{
+    alert('El plato se creo correctamente');
+  }
   errorPlato(): void{
     alert('No contiene la informacion minima para crear un plato');
   }
