@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -39,7 +40,8 @@ export class TrackingPage implements OnInit {
    * @param evento 
    */
   refrescarPedido(evento) {
-    console.log(this.pedido);
+    setTimeout(() => {
+      console.log(this.pedido);
     this.pedidosEnProgreso = this.dataService.getPedidoEnProgreso();
     var tmpList = []
     this.pedidosEnProgreso.forEach(pedido => {
@@ -48,7 +50,11 @@ export class TrackingPage implements OnInit {
       }
     });
     this.pedidosEnProgreso = tmpList;
+    this.pedidosEnProgreso.shift();
     this.dataService.setPedidosEnProgreso(tmpList);
+    evento.target.complete();
+    }, 4000);
+
   }
 
 }
