@@ -28,8 +28,11 @@
             <ion-item>
               <ion-datetime  displayFormat="MM/DD/YYYY" [(ngModel)]="this.birthDate"  [ngModelOptions]="{standalone: true}"value="2021-10-01" display-timezone="utc" placeholder="Fecha de nacimiento"></ion-datetime>
             </ion-item>
-            <ion-item>
+            <ion-item *ngFor="let item of listaTelefonos">
+              
               <ion-input   [(ngModel)]="this.newClientPhone" [ngModelOptions]="{standalone: true}" type="tel" placeholder="Telefono" ngModel required></ion-input>
+              <ion-button size="small" color='secondary' fill='clear' [disabled]="(this.listaTelefonos.length > 1)? false:true" (click)=menosTelefonos()><ion-icon name="remove-circle-outline"></ion-icon></ion-button>
+              <ion-button size="small" color='secondary' fill='clear' (click)=masTelefonos()><ion-icon name="add-circle-outline"></ion-icon></ion-button>
             </ion-item>
             <ion-item>
               <ion-input  [(ngModel)]="this.newClient.Email" [ngModelOptions]="{standalone: true}" type="email" placeholder="tu@email.com" ngModel required></ion-input>

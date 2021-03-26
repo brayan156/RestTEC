@@ -16,7 +16,8 @@ import { ObjetosService } from '../services/objetos.service';
 export class RegisterPage implements OnInit {
 
   newClient: Cliente = new Cliente();
-  newClientPhone: number;
+  newClientPhone: number = null;
+  listaTelefonos = [this.newClientPhone];
   birthDate: string;
 
   /**
@@ -45,6 +46,16 @@ export class RegisterPage implements OnInit {
       this.newClientPhone
     ]
     this.objetosService.crear_cliente(this.newClient, clientPhones);
+  }
+
+  masTelefonos() {
+    this.listaTelefonos.push(this.newClientPhone);
+  }
+
+  menosTelefonos() {
+    if (this.listaTelefonos.length > 1) {
+      this.listaTelefonos.pop();
+    }
   }
 
 }
