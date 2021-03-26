@@ -56,7 +56,8 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     });
   }
 
-  ver() {
+  ver(plato:Plato) {
+    this.plato=plato
   }
 
   eliminarPlato(id:number): void {
