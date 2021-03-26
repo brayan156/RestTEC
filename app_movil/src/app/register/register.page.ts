@@ -16,8 +16,10 @@ import { ObjetosService } from '../services/objetos.service';
 export class RegisterPage implements OnInit {
 
   newClient: Cliente = new Cliente();
-  newClientPhone: number = null;
-  listaTelefonos = [this.newClientPhone];
+  newClientPhone1: number = null;
+  newClientPhone2: number = null;
+  newclientPhone3: number = null;
+  listaTelefonos = [this.newClientPhone1, this.newClientPhone2, this.newclientPhone3];
   birthDate: string;
 
   /**
@@ -42,20 +44,8 @@ export class RegisterPage implements OnInit {
     this.newClient.Mes_Nacimiento = (this.birthDate.slice(5, 7));
     this.newClient.Día_Nacimiento = (this.birthDate.slice(8, 10));
 
-    var clientPhones = [
-      this.newClientPhone
-    ]
-    this.objetosService.crear_cliente(this.newClient, clientPhones);
+    this.objetosService.crear_cliente(this.newClient, this.listaTelefonos);
   }
 
-  masTelefonos() {
-    this.listaTelefonos.push(this.newClientPhone);
-  }
-
-  menosTelefonos() {
-    if (this.listaTelefonos.length > 1) {
-      this.listaTelefonos.pop();
-    }
-  }
 
 }

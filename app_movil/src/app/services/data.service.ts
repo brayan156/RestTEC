@@ -133,6 +133,10 @@ export class DataService {
     this.pedidoEnProgreso = tmpList;
   }
 
+  setData(plato) {
+    this.pedidoEnProgreso.push(plato);
+  }
+
   getData() {
     return this.menu;
   }

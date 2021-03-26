@@ -21,7 +21,8 @@ export class Tab3Page implements OnInit {
    * @param modalController 
    * @param dataService 
    */
-  constructor(public modalController: ModalController, private dataService: DataService) {}
+  constructor(public modalController: ModalController, private dataService: DataService) {
+  }
 
   @ViewChild(IonButton) calificacion: IonButton;
 
