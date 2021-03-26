@@ -12,10 +12,22 @@ import { TrackingPage } from '../tracking/tracking.page';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  cont = 0;
   pedidosEnProgreso = 0;
+  disableButton = false;
+
+  /**
+   * Constructor
+   * @param modalController 
+   * @param dataService 
+   */
   constructor(public modalController: ModalController, private dataService: DataService) {}
 
   @ViewChild(IonButton) calificacion: IonButton;
+
+  /**
+   * Un Objeto para desplegar pedidos viejos
+   */
   pedidosMuestra = [
     {
       id: 1,
@@ -27,6 +39,7 @@ export class Tab3Page {
       tiempo_estimado: 5
     },
     {
+      id: 2,
       menu: ['Sopa azteca'],
       fecha: '1 de marzo',
       chef: 'Pipe',
@@ -35,6 +48,7 @@ export class Tab3Page {
       tiempo_estimado: '5min'
     },
     {
+      id: 3,
       menu: ['Cereal con leche'],
       fecha: '28 de febrero',
       chef: 'Pipe',
@@ -44,10 +58,19 @@ export class Tab3Page {
     }
   ]
 
-  setPedidosEnProgreso() {
-    this.pedidosEnProgreso += 1;
+  /**
+   * Incrementa la cantidad de pedidos en progreso.
+   * Esta variable es la que se despliega en el badge.
+   * @param len 
+   */
+  setPedidosEnProgreso(len) {
+    this.pedidosEnProgreso = len;
   }
 
+  /**
+   * Retorna el contador de pedidos en progreso.
+   * @returns 
+   */
   getPedidosEnProgreso() {
     var result = null;
     if (this.pedidosEnProgreso > 0) {
@@ -57,31 +80,57 @@ export class Tab3Page {
   }
 
   feedback() {
-  }
-
-  async presentarFeedback(pedido) {
-    const modal = await this.modalController.create({
-      component: FeedbackPage,
-      componentProps: {
-        platos: pedido
-      }
-    });
-    return await modal.present();
     
   }
 
+  /**
+   * Presenta el modal del feedback
+   * @param plato 
+   * @returns 
+   */
+  async presentarFeedback(plato) {
+    this.disableButton = true;
+    console.log(this.pedidosMuestra);
+    var tmp = [];
+    this.pedidosMuestra.forEach(pedido => {
+      console.log(pedido.id);
+      console.log(plato.id);
+      if (pedido.id === plato.id) { pedido.estado = 'Preparado'; tmp.push(pedido) }
+      else { tmp.push(pedido)}
+    })
+    this.pedidosMuestra = tmp;
+    console.log(this.pedidosMuestra);
+    const modal = await this.modalController.create({
+      component: FeedbackPage,
+      componentProps: {
+        platos: plato.menu
+      }
+    });
+    ;
+    return await modal.present();    
+  }
+
+  /**
+   * Depsliega el modal para pedido en progreso.
+   * @returns 
+   */
   async mostrarPedidoEnProgreso() {
     var pedidoEnProgreso = this.dataService.getPedidoEnProgreso();
-    if (pedidoEnProgreso != []) { this.setPedidosEnProgreso() };
-    const modal = await this.modalController.create({
+    if (pedidoEnProgreso != []) { this.setPedidosEnProgreso(pedidoEnProgreso.length) };
+    const pedidoEnProgresoModal = await this.modalController.create({
       component: TrackingPage,
       componentProps: {
         pedido: pedidoEnProgreso
       }
     });
-    return await modal.present();
+    return await pedidoEnProgresoModal.present();
     
   }
+
+  doRefresh() {
+    
+  }
+
 
 
 

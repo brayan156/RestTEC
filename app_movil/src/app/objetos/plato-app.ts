@@ -1,3 +1,7 @@
+
+/**
+ * Construye la tabla para un plato.
+ */
 export class PlatoApp {
   plato: string;
   descripcion: string;

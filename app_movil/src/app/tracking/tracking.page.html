@@ -12,8 +12,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-card >
-    <ion-card-content *ngFor="let pedido of pedidosEnProgreso">
+  <ion-card *ngFor="let pedido of pedido">
+    <ion-card-content >
       <p>
         <ion-label color='success'>
           <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.Estado}} </strong>

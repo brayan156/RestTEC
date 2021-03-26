@@ -1,3 +1,6 @@
+/**
+ * Construye la tabla de plato
+ */
 export class Plato {
   Numero_plato : number;
   Nombre :string;
