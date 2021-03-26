@@ -97,7 +97,7 @@ export class DataService {
         this.objetos.carrito.Monto = 0;
       });
     });
-    return { detalle: factura.Id, plato_y_cantidad: platos_con_nombre };
+    return { detalle: factura, plato_y_cantidad: platos_con_nombre };
   }
 
 
@@ -121,4 +121,7 @@ export class DataService {
     return tmp;
   }
 
+  getData() {
+    return this.menu;
+  }
 }
