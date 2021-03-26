@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidosActivosService } from "../../pedidos-activos.service";
+import { Plato } from "../../form-usuario/Comunicacion/plato";
 
 
 @Component({
@@ -7,20 +9,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gestion-de-tipo-de-platos.component.css']
 })
 export class GestionDeTipoDePlatosComponent implements OnInit {
-  constructor() { }
+  constructor( private service:PedidosActivosService) { }
 
   ngOnInit(): void {
   }
-  crearPlato(): void{
-    alert('El plato ha sido creado con exito');
+  crearPlato(descripicon: string, nombre: string,tiempo_preparacion:number): void {
+    let plato: Plato = new Plato;
+    plato.Nombre = nombre;
+    plato.Descripcion = descripicon;
+    plato.Tiempo_preparacion = tiempo_preparacion;
+    this.service.crearplato(plato).subscribe(respuesta => {
+      if (respuesta === "registro ingresado correctamente") {
+        alert('El plato ha sido creado con exito');
+      } else {
+        alert(respuesta);
+      }
+    });
   }
+
   errorPlato(): void{
     alert('No contiene la informacion minima para crear un plato');
   }
-  eliminarPlato(): void{
-    alert('El plato ha sido eliminado con exito');
+  actualizarPlato(descripicon: string, nombre: string, tiempo_preparacion: number,id:number): void{
+    let plato: Plato = new Plato;
+    plato.Nombre = nombre;
+    plato.Descripcion = descripicon;
+    plato.Tiempo_preparacion = tiempo_preparacion;
+    plato.Numero_plato = id;
+    this.service.editarplato(plato).subscribe(respuesta => {
+      alert(respuesta);
+    });
   }
-  actualizarPlato(): void{
-    alert('El plato ha sido actualizado con exito');
+  eliminarPlato(id:number): void {
+    this.service.eliminarplato(id).subscribe(respuesta => {
+      alert(respuesta);
+    });
   }
 }

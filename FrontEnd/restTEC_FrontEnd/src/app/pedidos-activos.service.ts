@@ -101,4 +101,18 @@ export class PedidosActivosService {
     });
     return platos;
   }
+
+  public crearplato(plato: Plato) {
+    return this.http.post<String>(this.Url + "Plato",plato);
+  }
+  public eliminarplato(id: number) {
+    return this.http.delete<String>(this.Url + "Plato" + id);
+  }
+  public editarplato(plato: Plato) {
+    return this.http.put<String>(this.Url + "Plato",plato);
+  }
+
 }
+
+
+
