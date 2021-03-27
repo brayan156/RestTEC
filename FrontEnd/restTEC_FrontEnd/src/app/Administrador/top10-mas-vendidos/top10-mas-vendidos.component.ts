@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top10-mas-vendidos.component.css']
 })
 export class Top10MasVendidosComponent implements OnInit {
-
+  /**
+   * Constructor para la visualizacion de los platos mas vendidos
+   */
   constructor() { }
 
   ngOnInit(): void {

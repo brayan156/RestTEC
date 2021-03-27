@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReasignacionDePedidosComponent implements OnInit {
 
+  /**
+   * Constructor para la el componente
+   */
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  /**
+   * Alertas para la reasignacion de pedidos
+   */
   reasignarPlato(): void{
     alert('El plato ha sido ha reasigando');
   }

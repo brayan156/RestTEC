@@ -9,6 +9,11 @@ import {PedidosActivosService} from '../pedidos-activos.service';
 })
 export class AppComponent {
   title = 'restTEC';
+
+  /**
+   * Constructor padre de todos los archivos presenetes en el trabaj
+   * @param pedidosActivos servicio que nos ayuda a comunicar con el API, aca carga los JSON del api
+   */
   constructor(private pedidosActivos: PedidosActivosService){
     pedidosActivos.cargarJson();
   }

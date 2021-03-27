@@ -12,11 +12,20 @@ export class PedidosSistemaAdmiComponent implements OnInit {
   public contenido;
   public platos_con_nombre;
 
+  /**
+   * Creacion del componente de pedidos en el sistema
+   * @param pedidosActivosSistema servivio que nos ayuda a comunicar la apliacion web y el API
+   */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
 
 
   }
 
+  /**
+   *
+   * @param Numero
+   * @constructor
+   */
   Ver_platos_pedido(Numero: number): void {
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(Numero);
   }

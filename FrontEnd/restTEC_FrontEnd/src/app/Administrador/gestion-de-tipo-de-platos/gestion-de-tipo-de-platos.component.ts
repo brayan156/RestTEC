@@ -11,7 +11,15 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: './gestion-de-tipo-de-platos.component.html',
   styleUrls: ['./gestion-de-tipo-de-platos.component.css']
 })
+
+
 export class GestionDeTipoDePlatosComponent implements OnInit {
+
+  /**
+   * Constructor del componete para la gestion de tipo de platos
+   * @param service paramentro para la comunicacion con el servidor
+   * @param http parametro para la comunicacion con el servidor
+   */
   constructor(private service: PedidosActivosService, private http: HttpClient) { }
 
 
@@ -24,6 +32,13 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
       this.platos = data;
     });
   }
+
+  /**
+   * Funcion con la cual se crea un plato y se le envia al servidor
+   * @param descripicon descipcion del plato
+   * @param nombre nombre del plato
+   * @param tiempo_preparacion tiempo de prepacion para el plato
+   */
   crearPlato(descripicon: string, nombre: string,tiempo_preparacion:number): void {
     let plato: Plato = new Plato;
     plato.Nombre = nombre;
@@ -38,6 +53,10 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Alertas para crear,Actualizar plato.
+   */
   platoCreado(): void{
     alert('El plato se creo correctamente');
   }

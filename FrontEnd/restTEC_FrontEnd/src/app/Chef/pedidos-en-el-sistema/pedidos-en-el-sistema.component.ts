@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pedidos-en-el-sistema.component.css']
 })
 export class PedidosEnElSistemaComponent implements OnInit {
-
+  /**
+   * Creacion del componete para los pedidos dentro del sistema
+   */
   constructor() { }
 
   ngOnInit(): void {
