@@ -7,11 +7,18 @@ import { Carrito } from "./form-usuario/Comunicacion/carrito";
 import { CarritoGenera } from "./form-usuario/Comunicacion/carrito-genera";
 import { Menu } from "./form-usuario/Comunicacion/menu";
 import { PlatosEnMenu } from "./form-usuario/Comunicacion/platos-en-menu";
+import { Pedido } from "./form-usuario/Comunicacion/pedido";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidosActivosService {
+  public aceptarpedido(pedido:Pedido) {
+    return this.http.put(this.Url+"Pedido",pedido)
+  };
+
+  public cedula:number;
+
 
   Url = 'https://192.168.1.2:45455/';
   private valores = new BehaviorSubject('');
@@ -23,6 +30,11 @@ export class PedidosActivosService {
       data => this.valores.next(data)
     );
   }
+
+  public obtenerPedidos() {
+    return this.http.get<Pedido[]>(this.Url + "Pedido");
+  }
+
 
   public sacar_nombre_cantidad(N_pedido: number) {
     var almacen: CarritoAlmacena[] = []

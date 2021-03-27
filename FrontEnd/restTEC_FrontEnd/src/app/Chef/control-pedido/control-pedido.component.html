@@ -1,11 +1,12 @@
 <app-navbar-chef></app-navbar-chef>
-
-<!--  -->
-<div class="row">
-  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    ID-DEL-PEDIDO (Cedula cheft)
-  </button>
+<div *ngFor="let item of sin_pedidos">
+  <div class="row">
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
+      ID-DEL-PEDIDO: {{item.Numero}}
+    </button>
+  </div>
 </div>
+<!--  -->
 
 <!---->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
