@@ -21,7 +21,8 @@
         Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Pedido Terminado</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="terminarPedido()">Pedido Terminado</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
