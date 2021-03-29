@@ -13,14 +13,14 @@ import { Pedido } from "./form-usuario/Comunicacion/pedido";
   providedIn: 'root'
 })
 export class PedidosActivosService {
-  public aceptarpedido(pedido:Pedido) {
+  public editarpedido(pedido:Pedido) {
     return this.http.put(this.Url+"Pedido",pedido)
   };
 
   public cedula:number;
 
 
-  Url = 'https://192.168.1.2:45455/';
+  Url = 'https://192.168.1.3:45455/';
   private valores = new BehaviorSubject('');
   public valoresActuales = this.valores.asObservable();
   constructor(private http: HttpClient) { }

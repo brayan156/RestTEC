@@ -37,7 +37,7 @@ export class TomaDePedidosComponent implements OnInit {
   aceptarPedido() {
     this.pedidoActual.Cedula_chef_asignado = this.Cedula;
     this.pedidoActual.Estado="Cocinando"
-    this.pedidosActivosSistema.aceptarpedido(this.pedidoActual).subscribe(r => {
+    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
 
       if (r === "registro editado exitosamente") { this.aceptarPlato(); }
       this.ngOnInit();

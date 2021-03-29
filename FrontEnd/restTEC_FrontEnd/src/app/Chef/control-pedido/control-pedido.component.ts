@@ -25,10 +25,15 @@ export class ControlPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidoActual = new Pedido;
-    this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {
       this.todos_pedidos = data;
-      this.sin_pedidos = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula));
+      this.sin_pedidos = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula) && ped.Estado === "Cocinando");
+      let pedidos_pedidos:Pedido[] = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula) && ped.Estado.split(",")[0] === "pedir");
+      console.log(pedidos_pedidos);
+      if (pedidos_pedidos.length !== 0) {
+        console.log("hola");
+        alert("hay pedido pedido por "+pedidos_pedidos[0].Estado.split(",")[1]);
+      }
     });
 
   }
@@ -37,19 +42,42 @@ export class ControlPedidoComponent implements OnInit {
     this.pedidoActual = pedido;
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
-  aceptarPedido() {
-    this.pedidoActual.Cedula_chef_asignado = this.Cedula;
-    this.pedidosActivosSistema.aceptarpedido(this.pedidoActual).subscribe(r => {
+
+  terminarPedido() {
+    this.pedidoActual.Estado ="Preparado"
+    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
 
       if (r === "registro editado exitosamente") { this.terminaPlato(); }
       this.ngOnInit();
     });
   }
 
-  /**
-   * Aleta utilizada para la visualisacion de finalizacion del pedido
-   */
+  rechazarpedido() {
+    this.pedidoActual.Cedula_chef_asignado = this.Cedula;
+    this.pedidoActual.Estado = "Cocinando"
+    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
+
+      if (r === "registro editado exitosamente") { this.terminaPlato(); }
+      this.ngOnInit();
+    });
+  }
+
+  reasignarpedido() {
+    this.pedidoActual.Cedula_chef_asignado = this.pedidoActual.Estado.split(",")[1] as number;
+    this.pedidoActual.Estado = "Cocinando"
+    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
+
+      if (r === "registro editado exitosamente") { this.terminaPlato(); }
+      this.ngOnInit();
+    });
+  }
+
+
+
+    /**
+     * Aleta utilizada para la visualisacion de finalizacion del pedido
+     */
   terminaPlato(): void{
-    alert('El plato ha sido terminado y esta listo para recoger');
+     alert('El plato ha sido terminado y esta listo para recoger');
   }
 }
