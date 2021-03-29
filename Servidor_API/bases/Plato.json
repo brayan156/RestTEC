@@ -1,4 +1,5 @@
 [
+  
   {
     "Numero_plato": 1,
     "Nombre": "Lentejas con platano maduro",
@@ -22,5 +23,11 @@
     "Nombre": "picadillo de papa",
     "Descripcion": "papas condimentadas con carne molida",
     "Tiempo_preparacion": 20
+  },
+  {
+    "Numero_plato": 5,
+    "Nombre": "Pinto",
+    "Descripcion": "comida tipica basada en arroz y frijoles revueltos con olores, con huevo frito y natilla",
+    "Tiempo_preparacion": 15
   }
 ]

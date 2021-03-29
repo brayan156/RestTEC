@@ -1,4 +1,5 @@
 [
+  
   {
     "Cedula": 203330333,
     "Primer_Nombre": "brayan",
@@ -26,42 +27,16 @@
     "Distrito": "Centro"
   },
   {
-    "Cedula": 12315412,
-    "Primer_Nombre": "asd",
-    "Apellido": "asdads",
-    "Email": "asdagf",
-    "Password": "5555",
-    "AñoNacimiento": "2021",
-    "Mes_Nacimiento": "03",
-    "Día_Nacimiento": "24",
-    "Provincia": "asdasd",
-    "Canton": "gsdf",
-    "Distrito": "sdfxc"
-  },
-  {
-    "Cedula": 1542421231,
-    "Primer_Nombre": "aszxczx",
-    "Apellido": "zxczxczx",
-    "Email": "asdgfht",
-    "Password": "5412",
-    "AñoNacimiento": "2021",
-    "Mes_Nacimiento": "05",
-    "Día_Nacimiento": "25",
-    "Provincia": "asd",
-    "Canton": "vcxvxc",
-    "Distrito": "xcvxcv"
-  },
-  {
-    "Cedula": 141246434,
-    "Primer_Nombre": "asdassdaa",
-    "Apellido": "asdasdasd",
-    "Email": "jyhjuyiyuhjk",
-    "Password": "7777",
-    "AñoNacimiento": "2021",
+    "Cedula": 101110111,
+    "Primer_Nombre": "Pablo",
+    "Apellido": "Marmol",
+    "Email": "pedro@gmail.com",
+    "Password": "1111",
+    "AñoNacimiento": "1957",
     "Mes_Nacimiento": "01",
-    "Día_Nacimiento": "23",
-    "Provincia": "asdasd",
-    "Canton": "gasda",
-    "Distrito": "xcasdda"
+    "Día_Nacimiento": "31",
+    "Provincia": "San Jose",
+    "Canton": "San Pedro",
+    "Distrito": "U"
   }
 ]

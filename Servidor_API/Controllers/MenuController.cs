@@ -70,10 +70,14 @@ namespace Servidor_API.Controllers
                 lista = new List<Menu>();
             }
             bool existe = false;
-
+            int n_plato = 0;
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Numero_menu == menu.Numero_menu)
+                if (n_plato < lista[i].Numero_menu)
+                {
+                    n_plato = lista[i].Numero_menu;
+                }
+                if (lista[i].Tipo == menu.Tipo)
                 {
                     existe = true;
                     respuesta = "registro ya existente";
@@ -87,6 +91,7 @@ namespace Servidor_API.Controllers
             }
             else if (!existe)
             {
+                menu.Numero_menu = n_plato + 1;
                 lista.Add(menu);
                 respuesta = "registro ingresado correctamente";
             }

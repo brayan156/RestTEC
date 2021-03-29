@@ -38,10 +38,15 @@ namespace Servidor_API.Controllers
                 lista = new List<Plato>();
             }
             bool existe = false;
-
+            int n_plato = 0;
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Numero_plato == plato.Numero_plato)
+                if (n_plato < lista[i].Numero_plato)
+                {
+                    n_plato = lista[i].Numero_plato;
+                }
+
+                if (lista[i].Descripcion == plato.Descripcion && lista[i].Nombre == plato.Nombre)
                 {
                     existe = true;
                     respuesta = "registro ya existente";
@@ -49,12 +54,10 @@ namespace Servidor_API.Controllers
                 }
             }
 
-            if (plato.Numero_plato == 0)
+
+             if (!existe)
             {
-                respuesta = "registro necesita un identificador";
-            }
-            else if (!existe)
-            {
+                plato.Numero_plato = n_plato + 1;
                 lista.Add(plato);
                 respuesta = "registro ingresado correctamente";
             }
@@ -101,8 +104,9 @@ namespace Servidor_API.Controllers
         }
 
         // DELETE api/values/5
+        [Route("Plato/{numero_plato:int}")]
         [HttpDelete]
-        public string Delete(Plato plato)
+        public string Delete(int numero_plato)
         {
             string respuesta = "";
 
@@ -116,7 +120,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Numero_plato == plato.Numero_plato)
+                if (lista[i].Numero_plato == numero_plato)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

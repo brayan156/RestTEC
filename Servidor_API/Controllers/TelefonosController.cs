@@ -28,7 +28,7 @@ namespace Servidor_API.Controllers
         // POST api/values
 
         [HttpPost]
-        public string Post([FromBody] Telefonos telefonos)
+        public string Post([FromBody] Telefonos[] telefonos)
         {
             string respuesta = "";
             Debug.WriteLine("inicio");
@@ -40,27 +40,11 @@ namespace Servidor_API.Controllers
             }
             bool existe = false;
 
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
-                {
-                    Debug.WriteLine("existe");
-                    existe = true;
-                    respuesta = "registro ya existente";
-                    break;
-                }
-            }
 
-            if (telefonos.ID_cliente == 0 || telefonos.Telefono == 0)
-            {
-                respuesta = "registro necesita un identificador";
-            }
-            else if (!existe)
-            {
                 Debug.WriteLine("crear");
-                lista.Add(telefonos);
+                lista.AddRange(telefonos);
                 respuesta = "registro ingresado correctamente";
-            }
+            
 
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);

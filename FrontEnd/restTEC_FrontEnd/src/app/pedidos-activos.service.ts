@@ -117,6 +117,10 @@ export class PedidosActivosService {
     return platos;
   }
 
+  public getPlatos(plato: Plato) {
+    return this.http.get<Plato[]>(this.Url + "Plato");
+  }
+
   public crearplato(plato: Plato) {
     return this.http.post<String>(this.Url + "Plato",plato);
   }
@@ -127,6 +131,12 @@ export class PedidosActivosService {
     return this.http.put<String>(this.Url + "Plato",plato);
   }
 
+
+
+  public getMenu() {
+    return this.http.get<Menu[]>(this.Url + "Menu");
+  }
+
   public crearmenu(menu: Menu) {
     return this.http.post<String>(this.Url + "Menu", menu);
   }
@@ -135,6 +145,11 @@ export class PedidosActivosService {
   }
   public editarmenu(menu: Menu) {
     return this.http.put<String>(this.Url + "Menu", menu);
+  }
+
+
+  public getPlatoenmenu() {
+    return this.http.get<PlatosEnMenu[]>(this.Url + "Platos_en_Menu");
   }
 
   public crearplatoenmenu(platoenmenu: PlatosEnMenu) {
