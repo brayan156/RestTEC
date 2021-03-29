@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
   }
-  Url = 'https://192.168.1.2:45455/';
+  Url = 'https://192.168.1.3:45455/';
   /**
    * Valida los datos ingresados y realiza las navegaciones dentro del 
    * app

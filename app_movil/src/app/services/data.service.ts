@@ -47,7 +47,7 @@ export class DataService {
 
   constructor(private http: HttpClient, private objetos: ObjetosService) { }
 
-  Url = 'https://192.168.1.2:45455/';
+  Url = 'https://192.168.1.3:45455/';
 
   // Aqui recibe platos para agregarlos al carrito conforme recibe
   factura:Factura=new Factura;
