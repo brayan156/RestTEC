@@ -20,7 +20,7 @@ export class PedidosActivosService {
   public cedula:number;
 
 
-  Url = 'https://192.168.1.3:45455/';
+  Url = 'https://localhost:44385/';
   private valores = new BehaviorSubject('');
   public valoresActuales = this.valores.asObservable();
   constructor(private http: HttpClient) { }

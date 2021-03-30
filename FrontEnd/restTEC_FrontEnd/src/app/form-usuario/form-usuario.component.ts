@@ -12,7 +12,7 @@ import { PedidosActivosService } from "../pedidos-activos.service";
 export class FormUsuarioComponent implements OnInit {
 
   manejoLogin: LoginComunication = new LoginComunication('', '' , '');
-  Url = 'https://192.168.1.3:45455/';
+  Url = 'https://localhost:44385/';
   constructor(
     private router: Router, private http: HttpClient, private pedidosActivosSistema: PedidosActivosService) {
   }

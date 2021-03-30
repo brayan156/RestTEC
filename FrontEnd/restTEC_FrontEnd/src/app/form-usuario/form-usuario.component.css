@@ -1,9 +1,9 @@
 .container{
   top: 50px;
   left: 50px;
-  background: grey;
+  background: #594923;
   padding: 30px;
-  border: white 5px outset;
+  border:  #592823 5px outset;
   margin-top:300px;
   align-items: center;
 }

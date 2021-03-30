@@ -26,7 +26,7 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
 
   public platos: Plato[]=[];
   public plato:Plato=new Plato;
-  Url = 'https://192.168.1.3:45455/';
+  Url = 'https://localhost:44385/';
   ngOnInit(): void {
     this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
       this.platos = data;

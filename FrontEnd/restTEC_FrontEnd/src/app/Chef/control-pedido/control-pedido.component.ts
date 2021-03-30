@@ -32,6 +32,7 @@ export class ControlPedidoComponent implements OnInit {
       console.log(pedidos_pedidos);
       if (pedidos_pedidos.length !== 0) {
         console.log("hola");
+        this.pedidoActual = pedidos_pedidos[0];
         alert("hay pedido pedido por "+pedidos_pedidos[0].Estado.split(",")[1]);
       }
     });
