@@ -117,7 +117,7 @@ export class PedidosActivosService {
     return platos;
   }
 
-  public getPlatos(plato: Plato) {
+  public getPlatos() {
     return this.http.get<Plato[]>(this.Url + "Plato");
   }
 
