@@ -47,6 +47,8 @@ export class GestionDelMenuComponent implements OnInit {
 
   }
 
+  eliminar_plato_en_menu() {}
+
   editar_plato_en_menu() {}
 
   obtener_platos_sin_menu() {
