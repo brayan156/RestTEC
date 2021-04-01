@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\.idea\\inspectionProfiles",
+    "\\src",
     "\\src\\app",
-    "\\src\\app\\Administrador",
-    "\\src\\app\\Administrador\\gestion-de-tipo-de-platos",
-    "\\src\\app\\Administrador\\gestion-del-menu",
-    "\\src\\app\\Administrador\\pedidos-sistema-admi",
+    "\\src\\app\\Chef",
+    "\\src\\app\\Chef\\control-pedido",
+    "\\src\\app\\Chef\\pedidos-en-el-sistema",
+    "\\src\\app\\Chef\\reasignacion-de-pedidos",
+    "\\src\\app\\Chef\\vista-chef",
     "\\src\\app\\form-usuario",
-    "\\src\\app\\form-usuario\\Comunicacion",
-    "\\src\\assets"
+    "\\src\\app\\form-usuario\\Comunicacion"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\app\\form-usuario\\Comunicacion\\plato.ts",
   "PreviewInSolutionExplorer": false
 }

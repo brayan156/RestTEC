@@ -31,7 +31,9 @@ export class PedidosSistemaAdmiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pedidosActivosSistema.valoresActuales.subscribe(data => this.contenido = data);
+    this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {
+      this.contenido = data.filter(ped => (ped.Estado!=="Finalizado" && ped.Estado !== "Preparado"));
+    });
 
   }
 }

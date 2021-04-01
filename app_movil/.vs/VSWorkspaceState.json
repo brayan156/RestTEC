@@ -4,12 +4,13 @@
     "\\e2e",
     "\\src",
     "\\src\\app",
+    "\\src\\app\\factura",
     "\\src\\app\\feedback",
     "\\src\\app\\login",
     "\\src\\app\\services",
     "\\src\\app\\tab2",
     "\\src\\app\\tab3"
   ],
-  "SelectedNode": "\\src\\app\\feedback\\feedback.page.ts",
+  "SelectedNode": "\\src\\app\\services\\data.service.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -47,9 +47,31 @@ export class GestionDelMenuComponent implements OnInit {
 
   }
 
-  eliminar_plato_en_menu() {}
+  ver(platoenMenu: PlatosEnMenu) {
+    this.platoenMenu = platoenMenu;
+  }
 
-  editar_plato_en_menu() {}
+
+  editar_plato_en_menu() {
+    this.pedidosActivosSistema.editarplatoenmenu(this.platoenMenu).subscribe(respuesta => {
+      if (respuesta === "registro editado correctamente") {
+        this.editarPlato();
+        this.ngOnInit();
+      }
+    });}
+
+  eliminar_plato_en_menu(platoenmenu: PlatosEnMenu) {
+    this.pedidosActivosSistema.eliminarplatoenmenu(platoenmenu.N_Menu, platoenmenu.N_plato).subscribe(r => {
+      if (r === "registro eliminado exitosamente") {
+        this.eliminarPlato();
+        this.ngOnInit();
+      }
+      else {
+
+        alert("elimine todos los platos del menu primero");
+      }
+});
+  }
 
   obtener_platos_sin_menu() {
     this.platos_sin_menu=this.platos.filter(plato => this.platos_menu.every(data => data.N_plato !== plato.Numero_plato));
@@ -65,11 +87,10 @@ export class GestionDelMenuComponent implements OnInit {
     plato_menu.Ventas = 0;
     this.pedidosActivosSistema.crearplatoenmenu(plato_menu).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
-        this.agredarPlato();
+        this.editarPlato();
         this.ngOnInit();
       }
     });
-
   }
 
   agregar_menu(tipo: string) {
@@ -94,7 +115,7 @@ export class GestionDelMenuComponent implements OnInit {
   eliminar_menu() {
     if (PlatosEnMenu.length === 0) {
       this.pedidosActivosSistema.eliminarmenu(this.menuActual.Numero_menu).subscribe(respuesta => {
-        if (respuesta === "registro editado correctamente") {
+        if (respuesta === "registro eliminado exitosamente") {
           this.editar_menu();
           this.ngOnInit();
         }
@@ -125,6 +146,9 @@ export class GestionDelMenuComponent implements OnInit {
   }
   agredarPlato(): void{
     alert('El plato ha sido agregado al menu');
+  }
+  editarPlato(): void {
+    alert('El plato ha sido editado en el menu');
   }
   agredarMenu(): void {
     alert('Se ha creado el menu');
