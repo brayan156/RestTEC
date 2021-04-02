@@ -9,7 +9,7 @@
         public string Password {  get; set; }
         public string AñoNacimiento  { get; set; }
         public string Mes_Nacimiento { get; set; }
-        public string Día_Nacimiento { get; set; }
+        public string Dia_Nacimiento { get; set; }
         public string Provincia { get; set; }
         public string Canton { get; set; }
         public string Distrito { get; set; }
@@ -29,7 +29,7 @@
             Password = password;
             AñoNacimiento = añoNacimiento;
             Mes_Nacimiento = mesNacimiento;
-            Día_Nacimiento = diaNacimiento;
+            Dia_Nacimiento = diaNacimiento;
             Provincia = provincia;
             Canton = canton;
             Distrito = distrito;

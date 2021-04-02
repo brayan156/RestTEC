@@ -5,7 +5,7 @@
         public int Calificacion { get; set; }
         public string Año { get; set; }
         public string Mes { get; set; }
-        public string Día { get; set; }
+        public string Dia { get; set; }
         public string Hora { get; set; }
         public int Id_pedido { get; set; }
 
@@ -19,7 +19,7 @@
             Calificacion = calificacion;
             Año = año;
             Mes = mes;
-            Día = dia;
+            Dia = dia;
             Hora = hora;
             Id_pedido = idPedido;
         }
