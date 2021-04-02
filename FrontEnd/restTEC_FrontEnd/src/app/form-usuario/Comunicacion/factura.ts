@@ -1,8 +1,8 @@
 export class Factura {
   Id: number;
   Monto: number;
-  Año: String;
+  Year: String;
   Mes: String;
-  Día: String;
+  Dia: String;
   Hora :String;
 }

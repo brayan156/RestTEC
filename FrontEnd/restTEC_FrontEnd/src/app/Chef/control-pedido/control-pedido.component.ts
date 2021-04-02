@@ -13,7 +13,7 @@ export class ControlPedidoComponent implements OnInit {
   public sin_pedidos;
   public pedidoActual;
   public Cedula;
-
+  public pedidoalerta=new Pedido;
 
   /**
    * Constructor del Control del pedido
@@ -25,16 +25,17 @@ export class ControlPedidoComponent implements OnInit {
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidoActual = new Pedido;
+    document.getElementById('myAlert').style.display="none";
+    this.pedidoalerta.Estado = ",";
     this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {
       this.todos_pedidos = data;
       this.sin_pedidos = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula) && ped.Estado === "Cocinando");
       let pedidos_pedidos:Pedido[] = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula) && ped.Estado.split(",")[0] === "pedir");
       console.log(pedidos_pedidos);
       if (pedidos_pedidos.length !== 0) {
-        const myAlert = document.getElementById('myAlert');
+        this.pedidoalerta = pedidos_pedidos[0];
+        document.getElementById('myAlert').style.display = "initial";
         console.log("hola");
-        this.pedidoActual = pedidos_pedidos[0];
-        alert("hay pedido pedido por "+ pedidos_pedidos[0].Estado.split(",")[1]);
       }
     });
 
@@ -55,9 +56,9 @@ export class ControlPedidoComponent implements OnInit {
   }
 
   rechazarpedido() {
-    this.pedidoActual.Cedula_chef_asignado = this.Cedula;
-    this.pedidoActual.Estado = "Cocinando"
-    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
+    this.pedidoalerta.Cedula_chef_asignado = this.Cedula;
+    this.pedidoalerta.Estado = "Cocinando"
+    this.pedidosActivosSistema.editarpedido(this.pedidoalerta).subscribe(r => {
 
       if (r === "registro editado exitosamente") { this.terminaPlato(); }
       this.ngOnInit();
@@ -65,9 +66,9 @@ export class ControlPedidoComponent implements OnInit {
   }
 
   reasignarpedido() {
-    this.pedidoActual.Cedula_chef_asignado = this.pedidoActual.Estado.split(",")[1] as number;
-    this.pedidoActual.Estado = "Cocinando"
-    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
+    this.pedidoalerta.Cedula_chef_asignado = this.pedidoalerta.Estado.split(",")[1] as unknown as number;
+    this.pedidoalerta.Estado = "Cocinando"
+    this.pedidosActivosSistema.editarpedido(this.pedidoalerta).subscribe(r => {
 
       if (r === "registro editado exitosamente") { this.terminaPlato(); }
       this.ngOnInit();

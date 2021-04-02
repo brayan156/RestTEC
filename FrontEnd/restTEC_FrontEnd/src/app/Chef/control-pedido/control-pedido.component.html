@@ -1,10 +1,10 @@
 <app-navbar-chef></app-navbar-chef>
 
-<div class="alert alert-danger" role="alert" id = 'myAlert'>
-  El chef(ID-CHEF QUE ENVIA) necesita ayuda con el pedido: (ID-DEL-PEDIDO)
+<div class="alert alert-danger" role="alert" id='myAlert'>
+  El chef {{pedidoalerta.Estado.split(",")[1]}} quiere realizar el pedido: {{pedidoalerta.Numero}}
   <hr>
-  <button type="button" class="btn btn-secondary espacio" data-bs-dismiss="alert">ACEPTAR PEDIDO</button>
-  <button type="button" class="btn btn-danger espacio" data-bs-dismiss="alert">RECHAZAR PEDIDO</button>
+  <button type="button" class="btn btn-secondary espacio" (click)="reasignarpedido()" >ACEPTAR</button>
+  <button type="button" class="btn btn-danger espacio" (click)="rechazarpedido()" >RECHAZAR</button>
 </div>
 
 
@@ -34,6 +34,7 @@
     </div>
   </div>
 </div>
+
 
 
 
