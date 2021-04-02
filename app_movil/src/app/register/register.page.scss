@@ -1,0 +1,47 @@
+ion-content {
+    --background: #d4d4ce;
+    
+    #ourForm {
+        margin-top: 15%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 15%;
+
+        #myDiv{
+            ion-input{
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: #f6f1e8;
+                border-radius: 15px;
+                width: auto; 
+                margin-left: auto; 
+                margin-right: auto;
+                box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+            }
+            ion-datetime{
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: #f6f1e8;
+                border-radius: 15px;
+                width: auto; 
+                margin-left: auto; 
+                margin-right: auto;
+                box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+            }
+            
+        }
+
+        ion-button {
+            margin-top: 25px;
+            width: 100%;
+            height: 48px;
+            font-size: 18px;
+            text-transform: initial;
+            border-radius: 50px;
+            background-color: #051821;
+            box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+            --box-shadow: none;
+            
+        }
+    }
+}

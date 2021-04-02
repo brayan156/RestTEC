@@ -1,83 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot='start'>
+      <ion-button (click)="back()" color='secondary' size='block'>
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="register(form)">
-    <ion-grid>
-      <ion-row color="primary" justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div text-center>
-            <h3>Crea una cuenta.</h3>
-          </div>
-        </ion-col>
+  <form #form="ngForm" id='ourForm' (ngSubmit)="register(form)">
 
-      </ion-row>
-      <ion-row>
-        <ion-col>
+    <div id='myDiv'>
 
-          <div padding>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Primer_Nombre" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Nombre" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Apellido" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Apellido" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Cedula" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Cedula" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Provincia" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Provincia" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Canton" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Canton" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Distrito" [ngModelOptions]="{standalone: true}" type="text"
-                placeholder="Distrito" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="this.birthDate"
-                [ngModelOptions]="{standalone: true}" value="2021-10-01" display-timezone="utc"
-                placeholder="Fecha de nacimiento"></ion-datetime>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClientPhone1" [ngModelOptions]="{standalone: true}" type="tel"
-                placeholder="Telefono 1" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClientPhone2" [ngModelOptions]="{standalone: true}" type="tel"
-                placeholder="Telefono 2" ngModel></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newclientPhone3" [ngModelOptions]="{standalone: true}" type="tel"
-                placeholder="Telefono 3" ngModel></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Email" [ngModelOptions]="{standalone: true}" type="email"
-                placeholder="tu@email.com" ngModel required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-input [(ngModel)]="this.newClient.Password" [ngModelOptions]="{standalone: true}" type="password"
-                placeholder="Contraseña" ngModel required></ion-input>
-            </ion-item>
-          </div>
+      <ion-input [(ngModel)]="this.newClient.Primer_Nombre" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Nombre" ngModel required></ion-input>
 
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-button (click)="back()" color='secondary' size='block'>
-            Cerrar
-          </ion-button>
-        </ion-col>
-        <ion-col>
-          <div padding>
-            <ion-button  color='success' size="block" type="submit" [disabled]="form.invalid" expand="block">Registrarme</ion-button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <ion-input [(ngModel)]="this.newClient.Apellido" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Apellido" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Cedula" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Cedula" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Provincia" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Provincia" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Canton" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Canton" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Distrito" [ngModelOptions]="{standalone: true}" type="text"
+        placeholder="Distrito" ngModel required></ion-input>
+
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="this.birthDate" [ngModelOptions]="{standalone: true}"
+        value="2021-10-01" display-timezone="utc" placeholder="Fecha de nacimiento"></ion-datetime>
+
+      <ion-input [(ngModel)]="this.newClientPhone1" [ngModelOptions]="{standalone: true}" type="tel"
+        placeholder="Telefono 1" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClientPhone2" [ngModelOptions]="{standalone: true}" type="tel"
+        placeholder="Telefono 2" ngModel></ion-input>
+
+      <ion-input [(ngModel)]="this.newclientPhone3" [ngModelOptions]="{standalone: true}" type="tel"
+        placeholder="Telefono 3" ngModel></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Email" [ngModelOptions]="{standalone: true}" type="email"
+        placeholder="tu@email.com" ngModel required></ion-input>
+
+      <ion-input [(ngModel)]="this.newClient.Password" [ngModelOptions]="{standalone: true}" type="password"
+        placeholder="Contraseña" ngModel required></ion-input>
+
+        <ion-buttons slot="end">
+          <ion-button slot="end" color='success' size="full" type="submit" [disabled]="form.invalid" >
+            Registrarme</ion-button>
+        </ion-buttons>
+
+      </div>
   </form>
 </ion-content>
