@@ -7,7 +7,7 @@
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password {  get; set; }
-        public string AñoNacimiento  { get; set; }
+        public string YearNacimiento  { get; set; }
         public string Mes_Nacimiento { get; set; }
         public string Dia_Nacimiento { get; set; }
         public string Provincia { get; set; }
@@ -27,7 +27,7 @@
             Apellido = apellido;
             Email = email;
             Password = password;
-            AñoNacimiento = añoNacimiento;
+            YearNacimiento = añoNacimiento;
             Mes_Nacimiento = mesNacimiento;
             Dia_Nacimiento = diaNacimiento;
             Provincia = provincia;

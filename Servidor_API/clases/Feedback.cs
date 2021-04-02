@@ -3,7 +3,7 @@
     public class Feedback
     {
         public int Calificacion { get; set; }
-        public string Año { get; set; }
+        public string Year { get; set; }
         public string Mes { get; set; }
         public string Dia { get; set; }
         public string Hora { get; set; }
@@ -17,7 +17,7 @@
         public Feedback(int calificacion, string año, string mes, string dia, string hora, int idPedido)
         {
             Calificacion = calificacion;
-            Año = año;
+            Year = año;
             Mes = mes;
             Dia = dia;
             Hora = hora;
