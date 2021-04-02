@@ -59,7 +59,7 @@ namespace Servidor_API.Controllers
             else if (!existe)
             {
                 feedback.Dia = DateTime.Now.Day.ToString();
-                feedback.Año = DateTime.Now.Year.ToString();
+                feedback.Year = DateTime.Now.Year.ToString();
                 feedback.Mes = DateTime.Now.Month.ToString();
                 feedback.Hora = DateTime.Now.TimeOfDay.ToString();
                 lista.Add(feedback);

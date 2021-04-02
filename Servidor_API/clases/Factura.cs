@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
         public int Monto { get; set; }
-        public string Año { get; set; }
+        public string Year { get; set; }
         public string Mes { get; set; }
         public string Dia { get; set; }
         public string Hora { get; set; }
@@ -19,7 +19,7 @@
         {
             Id = id;
             Monto = monto;
-            Año = año;
+            Year = año;
             Mes = mes;
             Dia = dia;
             Hora = hora;

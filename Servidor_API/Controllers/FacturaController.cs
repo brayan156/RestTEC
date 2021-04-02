@@ -42,7 +42,7 @@ namespace Servidor_API.Controllers
             Factura factura=new Factura();
             factura.Id = lista.Count + 1;
             factura.Dia = DateTime.Now.Day.ToString();
-            factura.Año= DateTime.Now.Year.ToString();
+            factura.Year= DateTime.Now.Year.ToString();
             factura.Mes= DateTime.Now.Month.ToString();
             factura.Hora= DateTime.Now.TimeOfDay.ToString();
             factura.Monto=monto;
