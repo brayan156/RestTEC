@@ -6,6 +6,6 @@ export class Factura {
   Monto: number;
   Año: String;
   Mes: String;
-  Día: String;
+  Dia: String;
   Hora :String;
 }
