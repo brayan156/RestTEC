@@ -44,6 +44,8 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Nombre = nombre;
     plato.Descripcion = descripicon;
     plato.Tiempo_preparacion = tiempo_preparacion;
+    plato.Ganancia = 0;
+    plato.Ventas = 0;
     this.service.crearplato(plato).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
         this.ngOnInit();
@@ -69,6 +71,8 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Descripcion = descripicon;
     plato.Tiempo_preparacion = tiempo_preparacion;
     plato.Numero_plato = id;
+    plato.Ganancia = this.plato.Ganancia;
+    plato.Ventas = this.plato.Ventas;
     this.service.editarplato(plato).subscribe(respuesta => {
       alert(respuesta);
       this.ngOnInit();
@@ -76,7 +80,7 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
   }
 
   ver(plato:Plato) {
-    this.plato=plato
+    this.plato = plato;
   }
 
 

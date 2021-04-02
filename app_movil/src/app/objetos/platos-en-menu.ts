@@ -6,6 +6,5 @@ export class PlatosEnMenu {
   N_Menu : number;
   Calorias : string;
   Precio : number;
-  Ventas : number;
-  Ganancia : number;
+
 }
