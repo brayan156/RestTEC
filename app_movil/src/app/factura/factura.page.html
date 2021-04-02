@@ -13,7 +13,7 @@
       </ion-card-title>
       <ion-card-subtitle>
         <p>
-          <ion-icon name="calendar-outline"></ion-icon> {{factura.Dia}} - {{factura.Mes}}
+          <ion-icon name="calendar-outline"></ion-icon> {{factura.Dia}} - {{factura.Mes}} - {{factura.Year}}
         </p>
       </ion-card-subtitle>
     </ion-card-header>
@@ -41,7 +41,7 @@
 
     </ion-card-content>
     <ion-card-header>
-      <ion-card-title>Total: {{this.factura.Monto}}</ion-card-title>
+      <ion-card-title color='secondary'>Total: ₡{{this.factura.Monto}}</ion-card-title>
     </ion-card-header>
   </ion-card>
   <ion-button size='block' color='success' (click)=dismiss()>Comprar</ion-button>
