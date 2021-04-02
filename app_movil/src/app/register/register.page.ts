@@ -108,5 +108,8 @@ export class RegisterPage implements OnInit {
     await alert.present();
   }
 
+  back() {
+    this.router.navigateByUrl('');
+  }
 
 }
