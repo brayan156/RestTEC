@@ -79,6 +79,9 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     this.plato=plato
   }
 
+
+
+
   eliminarPlato(id:number): void {
     this.service.eliminarplato(id).subscribe(respuesta => {
       alert(respuesta);
