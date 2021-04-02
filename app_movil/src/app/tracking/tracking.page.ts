@@ -54,7 +54,6 @@ export class TrackingPage implements OnInit {
     this.dataService.setPedidosEnProgreso(tmpList);
     evento.target.complete();
     }, 4000);
-
   }
 
 }

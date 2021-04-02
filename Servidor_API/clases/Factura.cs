@@ -6,7 +6,7 @@
         public int Monto { get; set; }
         public string Año { get; set; }
         public string Mes { get; set; }
-        public string Día { get; set; }
+        public string Dia { get; set; }
         public string Hora { get; set; }
 
 
@@ -21,7 +21,7 @@
             Monto = monto;
             Año = año;
             Mes = mes;
-            Día = dia;
+            Dia = dia;
             Hora = hora;
         }
     }

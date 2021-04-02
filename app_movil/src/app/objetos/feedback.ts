@@ -3,9 +3,9 @@
  */
 export class Feedback {
   Calificacion : number;
-  Año: String;
+  Year: String;
   Mes: String;
-  Día: String;
+  Dia: String;
   Hora: String;
   Id_pedido : number;
 }

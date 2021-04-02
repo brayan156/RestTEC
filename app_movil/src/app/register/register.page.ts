@@ -43,9 +43,9 @@ export class RegisterPage implements OnInit {
   register(form) {
     try {
       this.listaTelefonos = [this.newClientPhone1, this.newClientPhone2, this.newclientPhone3];
-          this.newClient.AñoNacimiento = (this.birthDate.slice(0, 4));
+          this.newClient.YearNacimiento = (this.birthDate.slice(0, 4));
     this.newClient.Mes_Nacimiento = (this.birthDate.slice(5, 7));
-      this.newClient.Día_Nacimiento = (this.birthDate.slice(8, 10));
+      this.newClient.Dia_Nacimiento = (this.birthDate.slice(8, 10));
       console.log(this.listaTelefonos);
     var telefonoscliente: number[] = this.listaTelefonos.filter(tel => (tel !== null && tel!== undefined));
       let respuesta: String = "Por favor agregue sus datos correctamente";
@@ -108,5 +108,8 @@ export class RegisterPage implements OnInit {
     await alert.present();
   }
 
+  back() {
+    this.router.navigateByUrl('');
+  }
 
 }
