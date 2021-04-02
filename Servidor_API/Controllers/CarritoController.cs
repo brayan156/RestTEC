@@ -44,18 +44,21 @@ namespace Servidor_API.Controllers
             bool existe = false;
             Carrito carrito = new Carrito();
             int n_compra = 0;
-            int[] ids_carrito = {};
-            for (int i = 0; i < lista.Count; i++)
+            List<int> ids_carrito = new List<int>();
+            Debug.WriteLine("funcione");
+            foreach (var t in lista)
             {
-                if (!ids_carrito.Contains(lista[i].Id))
+                Debug.WriteLine(ids_carrito.Count());
+                if (!ids_carrito.Contains(t.Id))
                 {
-                    ids_carrito.Append(lista[i].Id);
+                    Debug.WriteLine(ids_carrito.Count());
+                    ids_carrito.Add(t.Id);
                 }
-                if (lista[i].Id_cliente == cedula_cliente)
+                if (t.Id_cliente == cedula_cliente)
                 {
-                    if (lista[i].N_compra > n_compra)
+                    if (t.N_compra > n_compra)
                     {
-                        carrito = lista[i];
+                        carrito = t;
                         n_compra = carrito.N_compra;
                         existe = true;
                     }
@@ -64,7 +67,8 @@ namespace Servidor_API.Controllers
 
             if (!existe)
             {
-                carrito.Id=ids_carrito.Length + 1;
+                carrito.Id=ids_carrito.Count() + 1;
+                Debug.WriteLine(carrito.Id);
                 carrito.N_compra = 1;
                 carrito.Id_cliente = cedula_cliente;
                 carrito.Monto = 0;

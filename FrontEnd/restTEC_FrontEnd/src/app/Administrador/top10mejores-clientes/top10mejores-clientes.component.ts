@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Top10mejoresClientesComponent implements OnInit {
 
+  /**
+   * Constructor para la visualizacion de los mejores clientes
+   */
   constructor() { }
 
   ngOnInit(): void {

@@ -1,1 +1,15 @@
-[{"Numero_menu":2,"Tipo":"almuerzo"},{"Numero_menu":1,"Tipo":"desayuno"},{"Numero_menu":3,"Tipo":"cena"}]
+[
+  
+  {
+    "Numero_menu": 2,
+    "Tipo": "almuerzo"
+  },
+  {
+    "Numero_menu": 1,
+    "Tipo": "desayuno"
+  },
+  {
+    "Numero_menu": 3,
+    "Tipo": "cena"
+  }
+]

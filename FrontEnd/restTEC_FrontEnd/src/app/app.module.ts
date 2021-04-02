@@ -12,7 +12,6 @@ import { NavbarChefComponent } from './Chef/navbar-chef/navbar-chef.component';
 import { VistaChefComponent } from './Chef/vista-chef/vista-chef.component';
 import { TomaDePedidosComponent } from './Chef/toma-de-pedidos/toma-de-pedidos.component';
 import { ControlPedidoComponent } from './Chef/control-pedido/control-pedido.component';
-import { PedidosEnElSistemaComponent } from './Chef/pedidos-en-el-sistema/pedidos-en-el-sistema.component';
 import { ReasignacionDePedidosComponent } from './Chef/reasignacion-de-pedidos/reasignacion-de-pedidos.component';
 import { PedidosSistemaAdmiComponent } from './Administrador/pedidos-sistema-admi/pedidos-sistema-admi.component';
 import { GestionDeTipoDePlatosComponent } from './Administrador/gestion-de-tipo-de-platos/gestion-de-tipo-de-platos.component';
@@ -21,6 +20,7 @@ import { Top10MasVendidosComponent } from './Administrador/top10-mas-vendidos/to
 import { Top10masGananciasComponent } from './Administrador/top10mas-ganancias/top10mas-ganancias.component';
 import { Top10FeedbackComponent } from './Administrador/top10-feedback/top10-feedback.component';
 import { Top10mejoresClientesComponent } from './Administrador/top10mejores-clientes/top10mejores-clientes.component';
+import { PedidosEnElSistemaComponent } from './Chef/pedidos-en-el-sistema/pedidos-en-el-sistema.component';
 
 
 // @ts-ignore
@@ -35,7 +35,6 @@ import { Top10mejoresClientesComponent } from './Administrador/top10mejores-clie
     NavbarChefComponent,
     TomaDePedidosComponent,
     ControlPedidoComponent,
-    PedidosEnElSistemaComponent,
     ReasignacionDePedidosComponent,
     PedidosSistemaAdmiComponent,
     GestionDeTipoDePlatosComponent,
@@ -44,6 +43,7 @@ import { Top10mejoresClientesComponent } from './Administrador/top10mejores-clie
     Top10masGananciasComponent,
     Top10FeedbackComponent,
     Top10mejoresClientesComponent,
+    PedidosEnElSistemaComponent,
   ],
   imports: [
     BrowserModule,

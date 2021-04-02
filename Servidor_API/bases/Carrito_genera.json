@@ -1,15 +1,1 @@
-[
-  {
-    "Id_carrito": 1,
-    "Id_Factura": 1,
-    "Id_pedido": 1,
-    "N_compra": 1
-  },
-  {
-    "Id_carrito": 1,
-    "Id_Factura": 2,
-    "Id_pedido": 2,
-    "N_compra": 2
-  }
-
-]
+[{"Id_carrito":1,"Id_Factura":1,"Id_pedido":1,"N_compra":1},{"Id_carrito":1,"Id_Factura":2,"Id_pedido":2,"N_compra":2},{"Id_carrito":2,"Id_Factura":3,"Id_pedido":3,"N_compra":1},{"Id_carrito":1,"Id_Factura":4,"Id_pedido":4,"N_compra":3},{"Id_carrito":2,"Id_Factura":5,"Id_pedido":5,"N_compra":2},{"Id_carrito":1,"Id_Factura":6,"Id_pedido":6,"N_compra":4},{"Id_carrito":2,"Id_Factura":7,"Id_pedido":7,"N_compra":3}]

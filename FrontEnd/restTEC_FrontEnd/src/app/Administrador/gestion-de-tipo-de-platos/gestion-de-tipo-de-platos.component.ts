@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PedidosActivosService } from "../../pedidos-activos.service";
 import { Plato } from "../../form-usuario/Comunicacion/plato";
+import { HttpClient } from "@angular/common/http";
+
+
 
 
 @Component({
@@ -8,14 +11,34 @@ import { Plato } from "../../form-usuario/Comunicacion/plato";
   templateUrl: './gestion-de-tipo-de-platos.component.html',
   styleUrls: ['./gestion-de-tipo-de-platos.component.css']
 })
+
+
 export class GestionDeTipoDePlatosComponent implements OnInit {
-  constructor( private service:PedidosActivosService) { }
-  public platos: Plato;
+
+  /**
+   * Constructor del componete para la gestion de tipo de platos
+   * @param service paramentro para la comunicacion con el servidor
+   * @param http parametro para la comunicacion con el servidor
+   */
+  constructor(private service: PedidosActivosService, private http: HttpClient) { }
 
 
+
+  public platos: Plato[]=[];
+  public plato:Plato=new Plato;
+  Url = 'https://localhost:44385/';
   ngOnInit(): void {
-    this.platos=this.service.obtener_platos();
+    this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
+      this.platos = data;
+    });
   }
+
+  /**
+   * Funcion con la cual se crea un plato y se le envia al servidor
+   * @param descripicon descipcion del plato
+   * @param nombre nombre del plato
+   * @param tiempo_preparacion tiempo de prepacion para el plato
+   */
   crearPlato(descripicon: string, nombre: string,tiempo_preparacion:number): void {
     let plato: Plato = new Plato;
     plato.Nombre = nombre;
@@ -23,12 +46,17 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Tiempo_preparacion = tiempo_preparacion;
     this.service.crearplato(plato).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
+        this.ngOnInit();
         this.platoCreado();
       } else {
         alert(respuesta);
       }
     });
   }
+
+  /**
+   * Alertas para crear,Actualizar plato.
+   */
   platoCreado(): void{
     alert('El plato se creo correctamente');
   }
@@ -43,11 +71,21 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     plato.Numero_plato = id;
     this.service.editarplato(plato).subscribe(respuesta => {
       alert(respuesta);
+      this.ngOnInit();
     });
   }
+
+  ver(plato:Plato) {
+    this.plato=plato
+  }
+
+
+
+
   eliminarPlato(id:number): void {
     this.service.eliminarplato(id).subscribe(respuesta => {
       alert(respuesta);
+      this.ngOnInit();
     });
   }
 }

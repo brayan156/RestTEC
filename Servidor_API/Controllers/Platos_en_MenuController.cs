@@ -133,8 +133,9 @@ namespace Servidor_API.Controllers
         }
 
         // DELETE api/values/5
+        [Route("Platos_en_Menu/{n_menu:int}/{n_plato:int}")]
         [HttpDelete]
-        public string Delete(Platos_en_Menu plato_en_Menu)
+        public string Delete(int n_menu,int n_plato)
         {
             string respuesta = "";
 
@@ -148,7 +149,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].N_plato == plato_en_Menu.N_plato && lista[i].N_Menu == plato_en_Menu.N_Menu)
+                if (lista[i].N_plato == n_plato && lista[i].N_Menu == n_menu)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

@@ -24,6 +24,34 @@ namespace Servidor_API.Controllers
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
             return lista;
         }
+
+
+        [Route("Carrito_almacena/carrito_id/{id_carrito:int}")]
+        [HttpGet]
+        public List<Carrito_almacena> Getby_carritoid(int id_carrito)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Carrito_almacena> lista_pedidos = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
+            if (lista_pedidos == null)
+            {
+                lista_pedidos = new List<Carrito_almacena>();
+            }
+            bool existe = false;
+            List<Carrito_almacena> lista_carrito_almacena = new List<Carrito_almacena>();
+            for (int i = 0; i < lista_pedidos.Count; i++)
+            {
+                if (lista_pedidos[i].Id_carrito == id_carrito)
+                {
+                    lista_carrito_almacena.Add(lista_pedidos[i]);
+                    existe = true;
+                }
+            }
+            return lista_carrito_almacena;
+        }
+
+
         [Route("Carrito_almacena/carrito/{id_carrito:int}/{n_compra:int}")]
         [HttpGet]
         public List<Carrito_almacena> Getby_carrito(int id_carrito, int n_compra)
@@ -49,20 +77,7 @@ namespace Servidor_API.Controllers
             return lista_carrito_almacena;
 
         }
-        public static bool IsFileReady(string filename)
-        {
-            // If the file can be opened for exclusive access it means that the file
-            // is no longer locked by another process.
-            try
-            {
-                using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
-                    return inputStream.Length > 0;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+
         // POST api/values
 
         [HttpPost]

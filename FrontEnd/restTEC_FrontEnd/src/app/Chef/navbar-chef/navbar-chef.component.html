@@ -3,16 +3,13 @@
 redireciona la URL para mostrar las pantallas que son necesarias-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand">Chef: Cedula</a>
+    <a class="navbar-brand">Chef: {{Cedula}}</a>
     <button class="navbar-toggler" type="button"  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link btn btn-light"  (click)="navegation('pedidosSistema')" >Pedidos en el sistema</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link btn btn-light" (click)="navegation('tomaPedido')">Tomar Pedido</a>
         </li>

@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top10mas-ganancias.component.css']
 })
 export class Top10masGananciasComponent implements OnInit {
-
+  /**
+   * Constructor para la visualizacion de los platos con mas ganancias
+   */
   constructor() { }
 
   ngOnInit(): void {

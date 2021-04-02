@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top10-feedback.component.css']
 })
 export class Top10FeedbackComponent implements OnInit {
-
+  /**
+   * Constructor para la visualizacion de los platos con mejor feedback
+   */
   constructor() { }
 
   ngOnInit(): void {

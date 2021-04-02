@@ -11,22 +11,22 @@
     <ion-card-content>
       <p>
         <ion-label color='success'>
-          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.estado}} </strong>
+          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.pedido.Estado}} </strong>
         </ion-label>
       </p>
       <p>
-        <ion-icon name="calendar-outline"></ion-icon> {{pedido.fecha}}
+        <ion-icon name="calendar-outline"></ion-icon> {{pedido.pedido.fecha}}
       </p>
       <p> 
-        <ion-icon name="fast-food"></ion-icon> {{pedido.chef}}
+        <ion-icon name="fast-food"></ion-icon> {{pedido.pedido.Numero}}
       </p>
-      <ion-button  [attr.disabled]="(pedido.estado=='Preparado') ? true : false "  (click)='presentarFeedback(pedido)' shape="round" size='small'>Feedback</ion-button>
+      <ion-button  [attr.disabled]="(pedido.pedido.Estado!='Preparado') ? true : false "  (click)='presentarFeedback(pedido)' shape="round" size='small'>Feedback</ion-button>
       <p> </p>
       <hr size="8" width="100%" color="grey">
 
-      <ion-list *ngFor='let plato of pedido.menu'>
+      <ion-list *ngFor='let plato of pedido.l_platos'>
         <ion-item>
-          <p>{{plato}}</p>
+          <p>{{plato.cantidad}} {{plato.nombre}}</p>
         </ion-item>
       </ion-list>
       <hr size="8" width="100%" color="grey">

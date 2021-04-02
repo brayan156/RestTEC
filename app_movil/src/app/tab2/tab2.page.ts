@@ -144,12 +144,15 @@ export class Tab2Page {
   calculateTotal() {
     var total = 0;
     var platos: PlatoApp[] = [];
+    var cont = 0;
     this.menu.forEach(element => {
       if (element.cant > 0) {
         total += (parseInt(element.precio) * parseInt(element.cant));
         platos.push(element);
+      } else if (element.cant == 0) {
+        this.menu.splice(cont, 1);
       }
-
+      cont += 1;
     });
     return { saldo: total, pedido: platos };
   }

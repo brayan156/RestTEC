@@ -7,13 +7,20 @@ import { Carrito } from "./form-usuario/Comunicacion/carrito";
 import { CarritoGenera } from "./form-usuario/Comunicacion/carrito-genera";
 import { Menu } from "./form-usuario/Comunicacion/menu";
 import { PlatosEnMenu } from "./form-usuario/Comunicacion/platos-en-menu";
+import { Pedido } from "./form-usuario/Comunicacion/pedido";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidosActivosService {
+  public editarpedido(pedido:Pedido) {
+    return this.http.put(this.Url+"Pedido",pedido)
+  };
 
-  Url = 'https://192.168.1.2:45455/';
+  public cedula:number;
+
+
+  Url = 'https://localhost:44385/';
   private valores = new BehaviorSubject('');
   public valoresActuales = this.valores.asObservable();
   constructor(private http: HttpClient) { }
@@ -23,6 +30,11 @@ export class PedidosActivosService {
       data => this.valores.next(data)
     );
   }
+
+  public obtenerPedidos() {
+    return this.http.get<Pedido[]>(this.Url + "Pedido");
+  }
+
 
   public sacar_nombre_cantidad(N_pedido: number) {
     var almacen: CarritoAlmacena[] = []
@@ -100,35 +112,51 @@ export class PedidosActivosService {
     var platos: Plato[] = [];
     this.http.get<Plato[]>(this.Url + "Plato").subscribe(data => {
       platos = data;
+      console.log(platos);
     });
     return platos;
+  }
+
+  public getPlatos() {
+    return this.http.get<Plato[]>(this.Url + "Plato");
   }
 
   public crearplato(plato: Plato) {
     return this.http.post<String>(this.Url + "Plato",plato);
   }
   public eliminarplato(id: number) {
-    return this.http.delete<String>(this.Url + "Plato" + id);
+    return this.http.delete<String>(this.Url + "Plato/" + id);
   }
   public editarplato(plato: Plato) {
     return this.http.put<String>(this.Url + "Plato",plato);
+  }
+
+
+
+  public getMenu() {
+    return this.http.get<Menu[]>(this.Url + "Menu");
   }
 
   public crearmenu(menu: Menu) {
     return this.http.post<String>(this.Url + "Menu", menu);
   }
   public eliminarmenu(id: number) {
-    return this.http.delete<String>(this.Url + "Menu" + id);
+    return this.http.delete<String>(this.Url + "Menu/" + id);
   }
   public editarmenu(menu: Menu) {
     return this.http.put<String>(this.Url + "Menu", menu);
   }
 
+
+  public getPlatoenmenu() {
+    return this.http.get<PlatosEnMenu[]>(this.Url + "Platos_en_Menu");
+  }
+
   public crearplatoenmenu(platoenmenu: PlatosEnMenu) {
     return this.http.post<String>(this.Url + "Platos_en_Menu", platoenmenu);
   }
-  public eliminarplatoenmenu(id: number) {
-    return this.http.delete<String>(this.Url + "Platos_en_Menu/" + id);
+  public eliminarplatoenmenu(id_menu: number,id_plato) {
+    return this.http.delete<String>(this.Url + "Platos_en_Menu/" + id_menu+"/"+id_plato);
   }
   public editarplatoenmenu(platoenmenu: PlatosEnMenu) {
     return this.http.put<String>(this.Url + "Platos_en_Menu", platoenmenu);

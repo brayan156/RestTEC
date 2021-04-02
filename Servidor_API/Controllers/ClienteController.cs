@@ -134,8 +134,9 @@ namespace Servidor_API.Controllers
         }
 
         // DELETE api/values/5
+        [Route("Cliente/{cedula:int}")]
         [HttpDelete]
-        public string Delete(Cliente cliente)
+        public string Delete(int cedula)
         {
             string respuesta = "";
 
@@ -149,7 +150,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Cedula == cliente.Cedula)
+                if (lista[i].Cedula == cedula)
                 {
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);

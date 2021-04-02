@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -39,7 +40,8 @@ namespace Servidor_API.Controllers
                 lista = new List<Feedback>();
             }
             bool existe = false;
-
+            Debug.WriteLine("hola");
+            Debug.WriteLine(feedback.Id_pedido);
             for (int i = 0; i < lista.Count; i++)
             {
                 if (lista[i].Id_pedido == feedback.Id_pedido)
@@ -56,6 +58,10 @@ namespace Servidor_API.Controllers
             }
             else if (!existe)
             {
+                feedback.Día = DateTime.Now.Day.ToString();
+                feedback.Año = DateTime.Now.Year.ToString();
+                feedback.Mes = DateTime.Now.Month.ToString();
+                feedback.Hora = DateTime.Now.TimeOfDay.ToString();
                 lista.Add(feedback);
                 respuesta = "registro ingresado correctamente";
             }
