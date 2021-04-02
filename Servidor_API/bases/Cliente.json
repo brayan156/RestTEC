@@ -8,7 +8,7 @@
     "Password": "1234",
     "AñoNacimiento": "2021",
     "Mes_Nacimiento": "03",
-    "Día_Nacimiento": "24",
+    "Dia_Nacimiento": "24",
     "Provincia": "Alajuela",
     "Canton": "San Ramon",
     "Distrito": "Santiago"
@@ -21,7 +21,7 @@
     "Password": "1111",
     "AñoNacimiento": "1998",
     "Mes_Nacimiento": "04",
-    "Día_Nacimiento": "18",
+    "Dia_Nacimiento": "18",
     "Provincia": "Cartago",
     "Canton": "Cartago",
     "Distrito": "Centro"
@@ -34,7 +34,7 @@
     "Password": "1111",
     "AñoNacimiento": "1957",
     "Mes_Nacimiento": "01",
-    "Día_Nacimiento": "31",
+    "Dia_Nacimiento": "31",
     "Provincia": "San Jose",
     "Canton": "San Pedro",
     "Distrito": "U"
