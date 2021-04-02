@@ -15,6 +15,7 @@ import {Top10MasVendidosComponent} from './Administrador/top10-mas-vendidos/top1
 import {Top10masGananciasComponent} from './Administrador/top10mas-ganancias/top10mas-ganancias.component';
 import {Top10FeedbackComponent} from './Administrador/top10-feedback/top10-feedback.component';
 import {Top10mejoresClientesComponent} from './Administrador/top10mejores-clientes/top10mejores-clientes.component';
+import {PedidosEnElSistemaComponent} from './Chef/pedidos-en-el-sistema/pedidos-en-el-sistema.component';
 
 
 export let rutas: Routes;
@@ -39,6 +40,7 @@ rutas = [
       {path: '', component:  NavbarChefComponent},
       {path: 'controlPedido', component: ControlPedidoComponent},
       {path: 'tomaPedido', component: TomaDePedidosComponent},
+      {path: 'pedidosSistema' , component: PedidosEnElSistemaComponent},
       {path: 'reasignarPedido' , component: ReasignacionDePedidosComponent},
       { path: '**', redirectTo: '' },
     ]}

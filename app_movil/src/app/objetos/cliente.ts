@@ -7,9 +7,9 @@ export class Cliente {
   Apellido: String;
   Email: String;
   Password: String;
-  AñoNacimiento: String;
+  YearNacimiento: String;
   Mes_Nacimiento: String;
-  Día_Nacimiento: String;
+  Dia_Nacimiento: String;
   Provincia: String;
   Canton :String;
   Distrito :String;

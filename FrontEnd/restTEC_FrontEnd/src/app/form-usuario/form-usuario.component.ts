@@ -26,7 +26,7 @@ export class FormUsuarioComponent implements OnInit {
         if (usuario.Rol === 'Admin') {
           this.router.navigate(['/administrador']);
         } else if (usuario.Rol === 'Chef') {
-          this.router.navigate(['/chef']);
+          this.router.navigate(['/chef/pedidosSistema']);
         } else {
           alert('Correo o Password invalido');
         }

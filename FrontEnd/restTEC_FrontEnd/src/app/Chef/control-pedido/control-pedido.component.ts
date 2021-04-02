@@ -31,9 +31,10 @@ export class ControlPedidoComponent implements OnInit {
       let pedidos_pedidos:Pedido[] = data.filter(ped => (ped.Cedula_chef_asignado === this.Cedula) && ped.Estado.split(",")[0] === "pedir");
       console.log(pedidos_pedidos);
       if (pedidos_pedidos.length !== 0) {
+        const myAlert = document.getElementById('myAlert');
         console.log("hola");
         this.pedidoActual = pedidos_pedidos[0];
-        alert("hay pedido pedido por "+pedidos_pedidos[0].Estado.split(",")[1]);
+        alert("hay pedido pedido por "+ pedidos_pedidos[0].Estado.split(",")[1]);
       }
     });
 

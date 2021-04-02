@@ -1,8 +1,17 @@
 <app-navbar-chef></app-navbar-chef>
 
+<div class="alert alert-danger" role="alert" id = 'myAlert'>
+  El chef(ID-CHEF QUE ENVIA) necesita ayuda con el pedido: (ID-DEL-PEDIDO)
+  <hr>
+  <button type="button" class="btn btn-secondary espacio" data-bs-dismiss="alert">ACEPTAR PEDIDO</button>
+  <button type="button" class="btn btn-danger espacio" data-bs-dismiss="alert">RECHAZAR PEDIDO</button>
+</div>
+
+
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
-    <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
+    <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
+      ID-DEL-PEDIDO: {{item.Numero}} TIEMPO DEL PEDIDO: {{item.Tiempo_estimado}} min
     </button>
   </ul>
 </div>
@@ -25,4 +34,6 @@
     </div>
   </div>
 </div>
+
+
 
