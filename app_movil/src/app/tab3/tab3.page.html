@@ -11,14 +11,11 @@
     <ion-card-content>
       <p>
         <ion-label color='success'>
-          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{pedido.pedido.Estado}} </strong>
+          <ion-icon name="checkmark-circle"></ion-icon> <strong> {{(pedido.pedido.Estado.slice(0,5) == 'pedir') ? 'Completado' : pedido.pedido.Estado}} </strong>
         </ion-label>
       </p>
-      <p>
-        <ion-icon name="calendar-outline"></ion-icon> {{pedido.pedido.fecha}}
-      </p>
       <p> 
-        <ion-icon name="fast-food"></ion-icon> {{pedido.pedido.Numero}}
+        <ion-icon name="fast-food"></ion-icon> CHEF: {{pedido.pedido.Cedula_chef_asignado}}
       </p>
       <ion-button  [attr.disabled]="(pedido.pedido.Estado!='Preparado') ? true : false "  (click)='presentarFeedback(pedido)' shape="round" size='small'>Feedback</ion-button>
       <p> </p>
@@ -29,7 +26,7 @@
           <p>{{plato.cantidad}} {{plato.nombre}}</p>
         </ion-item>
       </ion-list>
-      <hr size="8" width="100%" color="grey">
+      <ion-progress-bar value='{{pedido.pedido.Tiempo_transcurrido/ pedido.pedido.Tiempo_estimado}}' color='danger'></ion-progress-bar>
     </ion-card-content>
   </ion-card>
 
