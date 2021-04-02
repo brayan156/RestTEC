@@ -49,7 +49,7 @@ export class ObjetosService {
   constructor(private http: HttpClient) { }
 
   public cliente: Cliente = new Cliente;
-  Url = 'https://192.168.1.3:45455/';
+  Url = 'https://localhost:44385/';
   public carrito: Carrito = new Carrito;
   Plato = {
     plato: "Lentejas con platano maduro",
