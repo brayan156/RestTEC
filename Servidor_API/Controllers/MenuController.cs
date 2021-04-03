@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -84,12 +85,7 @@ namespace Servidor_API.Controllers
                     break;
                 }
             }
-
-            if (menu.Numero_menu == 0)
-            {
-                respuesta = "registro necesita un identificador";
-            }
-            else if (!existe)
+            if (!existe)
             {
                 menu.Numero_menu = n_plato + 1;
                 lista.Add(menu);
@@ -138,8 +134,9 @@ namespace Servidor_API.Controllers
         }
 
         // DELETE api/values/5
+        [Route("Menu/{numero_menu:int}")]
         [HttpDelete]
-        public string Delete(Menu menu)
+        public string Delete(int numero_menu)
         {
             string respuesta = "";
 
@@ -153,8 +150,9 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Numero_menu == menu.Numero_menu)
+                if (lista[i].Numero_menu == numero_menu)
                 {
+                    Debug.WriteLine("eliminado");
                     lista.RemoveAt(i);
                     jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
                     System.IO.File.WriteAllText(path, jsontext);

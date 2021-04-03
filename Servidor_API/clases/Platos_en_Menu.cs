@@ -7,8 +7,7 @@
         public int N_Menu { get; set; }
         public string Calorias { get; set; }
         public int Precio { get; set; }
-        public int Ventas { get; set; }
-        public int Ganancia { get; set; }
+
 
 
         public Platos_en_Menu()
@@ -22,8 +21,6 @@
             N_Menu = nMenu;
             Calorias = calorias;
             Precio = precio;
-            Ventas = ventas;
-            Ganancia = ganancia;
         }
     }
 }

@@ -20,12 +20,13 @@ export class GestionDelMenuComponent implements OnInit {
   public platos_menu;
   public menuActual = new Menu;
   public platoActual = new Plato;
-  public platoenMenu
+  public platoenMenu=new PlatosEnMenu;
   public datosActual=[];
   public Cedula;
   public platos_sin_menu=[]
   public mostrar = false;
-
+  public enlaceCreado = { Tipo: "", Calorias: 0, Precio: 0 };
+  public tipo_menu="";
   /**
    * Constructor del Control del pedido
    */
@@ -40,25 +41,32 @@ export class GestionDelMenuComponent implements OnInit {
         this.platos = platos;
         this.pedidosActivosSistema.getPlatoenmenu().subscribe(datosPlatoMenu => {
           this.platos_menu = datosPlatoMenu;
-
+          this.obtener_platos_sin_menu();
         });
       });
     });
+  }
+
+  verplato(plato: Plato) {
+    this.platoActual = plato;
 
   }
 
-  ver(platoenMenu: PlatosEnMenu) {
+  verplatoenmenu(plato:Plato, platoenMenu: PlatosEnMenu) {
+    this.platoActual = plato;
     this.platoenMenu = platoenMenu;
   }
 
   // tslint:disable-next-line:typedef
-  mostraOcular(){
+  mostraOcular(menu){
     // tslint:disable-next-line:triple-equals
+    this.menuActual = menu;
     if (this.mostrar == false){
       this.mostrar = true;
     }else {
       this.mostrar = false;
     }
+    this.Ver_platos_menu(menu);
   }
   editar_plato_en_menu() {
     this.pedidosActivosSistema.editarplatoenmenu(this.platoenMenu).subscribe(respuesta => {
@@ -68,15 +76,20 @@ export class GestionDelMenuComponent implements OnInit {
       }
     });}
 
-  eliminar_plato_en_menu(platoenmenu: PlatosEnMenu) {
-    this.pedidosActivosSistema.eliminarplatoenmenu(platoenmenu.N_Menu, platoenmenu.N_plato).subscribe(r => {
+  eliminar_plato_en_menu() {
+    this.pedidosActivosSistema.eliminarplatoenmenu(this.platoenMenu.N_Menu, this.platoenMenu.N_plato).subscribe(r => {
       if (r === "registro eliminado exitosamente") {
         this.eliminarPlato();
         this.ngOnInit();
+        if (this.mostrar == false) {
+          this.mostrar = true;
+        } else {
+          this.mostrar = false;
+        }
       }
       else {
 
-        alert("elimine todos los platos del menu primero");
+        alert("no se podido elminar el enlace correctamente");
       }
 });
   }
@@ -85,18 +98,24 @@ export class GestionDelMenuComponent implements OnInit {
     this.platos_sin_menu=this.platos.filter(plato => this.platos_menu.every(data => data.N_plato !== plato.Numero_plato));
   }
 
-  agregar_plato_menu(id_plato:number, calorias:number,precio:number) {
-    var plato_menu: PlatosEnMenu = new PlatosEnMenu;
-    plato_menu.N_plato = id_plato;
-    plato_menu.Calorias = calorias.toString();
-    plato_menu.Precio = precio;
-    plato_menu.N_Menu = this.menuActual.Numero_menu;
-    this.pedidosActivosSistema.crearplatoenmenu(plato_menu).subscribe(respuesta => {
-      if (respuesta === "registro ingresado correctamente") {
-        this.editarPlato();
-        this.ngOnInit();
-      }
-    });
+  agregar_plato_menu(tipo:string, calorias:number,precio:number) {
+    var menus: Menu[] = this.menus.filter(menu => menu.Tipo === tipo);
+    if (menus.length === 0) {
+      alert("ingrese el nombre de un menu existente");
+      this.ngOnInit();
+    } else {
+      var plato_menu: PlatosEnMenu = new PlatosEnMenu;
+      plato_menu.N_plato = this.platoActual.Numero_plato;
+      plato_menu.Calorias = calorias.toString();
+      plato_menu.Precio = precio;
+      plato_menu.N_Menu = menus[0].Numero_menu;
+      this.pedidosActivosSistema.crearplatoenmenu(plato_menu).subscribe(respuesta => {
+        if (respuesta === "registro ingresado correctamente") {
+          this.editarPlato();
+          this.ngOnInit();
+        }
+      });
+    }
   }
 
   agregar_menu(tipo: string) {
@@ -106,28 +125,43 @@ export class GestionDelMenuComponent implements OnInit {
       if (respuesta === "registro ingresado correctamente") {
         this.agredarMenu();
         this.ngOnInit();
+      } else {
+        alert("no se pudo crear el menu");
       }
     });
   }
   editar_menu() {
     this.pedidosActivosSistema.crearmenu(this.menuActual).subscribe(respuesta => {
       if (respuesta === "registro editado correctamente") {
-        this.editar_menu();
+        this.actualizarmenu();
         this.ngOnInit();
       }
     });
   }
 
-  eliminar_menu() {
-    if (PlatosEnMenu.length === 0) {
-      this.pedidosActivosSistema.eliminarmenu(this.menuActual.Numero_menu).subscribe(respuesta => {
-        if (respuesta === "registro eliminado exitosamente") {
-          this.editar_menu();
-          this.ngOnInit();
-        }
-      });
+  eliminar_menu(tipo: string) {
+    console.log("llego a la funcion");
+    var menus: Menu[] = this.menus.filter(menu => menu.Tipo === tipo);
+    if (menus.length === 0) {
+      alert("ingrese el nombre de un menu existente");
+      this.ngOnInit();
     } else {
-      alert("elimine todos los platos del menu primero");
+      console.log("existe");
+      this.Ver_platos_menu(menus[0]);
+      if (this.datosActual.length === 0) {
+        console.log("vacio");
+        this.pedidosActivosSistema.eliminarmenu(menus[0].Numero_menu).subscribe(respuesta => {
+          if (respuesta === "registro eliminado exitosamente") {
+            console.log("eliminado");
+            this.eliminarmenu();
+            this.ngOnInit();
+          } else {
+            alert(respuesta);
+          }
+        });
+      } else {
+        alert("elimine todos los platos del menu primero");
+      }
     }
   }
 
@@ -164,6 +198,9 @@ export class GestionDelMenuComponent implements OnInit {
   }
   actualizarmenu(): void {
     alert('El menu ha sido actualizado con exito');
+  }
+  eliminarmenu(): void {
+    alert('El menu ha sido eliminado con exito');
   }
 
 }
