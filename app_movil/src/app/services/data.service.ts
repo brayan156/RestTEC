@@ -58,8 +58,10 @@ export class DataService {
     var factura: Factura = new Factura;
     var platos_con_nombre = [];
     var tiempo_total = 0;
+
     data.forEach(plato_app => {
       tiempo_total += plato_app.tiempo_preparacion * plato_app.cant;
+
       let plato_almacena: CarritoAlmacena = new CarritoAlmacena;
       plato_almacena.N_plato = plato_app.n_plato;
       plato_almacena.Cantidad = plato_app.cant;
@@ -83,14 +85,10 @@ export class DataService {
             var carrito_genera: CarritoGenera = new CarritoGenera;
             carrito_genera.N_compra = this.objetos.carrito.N_compra;
             carrito_genera.Id_carrito = this.objetos.carrito.Id;
-            console.log(this.objetos.carrito.Id);
-            console.log(this.objetos.carrito.N_compra);
             carrito_genera.Id_Factura = factura.Id;
             carrito_genera.Id_pedido = pedido.Numero;
-            console.log(carrito_genera.Id_pedido);
-            console.log(carrito_genera.Id_carrito);
-            console.log(carrito_genera.N_compra);
-            console.log(carrito_genera.Id_Factura);
+
+
             this.http.post<String>(this.Url + "Carrito_genera", carrito_genera).subscribe(g => {
               console.log("todo armado");
               this.objetos.carrito.N_compra += 1;

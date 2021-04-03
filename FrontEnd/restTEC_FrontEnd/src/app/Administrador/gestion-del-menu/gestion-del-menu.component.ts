@@ -83,8 +83,6 @@ export class GestionDelMenuComponent implements OnInit {
     plato_menu.Calorias = calorias.toString();
     plato_menu.Precio = precio;
     plato_menu.N_Menu = this.menuActual.Numero_menu;
-    plato_menu.Ganancia = 0;
-    plato_menu.Ventas = 0;
     this.pedidosActivosSistema.crearplatoenmenu(plato_menu).subscribe(respuesta => {
       if (respuesta === "registro ingresado correctamente") {
         this.editarPlato();

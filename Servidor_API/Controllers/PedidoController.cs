@@ -56,7 +56,6 @@ namespace Servidor_API.Controllers
         public string Put([FromBody] Pedido pedido)
         {
             string respuesta = "";
-
             string jsontext = System.IO.File.ReadAllText(path);
             List<Pedido> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
             if (lista == null)

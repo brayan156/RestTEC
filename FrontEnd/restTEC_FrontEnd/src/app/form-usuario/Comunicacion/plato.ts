@@ -3,4 +3,6 @@ export class Plato {
   Nombre :string;
   Descripcion: string;
   Tiempo_preparacion: number;
+  Ventas: number;
+  Ganancia: number;
 }

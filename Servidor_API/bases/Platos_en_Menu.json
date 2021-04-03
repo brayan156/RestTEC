@@ -3,32 +3,32 @@
     "N_plato": 1,
     "N_Menu": 2,
     "Calorias": "200",
-    "Precio": 800,
-    "Ventas": 0,
-    "Ganancia": 0
+    "Precio": 800
+    
+    
   },
   {
     "N_plato": 2,
     "N_Menu": 3,
     "Calorias": "250",
-    "Precio": 650,
-    "Ventas": 0,
-    "Ganancia": 0
+    "Precio": 650
+    
+    
   },
   {
     "N_plato": 3,
     "N_Menu": 1,
     "Calorias": "150",
-    "Precio": 300,
-    "Ventas": 0,
-    "Ganancia": 0
+    "Precio": 300
+    
+    
   },
   {
     "N_plato": 4,
     "N_Menu": 2,
     "Calorias": "400",
-    "Precio": 100,
-    "Ventas": 0,
-    "Ganancia": 0
+    "Precio": 100
+    
+    
   }
 ]
