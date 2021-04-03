@@ -1,12 +1,5 @@
 <app-navbar-chef></app-navbar-chef>
 
-<div class="alert alert-danger" role="alert" id='myAlert'>
-  El chef {{pedidoalerta.Estado.split(",")[1]}} quiere realizar el pedido: {{pedidoalerta.Numero}}
-  <hr>
-  <button type="button" class="btn btn-secondary espacio" (click)="reasignarpedido()" >ACEPTAR</button>
-  <button type="button" class="btn btn-danger espacio" (click)="rechazarpedido()" >RECHAZAR</button>
-</div>
-
 
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
@@ -38,3 +31,9 @@
 
 
 
+
+<div class="alert alert-danger" role="alert" id='myAlert'>
+  <label>El chef {{pedidoalerta.Estado.split(",")[1]}} quiere realizar el pedido: {{pedidoalerta.Numero}}</label>
+  <button type="button" class="btn btn-secondary espacio col" (click)="reasignarpedido()" >ACEPTAR</button>
+  <button type="button" class="btn btn-danger espacio col" (click)="rechazarpedido()" >RECHAZAR</button>
+</div>

@@ -1,40 +1,33 @@
-<app-navbar-administrador xmlns="http://www.w3.org/1999/html"></app-navbar-administrador>
+<app-navbar-administrador xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"></app-navbar-administrador>
 
-  <div class="opacidad">
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <div *ngFor="let item of menus">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              {{item.Tipo}}
-            </button>
-          </h2>
-          <div id="flush-collapseOne item.Numero_menu" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <div class="row">
-                <div class="card text-center">
-                  <h5 class="card-header">Nombre del Plato</h5>
-                  <div class="card-body">
-                    <h5 class="card-title">Calorias</h5>
-                    <p class="card-text">JSON</p>
-                    <h5 class="card-title">PRECIO</h5>
-                    <p class="card-text">JSON</p>
-                    <button type="button" class="btn btn-secondary espacio" data-bs-toggle="modal" data-bs-target="#editarPlatoMenu">EDITAR PLATO</button>
-                    <button type="button" class="btn btn-secondary espacio" data-bs-toggle="modal" data-bs-target="#eliminarPlatoMenu">ELIMINAR PLATO</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#eliminarMenu">Eliminar Menu</button>
-            </div>
-          </div>
-          </div>
-        </div>
+<div *ngIf="mostrar">
+  <div class="list-group list-group-item-light">
+    <div class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Nombre del Plato: JSON</h5>
+        <small class="text-muted">TIPO DE PLATO: JSON</small>
       </div>
+      <div class="text-center">
+        <h5>CALORIAS:</h5>
+        <p>JSON</p>
+        <h5>PRECIO:</h5>
+        <p>JSON</p>
+        <h5>TIEMPO DE PREPARACION</h5>
+        <p>JSON</p>
+        <button type="button" class="btn btn-danger espacio" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eliminarPlatoMenu">ELIMINAR PLATO DEL MENU</button>
+        <button type="button" class="btn btn-secondary espacio" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#editarPlatoMenu">EDITAR PLATO</button>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="modal fade" id="editarPlatoMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="row" *ngFor="let item of menus">
+  <button (click)="mostraOcular()" type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {{item.Tipo}}
+  </button>
+</div>
+
+<div class="modal fade" id="editarPlatoMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -43,19 +36,16 @@
         </div>
         <div class="modal-body">
 
-
           <label>Calorias:</label>
           <div class="input-group mb-3">
             <span class="input-group-text">Kcal</span>
             <input type="number" class="form-control" required="">
           </div>
-
           <label>Tiempo de preparacion:</label>
           <div class="input-group mb-3">
             <span class="input-group-text">min</span>
             <input type="number" class="form-control" required="">
           </div>
-
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ACEPTAR</button>
@@ -65,7 +55,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="eliminarPlatoMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="eliminarPlatoMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -80,42 +70,109 @@
     </div>
   </div>
 
-  <div class="modal fade" id="eliminarMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eliminarMenuLabel">
-            ¿Esta seguro que desa eliminar el menu? , Todos los platos quedaran desligados
-            del menu
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ACEPTAR</button>
-          <button type="button" class="btn btn-secondary">CANCELAR</button>
-        </div>
+
+
+
+<!--LISTO-->
+
+
+<div class="row">
+  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#eliminarMenu1">ELIMINAR MENU</button>
+</div>
+
+<div class="row">
+  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#agregarMenu">AGREGAR MENU</button>
+</div>
+
+<div class="modal" id="agregarMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <label class="modal-title" id="agregarMenuLabel">Nombre del Menu:</label>
+        <input class="form-control" type="text"><!--Este es el input-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">AGREGAR MENU</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#agregarMenu">Agregar Menu</button>
-  </div>
-
-
-  <div class="modal" id="agregarMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <label class="modal-title" id="agregarMenuLabel">Tipo de menu:</label>
-          <input class="form-control" type="text"><!--Este es el input-->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">CREAR MENU</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
-        </div>
+<div class="modal" id="eliminarMenu1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <label class="modal-title" id="eliminarMenu1Label">Nombre del Menu:</label>
+        <input class="form-control" type="text"><!--Este es el input-->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#eliminarMenu">ELIMINAR MENU</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
       </div>
     </div>
   </div>
+</div>
 
 
+
+
+<!--LISTO-->
+<div class="row">
+  <button type="button" class="btn btn-secondary margenes" data-bs-toggle="modal" data-bs-target="#agregarPlatoMenu">NOMBRE DEL PLATO
+    SIN ENLAZAR </button>
+</div>
+
+<div class="modal fade" id="agregarPlatoMenu" tabindex="-1" data-bs-toggle="modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="agregarPlatoMenuLabel">Nombre del Plato a asociar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>TIPO DE PLATO:</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Tipo</span>
+          <input type="text" class="form-control" required="">
+        </div>
+
+        <label>CALORIAS:</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Kcal</span>
+          <input type="number" class="form-control" required="">
+        </div>
+
+        <label>TIEMPO DE PREPARACION:</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">min</span>
+          <input type="number" class="form-control" required="">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="eliminarMenu" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eliminarMenuLabel">
+          ¿Esta seguro que desa eliminar el menu? , Todos los platos quedaran desligados
+          del menu
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ACEPTAR</button>
+        <button type="button" class="btn btn-secondary">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+</div>

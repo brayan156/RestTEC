@@ -24,12 +24,12 @@ export class GestionDelMenuComponent implements OnInit {
   public datosActual=[];
   public Cedula;
   public platos_sin_menu=[]
+  public mostrar = false;
 
   /**
    * Constructor del Control del pedido
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-
   }
 
   ngOnInit(): void {
@@ -51,7 +51,15 @@ export class GestionDelMenuComponent implements OnInit {
     this.platoenMenu = platoenMenu;
   }
 
-
+  // tslint:disable-next-line:typedef
+  mostraOcular(){
+    // tslint:disable-next-line:triple-equals
+    if (this.mostrar == false){
+      this.mostrar = true;
+    }else {
+      this.mostrar = false;
+    }
+  }
   editar_plato_en_menu() {
     this.pedidosActivosSistema.editarplatoenmenu(this.platoenMenu).subscribe(respuesta => {
       if (respuesta === "registro editado correctamente") {
