@@ -30,6 +30,11 @@ ion-content {
                 box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
                 font-size: smaller;
             }
+
+            ion-button {
+                background-color: #266867;
+                color: #f6f1e8;      
+            }
             
         }
 
@@ -43,6 +48,7 @@ ion-content {
             background-color: #051821;
             box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
             --box-shadow: none;
+            color: #266867;
             
         }
     }

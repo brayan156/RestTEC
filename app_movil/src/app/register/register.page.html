@@ -50,11 +50,11 @@
       <ion-input [(ngModel)]="this.newClient.Password" [ngModelOptions]="{standalone: true}" type="password"
         placeholder="Contraseña" ngModel required></ion-input>
 
-        <ion-buttons slot="end">
-          <ion-button slot="end" color='success' size="full" type="submit" [disabled]="form.invalid" >
-            Registrarme</ion-button>
-        </ion-buttons>
 
-      </div>
+      <ion-button shape='round' size="full" type="submit" [disabled]="form.invalid">
+        Registrarme</ion-button>
+
+
+    </div>
   </form>
 </ion-content>

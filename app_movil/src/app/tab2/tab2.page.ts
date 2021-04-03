@@ -50,7 +50,7 @@ export class Tab2Page {
     const facturaModal = await this.modalController.create({
       component: FacturaPage,
       componentProps: {
-        factura:factura,
+        factura: factura,
         platos: platos
 
       }
@@ -149,8 +149,6 @@ export class Tab2Page {
       if (element.cant > 0) {
         total += (parseInt(element.precio) * parseInt(element.cant));
         platos.push(element);
-      } else if (element.cant == 0) {
-        this.menu.splice(cont, 1);
       }
       cont += 1;
     });
@@ -182,14 +180,16 @@ export class Tab2Page {
    * @param event 
    */
   doRefresh(event) {
-    var cont = 0;
-    this.menu.forEach(element => {
+    setTimeout(() => {
+      var cont = 0;
+      this.menu.forEach(element => {
 
-      if (element.cant == 0) {
-        this.menu.splice(cont, 1);
-      }
-      cont += 1
-    });
+        if (element.cant == 0) {
+          this.menu.splice(cont, 1);
+        }
+        cont += 1
+      });
+    }, 1000)
   }
 
 

@@ -10,7 +10,7 @@
   <ion-card *ngFor="let pedido of pedidosMuestra">
     <ion-card-content>
       <p>
-        <ion-label color='success'>
+        <ion-label color='primary'>
           <ion-icon name="checkmark-circle"></ion-icon> <strong> {{(pedido.pedido.Estado.slice(0,5) == 'pedir') ? 'Completado' : pedido.pedido.Estado}} </strong>
         </ion-label>
       </p>
@@ -21,8 +21,8 @@
       <p> </p>
       <hr size="8" width="100%" color="grey">
 
-      <ion-list *ngFor='let plato of pedido.l_platos'>
-        <ion-item>
+      <ion-list *ngFor='let plato of pedido.l_platos' color='light'>
+        <ion-item class="ion-no-padding">
           <p>{{plato.cantidad}} {{plato.nombre}}</p>
         </ion-item>
       </ion-list>
@@ -30,11 +30,11 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)=mostrarPedidoEnProgreso()>
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)=mostrarPedidoEnProgreso()>
     <ion-badge color="danger" style="left: -3px;top:-3px; z-index: 3; position: absolute;">{{this.getPedidosEnProgreso()}}</ion-badge>
     <ion-fab-button>
       <ion-icon name="hourglass-outline"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
   
 </ion-content>
