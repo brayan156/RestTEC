@@ -1,8 +1,66 @@
 .opacidad{
-  background-color: white;
+  background-color: #d4d4ce;
   opacity: 95%;
 }
 
 .posicion{
   margin-right: 10px;
+}
+
+#tarjeta {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #051821;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+#background{
+  background: #d4d4ce;
+  padding: 20px;
+}
+
+#card{
+  background: transparent;
+  text-align: center;
+}
+
+#agregarButton{
+  margin-top: 25px;
+  width: 50%;
+  border: transparent;
+  margin-left: 25%;
+  height: 40px;
+  font-size: medium;
+  border-radius: 50px;
+  color: #d4d4ce;
+  background-color: #266867;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+}
+
+#agregarButton:hover{
+  background-color: #1e2f37;
+}
+
+button {
+  margin-top: 25px;
+  width: auto;
+  height: auto;
+  font-size: small;
+  text-transform: initial;
+  border-radius: 50px;
+  background-color: #266867;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+
+}
+
+button:hover{
+  background-color: #1e2f37;
 }

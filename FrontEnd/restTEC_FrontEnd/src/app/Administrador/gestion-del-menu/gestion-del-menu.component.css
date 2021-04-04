@@ -13,3 +13,47 @@
 .margenes{
   margin-top: 10px;
 }
+
+#acordeon{
+  width: 20%;
+  margin-left: 40%;
+  margin-top: 10px;
+  border: transparent;
+  margin-bottom: 10px;
+  color: #051821;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+#tarjeta {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #051821;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+#acordeon:hover{
+  background: linear-gradient(65deg, #f58800, #d87800);
+}
+
+body{
+  background: #d4d4ce;
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position:relative;
+  top: 0;
+  left: 0;
+}

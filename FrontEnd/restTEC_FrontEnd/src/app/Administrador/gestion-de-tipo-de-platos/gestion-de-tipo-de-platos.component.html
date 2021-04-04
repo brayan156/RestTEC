@@ -1,78 +1,91 @@
 <app-navbar-administrador></app-navbar-administrador>
 
-<div *ngFor="let item of platos">
-  <div class="card text-center bg-light">
-    <h5 class="card-header">Nombre del Plato:{{item.Nombre}}   NumeroDePlato: {{item.Numero_plato}} </h5>
-    <div class="card-body">
-      <h5 class="card-title">Tiempo de Preparacion:</h5>
-      <p class="card-text"> {{item.Tiempo_preparacion}} </p>
-      <h5 class="card-title">Desrcipcion del plato</h5>
-      <p class="card-text">{{item.Descripcion}}</p>
-      <a class="btn btn-secondary posicion" data-bs-toggle="modal" data-bs-target="#editarPlato" href="modal"  (click) ="ver(item)">Editar Plato</a>
-      <a class="btn btn-secondary posicion" (click)="eliminarPlato(item.Numero_plato)">Eliminar Plato</a>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#agregarPlato">Agregar Plato</button>
-</div>
+<body id='background'>
+  <div id='card' *ngFor="let item of platos">
+    <div id='tarjeta' >
+      <h5>Plato: {{item.Nombre}}
+        <h6> ID: {{item.Numero_plato}} </h6>
+      </h5>
 
-
-
-<div class="modal fade" id="editarPlato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-      </div>
-
-      <input type="text" class="form-control" id="nombrePlatoID"  required="" #Tiempo="ngModel" [(ngModel)]="plato.Nombre" >
-
-      <div class="modal-body">
-        <label>Tiempo de preparacion:</label>
-        <div class="input-group mb-3">
-          <span class="input-group-text">min</span>
-          <input type="number" class="form-control" required="" #Tiempo="ngModel" [(ngModel)]="plato.Tiempo_preparacion">
-        </div>
-
-        <div>
-          <label>Nueva descripcion del plato:</label>
-          <input type="text" class="form-control" required="" rows="3" #descripcion ="ngModel" [(ngModel)] = "plato.Descripcion">
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click) ="actualizarPlato(plato.Descripcion , plato.Nombre , plato.Tiempo_preparacion,plato.Numero_plato)" >Guardar Cambios </button>
+      <div>
+        <h5 class="card-title">Tiempo de preparación:</h5>
+        <p class="card-text"> {{item.Tiempo_preparacion}} mins. </p>
+        <h5 class="card-title">Descripción: </h5>
+        <p class="card-text">{{item.Descripcion}}</p>
+        <a class="btn btn-secondary posicion" data-bs-toggle="modal" data-bs-target="#editarPlato" href="modal"
+          (click)="ver(item)">Editar Plato</a>
+        <a class="btn btn-secondary posicion" (click)="eliminarPlato(item.Numero_plato)">Eliminar Plato</a>
       </div>
     </div>
   </div>
-</div>
+  <div >
+    <button id='agregarButton' type="button"  data-bs-toggle="modal" data-bs-target="#agregarPlato">Agregar Plato</button>
+  </div>
 
-<div class="modal fade" id="agregarPlato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <input type="text" class="form-control" id="nombrePlatoIDd" placeholder="Nombre del nuevo plato" required="" #Nombre ="ngModel" [(ngModel)] = "plato.Nombre">
-      </div>
-      <div class="modal-body">
 
-        <label>Tiempo de preparacion:</label>
-        <div class="input-group mb-3">
-          <span class="input-group-text">min</span>
-          <input type="number" class="form-control"required="" #Tiempo ="ngModel" [(ngModel)] = "plato.Tiempo_preparacion">
+
+  <div class="modal fade" id="editarPlato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
         </div>
 
-        <div>
-          <label>Descripcion del plato:</label>
-          <textarea class="form-control" id="exampleFormControlTextarea1" required="" rows="3" #descripcion ="ngModel" [(ngModel)] = "plato.Descripcion"></textarea>
-        </div>
+        <input type="text" class="form-control" id="nombrePlatoID" required="" #Tiempo="ngModel"
+          [(ngModel)]="plato.Nombre">
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="crearPlato(plato.Descripcion , plato.Nombre , plato.Tiempo_preparacion)">Aceptar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <div class="modal-body">
+          <label>Tiempo de preparacion:</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">min</span>
+            <input type="number" class="form-control" required="" #Tiempo="ngModel"
+              [(ngModel)]="plato.Tiempo_preparacion">
+          </div>
+
+          <div>
+            <label>Nueva descripcion del plato:</label>
+            <input type="text" class="form-control" required="" rows="3" #descripcion="ngModel"
+              [(ngModel)]="plato.Descripcion">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+            (click)="actualizarPlato(plato.Descripcion , plato.Nombre , plato.Tiempo_preparacion,plato.Numero_plato)">Guardar
+            Cambios </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+  <div class="modal fade" id="agregarPlato" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <input type="text" class="form-control" id="nombrePlatoIDd" placeholder="Nombre del nuevo plato" required=""
+            #Nombre="ngModel" [(ngModel)]="plato.Nombre">
+        </div>
+        <div class="modal-body">
 
+          <label>Tiempo de preparacion:</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text">min</span>
+            <input type="number" class="form-control" required="" #Tiempo="ngModel"
+              [(ngModel)]="plato.Tiempo_preparacion">
+          </div>
+
+          <div>
+            <label>Descripcion del plato:</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" required="" rows="3" #descripcion="ngModel"
+              [(ngModel)]="plato.Descripcion"></textarea>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="crearPlato(plato.Descripcion , plato.Nombre , plato.Tiempo_preparacion)">Aceptar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
