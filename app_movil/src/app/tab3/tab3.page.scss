@@ -17,6 +17,16 @@ ion-content {
             background: rgba(6, 178, 187, 0.2);
             
         }
+
+        ion-list {
+            --ion-background-color: transparent !important;
+            --ion-border-color: transparent !important;
+            // ion-item {
+            //     --background: #f6f1e8;
+
+            // }
+            
+        }
     }
 
 }
@@ -37,13 +47,6 @@ ion-footer {
     }
 }
 
-ion-list {
-    --background: #d4d4ce;
 
-    ion-item {
-        --background: #d4d4ce;
-        --padding-start: 0px;
-        --inner-padding-end: 0px;
-        --min-height: 0
-    }
-}
+
+
