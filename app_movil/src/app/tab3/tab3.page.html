@@ -22,15 +22,15 @@
         (click)='presentarFeedback(pedido)' shape="round" size='small'>Feedback</ion-button>
       <p> </p>
       <hr size="8" width="100%" color="grey">
-      
-        <ion-list *ngFor='let plato of pedido.l_platos'>
-          
-          <ion-item class="ion-no-padding">
-            <p>{{plato.cantidad}} {{plato.nombre}}</p>
-          </ion-item>
-        
-        </ion-list>
-      
+
+      <ion-list *ngFor='let plato of pedido.l_platos'>
+
+        <ion-item class="ion-no-padding">
+          <p>{{plato.cantidad}} {{plato.nombre}}</p>
+        </ion-item>
+
+      </ion-list>
+
       <ion-progress-bar value='{{pedido.pedido.Tiempo_transcurrido/ pedido.pedido.Tiempo_estimado}}' color='danger'>
       </ion-progress-bar>
     </ion-card-content>
