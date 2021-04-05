@@ -1,13 +1,21 @@
 ![Asset 3@4x](https://user-images.githubusercontent.com/38998436/113538952-c99d5b80-9599-11eb-8e43-9f0396096e59.png)
 
 **Tecnológico de Costa Rica.**
+
 **Área de Ingeniería en Computadores.**
+
 **Bases de Datos.**
+
 **Tarea 1.**
+
 **Semestre I 2021**
+
 **Profesor: Marco Rivera.**
+
 **Repositorio: [link](https://github.com/brayan156/RestTEC)**
+
 **Estudiantes:** 
+
 - Brayan León (2018234632) 
 - Juan Solís (2018151673)
 - Tomás Segura (2018099729)
