@@ -9,11 +9,14 @@
 <ion-content [fullscreen]="true">
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Jala para actualizar"
-      refreshingSpinner="circles" refreshingText="Actualizando...">
+    <ion-refresher-content
+      pullingText="Jala para refrescar"
+      pullingIcon="circles"
+      refreshingText="Refrescando...">
     </ion-refresher-content>
-
   </ion-refresher>
+
+
 
   <ion-card *ngFor="let plato of menu">
     <ion-card-header>

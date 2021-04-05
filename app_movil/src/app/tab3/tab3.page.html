@@ -8,8 +8,10 @@
 
 <ion-content [fullscreen]="true">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Refrescar" refreshingSpinner="circles"
-      refreshingText="">
+    <ion-refresher-content
+      pullingText="Jala para refrescar"
+      refreshingSpinner="circles"
+      refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
 
