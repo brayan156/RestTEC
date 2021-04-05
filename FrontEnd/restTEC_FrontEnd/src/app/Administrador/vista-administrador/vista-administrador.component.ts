@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidosActivosService } from "../../pedidos-activos.service";
 
 @Component({
   selector: 'app-vista-administrador',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaAdministradorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pedidosActivosSistema: PedidosActivosService) {
+    clearInterval(this.pedidosActivosSistema.IntervalID);
+    this.pedidosActivosSistema.Iactivo = false;}
 
   ngOnInit(): void {
   }

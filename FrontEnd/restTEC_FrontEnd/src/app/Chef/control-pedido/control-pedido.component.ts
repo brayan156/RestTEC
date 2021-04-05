@@ -9,7 +9,7 @@ import { Pedido } from "../../form-usuario/Comunicacion/pedido";
 })
 export class ControlPedidoComponent implements OnInit {
   public platos_con_nombre;
-  public todos_pedidos;
+  public todos_pedidos:Pedido[]=[];
   public sin_pedidos;
   public pedidoActual;
   public Cedula;
@@ -19,9 +19,24 @@ export class ControlPedidoComponent implements OnInit {
    * Constructor del Control del pedido
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-
+    if (!this.pedidosActivosSistema.Iactivo) {
+      this.pedidosActivosSistema.IntervalID = setInterval(() => { this.actualizartiempos() }, 15000);
+      this.pedidosActivosSistema.Iactivo = true;
+      console.log("inicie el intervalo");
+    }
   }
-
+  public actualizartiempos() {
+    console.log("pase por el thread");
+    if (this.sin_pedidos.length !== 0) {
+      if (this.sin_pedidos[0].Tiempo_restante !== 0) {
+        console.log(this.sin_pedidos[0]);
+        this.sin_pedidos[0].Tiempo_restante -= 1;
+        this.sin_pedidos[0].Tiempo_transcurrido += 1;
+        console.log(this.sin_pedidos[0]);
+        this.pedidosActivosSistema.editarpedido(this.sin_pedidos[0]).subscribe(r=>console.log("lo logramos"));
+      }
+    }
+  }
   /**
    * Inicialisa la vista control de pedido
    */
@@ -41,7 +56,6 @@ export class ControlPedidoComponent implements OnInit {
         console.log("hola");
       }
     });
-
   }
 
   /**

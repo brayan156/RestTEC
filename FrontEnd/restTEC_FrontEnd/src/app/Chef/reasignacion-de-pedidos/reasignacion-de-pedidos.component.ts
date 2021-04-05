@@ -17,7 +17,8 @@ export class ReasignacionDePedidosComponent implements OnInit {
    * Constructor para la el componente
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-
+    clearInterval(this.pedidosActivosSistema.IntervalID);
+    this.pedidosActivosSistema.Iactivo = false;
   }
 
   /**

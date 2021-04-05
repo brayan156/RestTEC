@@ -17,10 +17,21 @@ namespace Servidor_API.Controllers
         [HttpGet]
         public List<Pedido> Get()
         {
+            try
+            {
+
+
             string jsontext = System.IO.File.ReadAllText(path);
             List<Pedido> lista = new List<Pedido>();
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
             return lista;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new List<Pedido>() ;
+
+            }
         }
 
 
@@ -28,34 +39,42 @@ namespace Servidor_API.Controllers
         [HttpPost]
         public Pedido Post([FromBody]  int tiempo_estimado)
         {
-
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Pedido> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
-            if (lista == null)
+            try
             {
-                lista = new List<Pedido>();
-            }
+                    string jsontext = System.IO.File.ReadAllText(path);
+                List<Pedido> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
+                if (lista == null)
+                {
+                    lista = new List<Pedido>();
+                }
 
-            Pedido pedido = new Pedido();
-            pedido.Numero = lista.Count+1;
-            pedido.Cedula_chef_asignado = 0;
-            pedido.Tiempo_restante = 0;
-            pedido.Tiempo_transcurrido = 0;
-            pedido.Tiempo_estimado = tiempo_estimado;
-            pedido.Estado = "sin asignar";
-            lista.Add(pedido);
-            jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-            System.IO.File.WriteAllText(path, jsontext);
-            string respuesta = "pedido realizado";
-            return pedido;
+                Pedido pedido = new Pedido();
+                pedido.Numero = lista.Count+1;
+                pedido.Cedula_chef_asignado = 0;
+                pedido.Tiempo_restante = 0;
+                pedido.Tiempo_transcurrido = 0;
+                pedido.Tiempo_estimado = tiempo_estimado;
+                pedido.Estado = "sin asignar";
+                lista.Add(pedido);
+                jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
+                System.IO.File.WriteAllText(path, jsontext);
+                string respuesta = "pedido realizado";
+                return pedido;
+            }   
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return new Pedido();
+            }
         }
 
         // PUT api/values/5
         [HttpPut]
         public string Put([FromBody] Pedido pedido)
         {
-            string respuesta = "";
+            try
+            {
+                string respuesta = "";
             string jsontext = System.IO.File.ReadAllText(path);
             List<Pedido> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
             if (lista == null)
@@ -82,7 +101,12 @@ namespace Servidor_API.Controllers
                 respuesta = "el registro no existe";
             }
             return respuesta;
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return "error";
+            }
         }
 
         // DELETE api/values/5

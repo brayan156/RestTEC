@@ -20,7 +20,8 @@ export class PedidosEnElSistemaComponent implements OnInit {
    * @param pedidosActivosSistema
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-
+    clearInterval(this.pedidosActivosSistema.IntervalID);
+    this.pedidosActivosSistema.Iactivo = false;
   }
 
   /**

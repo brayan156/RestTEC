@@ -22,8 +22,11 @@ export class FormUsuarioComponent implements OnInit {
    */
   constructor(
     private router: Router, private http: HttpClient, private pedidosActivosSistema: PedidosActivosService) {
+    
   }
   ngOnInit(): void {
+    clearInterval(this.pedidosActivosSistema.IntervalID);
+    this.pedidosActivosSistema.Iactivo = false;
   }
 
   /**

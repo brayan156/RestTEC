@@ -17,10 +17,12 @@ export class TomaDePedidosComponent implements OnInit {
    * Construcotor para la creacion de componente
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
-
+    clearInterval(this.pedidosActivosSistema.IntervalID);
+    this.pedidosActivosSistema.Iactivo = false;
   }
 
   ngOnInit(): void {
+
     this.pedidoActual = new Pedido;
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {

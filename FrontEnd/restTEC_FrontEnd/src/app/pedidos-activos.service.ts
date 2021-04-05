@@ -25,6 +25,8 @@ export class PedidosActivosService {
   };
 
   public cedula:number;
+  Iactivo:boolean;
+  IntervalID;
 
 
   Url = 'https://localhost:44385/';
@@ -46,6 +48,9 @@ export class PedidosActivosService {
    */
   public obtenerPedidos() {
     return this.http.get<Pedido[]>(this.Url + "Pedido");
+  }
+  public editarPedidos(pedido:Pedido) {
+    return this.http.put<string>(this.Url + "Pedido", pedido);
   }
 
   /**
