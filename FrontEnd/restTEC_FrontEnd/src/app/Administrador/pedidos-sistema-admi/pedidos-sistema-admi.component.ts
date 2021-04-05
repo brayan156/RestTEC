@@ -23,8 +23,8 @@ export class PedidosSistemaAdmiComponent implements OnInit {
   }
 
   /**
-   *
-   * @param Numero
+   * Funcion para poder visualizar los pedidos dentro de json en el HTML
+   * @param pedido el pedido a visualizar
    * @constructor
    */
   Ver_platos_pedido(pedido: Pedido): void {
@@ -32,6 +32,9 @@ export class PedidosSistemaAdmiComponent implements OnInit {
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
 
+  /**
+   * Inicializa el componente de pedidos en el sismte
+   */
   ngOnInit(): void {
     this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {
       this.contenido = data.filter(ped => (ped.Estado!=="Finalizado"));

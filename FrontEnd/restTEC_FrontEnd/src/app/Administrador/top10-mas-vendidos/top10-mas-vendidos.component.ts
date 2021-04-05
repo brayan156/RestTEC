@@ -20,6 +20,9 @@ export class Top10MasVendidosComponent implements OnInit {
   constructor(private pedidosActivosSistema: PedidosActivosService) {
   }
 
+  /**
+   * Inicialisa todas las variabkes necesarias para los top 10 mas vendidos
+   */
   ngOnInit(): void {
 
     this.pedidosActivosSistema.getPlatos().subscribe(platos => {
@@ -29,6 +32,9 @@ export class Top10MasVendidosComponent implements OnInit {
     });
   }
 
+  /**
+   * Obtiene los platos mas vendidos para mostrar en el HTML
+   */
   public obtenerPlatosVendidos() {
     let Ventas = [];
     var platossorted = this.Platos.sort((b, a) => a.Ventas - b.Ventas);
@@ -39,6 +45,10 @@ export class Top10MasVendidosComponent implements OnInit {
     this.Vendidos = Ventas;
   }
 
+  /**
+   * Funcion que es llamada por el boton para generar un reporte de la tabla de los plastos mas vendidos
+   * esto se realiza con crystal reports
+   */
   public generarpdf(): void {
     this.pedidosActivosSistema.GetVentas(this.Vendidos).subscribe(res => {
       var newBlob = new Blob([res], { type: "application/pdf" });

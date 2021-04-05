@@ -21,6 +21,9 @@ export class Top10mejoresClientesComponent implements OnInit {
   constructor(private pedidosActivosSistema: PedidosActivosService) {
   }
 
+  /**
+   * Inicializa todas las variables necesarias para la pantalla de TOP10 mejores clientes
+   */
   ngOnInit(): void {
 
     this.pedidosActivosSistema.getClientes().subscribe(clientes => {
@@ -34,6 +37,9 @@ export class Top10mejoresClientesComponent implements OnInit {
     });
   }
 
+  /**
+   * Obtiene los 10 mejores clientes para mostrar en la pantalla
+   */
   public obtenerClientesCompras() {
     let Ordenes = [];
     this.clientes.forEach(cliente => {
@@ -45,6 +51,10 @@ export class Top10mejoresClientesComponent implements OnInit {
     this.Ordenes = ordenessorted;
   }
 
+  /**
+   * Funcion que es llamada por el boton para generar un reporte de la tabla de los plastos mas vendidos
+   * esto se realiza con crystal reports
+   */
   public generarpdf(): void {
     this.pedidosActivosSistema.GetOrdenes(this.Ordenes).subscribe(res => {
       var newBlob = new Blob([res], { type: "application/pdf" });
