@@ -93,7 +93,7 @@ export class Top10FeedbackComponent implements OnInit {
 
       var link = document.createElement('a');
       link.href = data;
-      link.download = "TopOrdenes.pdf";
+      link.download = "TopMejorPuntuados.pdf";
 
       link.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window }));
 
