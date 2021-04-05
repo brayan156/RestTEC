@@ -1,1 +1,18 @@
-[{"ID_cliente":101110111,"Telefono":12345678},{"ID_cliente":101110111,"Telefono":87654321}]
+[
+  {
+    "ID_cliente": 101110111,
+    "Telefono": 12345678
+  },
+  {
+    "ID_cliente": 101110111,
+    "Telefono": 87654321
+  },
+  {
+    "ID_cliente": 208880888,
+    "Telefono": 89898989
+  },
+  {
+    "ID_cliente": 203330333,
+    "Telefono": 98989898
+  }
+]
