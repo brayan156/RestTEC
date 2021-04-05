@@ -1,10 +1,10 @@
 .container{
-  top: 50px;
+  top: 20px;
   left: 50px;
   background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
   border-radius: 20px;
   padding: 30px;
-  margin-top:200px;
+  margin-top:100px;
   width: 50%;
   align-items: center;
   color: #051821;
@@ -70,6 +70,11 @@ button:hover{
   top: 0;
   left: 0;
 } 
+
+img {
+  margin-left: 30%;
+  width: 40%;
+}
 
 
 
