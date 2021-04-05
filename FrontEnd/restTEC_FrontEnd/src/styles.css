@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background: #d4d4ce;
+  
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+  
+
+  }
+
+  html { 
+    background: #d4d4ce  no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 50px;
+  }
+

@@ -22,7 +22,7 @@
 
 #background{
   background: #d4d4ce;
-  padding: 20px;
+  position: inherit;
 }
 
 #card{
@@ -35,10 +35,11 @@
   width: 50%;
   border: transparent;
   margin-left: 25%;
+
   height: 40px;
   font-size: medium;
   border-radius: 50px;
-  color: #d4d4ce;
+  color: #f6f1e8;
   background-color: #266867;
   box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
   --box-shadow: none;
@@ -64,3 +65,4 @@ button {
 button:hover{
   background-color: #1e2f37;
 }
+

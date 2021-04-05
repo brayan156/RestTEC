@@ -1,15 +1,20 @@
+<body>
 <app-navbar-administrador></app-navbar-administrador>
 <!--  -->
-<div class="opacidad">
+<div>
   <div *ngFor="let item of contenido">
     <div class="row col margenes" >
-      <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item.Numero)">
-        ID del Pedido:{{item.Numero}}
-        <small>Cedula-Cheft:({{item.Cedula_chef_asignado}})</small>
+      <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item.Numero)">
+        <p>ID del Pedido:{{item.Numero}}</p>
+        <p>Cedula-Chef: {{item.Cedula_chef_asignado}} </p>
       </button>
     </div>
   </div>
 </div>
+
+<!-- -->
+</body>
+
 <div >
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -28,4 +33,3 @@
     </div>
   </div>
 </div>
-<!-- -->

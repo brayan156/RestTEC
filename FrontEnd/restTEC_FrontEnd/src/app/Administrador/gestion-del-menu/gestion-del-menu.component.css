@@ -1,14 +1,10 @@
-.opacidad{
-  background-color: white;
-}
+
 
 .espacio{
   margin-right: 10px;
 }
 
-.contenedor{
-  background-color: white;
-}
+
 
 .margenes{
   margin-top: 10px;
@@ -27,12 +23,14 @@
 }
 
 #tarjeta {
-  width: 50%;
-  margin-left: 25%;
+  width: 40%;
+  margin-left: 30%;
   margin-top: 20px;
   margin-bottom: 20px;
   padding-top: 15px;
   padding-bottom: 15px;
+  align-items: center;
+  font-weight: 600;
   color: #051821;
   background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
   border-radius: 20px;
@@ -52,8 +50,25 @@ body{
   width: 100%;
   height: auto;
 
-  /* Set up positioning */
-  position:relative;
-  top: 0;
-  left: 0;
+}
+
+#myButton {
+  width: 20%;
+  margin-left: 40%;
+  margin-bottom: 10px;
+  border: transparent;
+  padding: 5px;
+  color: #f6f1e8;
+  height: auto;
+  font-size: medium;
+  text-transform: initial;
+  border-radius: 50px;
+  background-color: #266867;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+
+}
+
+#myButton:hover{
+  background-color: #1e2f37;
 }

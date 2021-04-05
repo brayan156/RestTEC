@@ -1,5 +1,23 @@
 
-.opacidad{
-  background-color: white;
-  opacity: 95%;
+body{
+  background: #d4d4ce;
+}
+
+button {
+  margin-top: 25px;
+  margin-left: 35%;
+  width: 30%;
+  height: auto;
+  font-size: medium;
+  text-transform: initial;
+  border-radius: 50px;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+  border: transparent;
+
+}
+
+button:hover{
+  background: linear-gradient(65deg, #f58800, #d87800);
 }
