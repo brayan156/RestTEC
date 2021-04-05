@@ -3,8 +3,9 @@
 
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
-    <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
-      ID-DEL-PEDIDO: {{item.Numero}} TIEMPO DEL PEDIDO: {{item.Tiempo_estimado}} min
+    <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
+      <p>ID-DEL-PEDIDO: {{item.Numero}}</p>
+      <p> TIEMPO DEL PEDIDO: {{item.Tiempo_estimado}} mins. </p>
     </button>
   </ul>
 </div>
@@ -16,13 +17,13 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">ID-DEL-PEDIDO {{pedidoActual.Numero}}</h5>
         <small></small>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <a type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
       </div>
       <div class="modal-body" *ngFor="let valor of platos_con_nombre">
         Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="terminarPedido()">Terminar Pedido</button>
+        <button type="button"  data-bs-dismiss="modal" (click)="terminarPedido()">Terminar Pedido</button>
       </div>
     </div>
   </div>

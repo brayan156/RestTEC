@@ -1,29 +1,29 @@
 <app-navbar-chef></app-navbar-chef>
-
-<div class="contenedor">
-  <div *ngFor="let item of sin_pedidos">
-    <ul class="list-group">
-      <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
-      </button>
-    </ul>
+<body class="h">
+  <div class="contenedor h">
+    <div *ngFor="let item of sin_pedidos">
+      <ul class="list-group">
+        <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
+        </button>
+      </ul>
+    </div>
   </div>
-</div>
-<!---->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ID-DEL-PEDIDO {{pedidoActual.Numero}}</h5>
-        <small>Tiempo del Pedido: JSON</small>
-      </div>
-      <div class="modal-body" *ngFor="let valor of platos_con_nombre">
-        Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="aceptarPedido()">ACEPTAR PEDIDO</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+  <!---->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ID-DEL-PEDIDO {{pedidoActual.Numero}}</h5>
+          <small>Tiempo del Pedido: JSON</small>
+        </div>
+        <div class="modal-body" *ngFor="let valor of platos_con_nombre">
+          Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="aceptarPedido()">ACEPTAR PEDIDO</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+</body>

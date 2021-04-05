@@ -65,6 +65,15 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
   errorPlato(): void{
     alert('No contiene la informacion minima para crear un plato');
   }
+
+  /**
+   * Esta funcion se utliza para modificar un plato funciona de tal forma que un plato es llamado por un boton desde el html y
+   * segun los valores dentro de los labels cambia o actualiza los datos
+   * @param descripicon valor de la nueva descripcion del plato
+   * @param nombre valor del nuevo nombre del plato
+   * @param tiempo_preparacion valor para el nuevo tiempo de preparacion
+   * @param id id del plato que deseo cambiar
+   */
   actualizarPlato(descripicon: string, nombre: string, tiempo_preparacion: number,id:number): void{
     let plato: Plato = new Plato;
     plato.Nombre = nombre;
@@ -79,12 +88,19 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
     });
   }
 
+  /**
+   * Cambia el valor del plato
+   * @param plato
+   */
   ver(plato:Plato) {
     this.plato = plato;
   }
 
 
-
+  /**
+   * Funcion que se utiliza para eliminar el plato
+   * @param id ID del plato que se desea eliminar
+   */
 
   eliminarPlato(id:number): void {
     this.service.eliminarplato(id).subscribe(respuesta => {

@@ -15,14 +15,17 @@ export class PedidosEnElSistemaComponent implements OnInit {
   public pedidoActual;
   public Cedula;
 
-
   /**
-   * Constructor del Control del pedido
+   * Contructor de la para ver los pedidos dentro del sistema
+   * @param pedidosActivosSistema
    */
   constructor(private pedidosActivosSistema: PedidosActivosService) {
 
   }
 
+  /**
+   * Inicializa todas las variables necesarias dentro del componente de pedidos del sistema para el chef
+   */
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidoActual = new Pedido;
@@ -40,36 +43,14 @@ export class PedidosEnElSistemaComponent implements OnInit {
 
   }
 
+  /**
+   * Se cambia los valores de los pedidos
+   * @param pedido nuevo valor del pedido
+   * @constructor
+   */
   Ver_platos_pedido(pedido: Pedido): void {
     this.pedidoActual = pedido;
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
 
-
-  rechazarpedido() {
-    this.pedidoActual.Cedula_chef_asignado = this.Cedula;
-    this.pedidoActual.Estado = "Cocinando"
-    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
-
-      if (r === "registro editado exitosamente") {
-        this.terminaPlato();
-      }
-      this.ngOnInit();
-    });
-  }
-
-  reasignarpedido() {
-    this.pedidoActual.Cedula_chef_asignado = this.pedidoActual.Estado.split(",")[1] as number;
-    this.pedidoActual.Estado = "Cocinando"
-    this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
-
-      if (r === "registro editado exitosamente") {
-        this.terminaPlato();
-      }
-      this.ngOnInit();
-    });
-  }
-  terminaPlato(): void {
-    alert('El plato ha sido terminado y esta listo para recoger');
-  }
 }

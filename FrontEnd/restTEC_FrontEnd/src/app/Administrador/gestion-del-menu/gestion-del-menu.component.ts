@@ -33,6 +33,9 @@ export class GestionDelMenuComponent implements OnInit {
   constructor(private pedidosActivosSistema: PedidosActivosService) {
   }
 
+  /**
+   * Inicialisa la pagina y hace todos los gets necesarios para la getion del menu
+   */
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidosActivosSistema.getMenu().subscribe(menus => {
@@ -47,16 +50,30 @@ export class GestionDelMenuComponent implements OnInit {
     });
   }
 
+  /**
+   * Cambia el valor del plato actual
+   * @param plato valor del plato
+   */
   verplato(plato: Plato) {
     this.platoActual = plato;
 
   }
 
+  /**
+   * Cambia el valor del plato actual
+   * Cambia el valor del plato dentro de la lista de platos en Menu
+   * @param plato valor del plato
+   * @param platoenMenu valor del plato dentro del menu
+   */
   verplatoenmenu(plato:Plato, platoenMenu: PlatosEnMenu) {
     this.platoActual = plato;
     this.platoenMenu = platoenMenu;
   }
 
+  /**
+   * Funfion con la cual se ocultan y se muentran los platos dentro del menu
+   * @param menu
+   */
   // tslint:disable-next-line:typedef
   mostraOcular(menu){
     // tslint:disable-next-line:triple-equals
@@ -76,6 +93,9 @@ export class GestionDelMenuComponent implements OnInit {
       }
     });}
 
+  /**
+   * Eliminar o desligar un plato dentro del menu
+   */
   eliminar_plato_en_menu() {
     this.pedidosActivosSistema.eliminarplatoenmenu(this.platoenMenu.N_Menu, this.platoenMenu.N_plato).subscribe(r => {
       if (r === "registro eliminado exitosamente") {
@@ -94,10 +114,19 @@ export class GestionDelMenuComponent implements OnInit {
 });
   }
 
+  /**
+   * Funcion para obtener un plato del menu
+   */
   obtener_platos_sin_menu() {
     this.platos_sin_menu=this.platos.filter(plato => this.platos_menu.every(data => data.N_plato !== plato.Numero_plato));
   }
 
+  /**
+   * Funcion para agregar un plato al menu
+   * @param tipo el tipo de menu al que se desea agregar
+   * @param calorias cantidad de calorias del plato
+   * @param precio precio economico del plato
+   */
   agregar_plato_menu(tipo:string, calorias:number,precio:number) {
     var menus: Menu[] = this.menus.filter(menu => menu.Tipo === tipo);
     if (menus.length === 0) {
@@ -118,6 +147,10 @@ export class GestionDelMenuComponent implements OnInit {
     }
   }
 
+  /**
+   * Funcion para crear un menu con la comunicacion con el API
+   * @param tipo el tipo de menu que se desea crear
+   */
   agregar_menu(tipo: string) {
     var menu: Menu = new Menu;
     menu.Tipo = tipo;
@@ -130,6 +163,10 @@ export class GestionDelMenuComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Funcion para editar menu(No se implemento en la parte grafica)
+   */
   editar_menu() {
     this.pedidosActivosSistema.crearmenu(this.menuActual).subscribe(respuesta => {
       if (respuesta === "registro editado correctamente") {
@@ -139,6 +176,10 @@ export class GestionDelMenuComponent implements OnInit {
     });
   }
 
+  /**
+   * Eliminar un menu conectado con el API, se utiliza para eliminar un menu especifico seleccionado desde la WEB
+   * @param tipo el tipo de menu a eliminar
+   */
   eliminar_menu(tipo: string) {
     console.log("llego a la funcion");
     var menus: Menu[] = this.menus.filter(menu => menu.Tipo === tipo);
@@ -166,7 +207,11 @@ export class GestionDelMenuComponent implements OnInit {
   }
 
 
-
+  /**
+   * Funcion para obtener los platos denetro del menu
+   * @param menu
+   * @constructor
+   */
   Ver_platos_menu(menu: Menu): void {
     this.menuActual = menu;
     this.datosActual=[]

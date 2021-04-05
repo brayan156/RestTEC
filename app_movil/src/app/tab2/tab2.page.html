@@ -8,23 +8,26 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Jala para actualizar"
       refreshingSpinner="circles" refreshingText="Actualizando...">
     </ion-refresher-content>
 
-  </ion-refresher>
+  </ion-refresher> -->
 
   <ion-card *ngFor="let plato of menu">
     <ion-card-header>
       <ion-card-title>{{plato.plato}}, ₡{{plato.precio}}</ion-card-title>
-      <ion-card-subtitle> <ion-chip color="tertiary">
-        <ion-label color="dark">{{plato.tipo}}</ion-label>
-      </ion-chip></ion-card-subtitle>
+      <ion-card-subtitle>
+        <ion-chip>
+          <ion-label color="dark">{{plato.tipo}}</ion-label>
+        </ion-chip>
+      </ion-card-subtitle>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-input  type="number" min="0" value={{plato.cant}} (input)='cambioValor($event.target.value, plato)'>Cantidad:
+      <ion-input type="number" min="0" value={{plato.cant}} (input)='cambioValor($event.target.value, plato)'
+        placeholder="Cantidad">
       </ion-input>
       {{plato.descripcion}}
       Contiene {{plato.calorias}} calorias.
@@ -33,14 +36,12 @@
 
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar color='danger'>
-    <ion-button (click)='comprar()' fill="clear" expand="full" color='light'>
-      <ion-title>
-        Comprar: ₡{{calculateTotal().saldo}}
-      </ion-title>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)='comprar()' color='warning' shape='round' expand='full'>
+      {{'Comprar: ₡' + calculateTotal().saldo}}
     </ion-button>
-
-
   </ion-toolbar>
+
 </ion-footer>
+

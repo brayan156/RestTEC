@@ -1,25 +1,24 @@
 <!--From para aceder al tipo de vista chef o admisnistrador segun sea necesario para el usuario que esta introduciendo
    los datos-->
-<div class="col-6">
-  <div class="container">
-    <div class="col align-self-start">
-      <form>
-        <H3>Bienvenido a restTEC</H3>
-        <div class= "row">
-          <input type="email" name="email" class="email_From" id="InputEmail1" placeholder="Correo Electronico"
-                 aria-label="CorreoElectronico" required="" #Correo ="ngModel" [(ngModel)] = "manejoLogin.Email">
-        </div>
-        <div class="row">
-          <input type="password" name="password" class="pasword_Emanil" id="InputPassword" placeholder="Contraseña"
-                 aria-label="contraseña"required="" #password ="ngModel" [(ngModel)] = "manejoLogin.Password" >
-        </div>
-        <div class="row" class = "button">
-          <button type="submit" class="btn btn-primary" (click)="goTo()">Entrar</button>
-        </div>
-      </form>
+<body>
+  <div class="col-6">
+    <div class="container">
+      <div class="col align-self-start">
+        <form>
+          <img src="assets/SVG/pina.svg" alt="Pina">
+          <div class="row">
+            <input type="email" name="email" class="email_From" id="InputEmail1" placeholder="Correo Electronico"
+              aria-label="CorreoElectronico" required="" #Correo="ngModel" [(ngModel)]="manejoLogin.Email">
+          </div>
+          <div class="row">
+            <input type="password" name="password" class="pasword_Emanil" id="InputPassword" placeholder="Contraseña"
+              aria-label="contraseña" required="" #password="ngModel" [(ngModel)]="manejoLogin.Password">
+          </div>
+          <div class="row" class="button">
+            <button type="submit" class="btn btn-primary" (click)="goTo()">Entrar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
-
-
-
+</body>

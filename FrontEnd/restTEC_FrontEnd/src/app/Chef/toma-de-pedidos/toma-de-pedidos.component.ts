@@ -27,13 +27,22 @@ export class TomaDePedidosComponent implements OnInit {
       this.todos_pedidos = data;
       this.sin_pedidos = data.filter(ped => (ped.Estado.toString() === "sin asignar"));
     });
-    
+
   }
 
+  /**
+   * Funcion para navegar entre los pedidos pedido
+   * @param pedido pedido que deso navegar
+   * @constructor
+   */
   Ver_platos_pedido(pedido: Pedido): void {
     this.pedidoActual =  pedido;
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
+
+  /**
+   * Funcion para que el chef acepte un pedido
+   */
   aceptarPedido() {
     this.pedidoActual.Cedula_chef_asignado = this.Cedula;
     this.pedidoActual.Estado="Cocinando"

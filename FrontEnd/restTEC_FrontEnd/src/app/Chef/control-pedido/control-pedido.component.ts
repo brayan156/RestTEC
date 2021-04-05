@@ -22,6 +22,9 @@ export class ControlPedidoComponent implements OnInit {
 
   }
 
+  /**
+   * Inicialisa la vista control de pedido
+   */
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidoActual = new Pedido;
@@ -41,11 +44,19 @@ export class ControlPedidoComponent implements OnInit {
 
   }
 
+  /**
+   * Funcion para ver platos dentro del tipo de pedido
+   * @param pedido el pedido
+   * @constructor
+   */
   Ver_platos_pedido(pedido: Pedido): void {
     this.pedidoActual = pedido;
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
 
+  /**
+   * Funcion el la cual el chef indica que el pedido se ha terminado y esta listo para ser entregado
+   */
   terminarPedido() {
     this.pedidoActual.Estado ="Preparado"
     this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
@@ -55,6 +66,9 @@ export class ControlPedidoComponent implements OnInit {
     });
   }
 
+  /**
+   * Funcion con la cual un chef puede rechazar un pedido
+   */
   rechazarpedido() {
     this.pedidoalerta.Cedula_chef_asignado = this.Cedula;
     this.pedidoalerta.Estado = "Cocinando"
@@ -65,6 +79,9 @@ export class ControlPedidoComponent implements OnInit {
     });
   }
 
+  /**
+   * Funcion con la cual se puede reasignar algun pedido
+   */
   reasignarpedido() {
     this.pedidoalerta.Cedula_chef_asignado = this.pedidoalerta.Estado.split(",")[1] as unknown as number;
     this.pedidoalerta.Estado = "Cocinando"
