@@ -1,11 +1,14 @@
 <app-navbar-chef></app-navbar-chef>
 
 
+
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
     <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
       <p>ID-DEL-PEDIDO: {{item.Numero}}</p>
       <p> TIEMPO DEL PEDIDO: {{item.Tiempo_estimado}} mins. </p>
+      <p> TIEMPO DEL RESTANTE: {{item.Tiempo_restante}} mins. </p>
+
     </button>
   </ul>
 </div>
@@ -30,11 +33,11 @@
 </div>
 
 
-
-
-
-<div class="alert alert-danger" role="alert" id='myAlert'>
+<div class="alert myAlert" role="alert" id='myAlert'>
   <label>El chef {{pedidoalerta.Estado.split(",")[1]}} quiere realizar el pedido: {{pedidoalerta.Numero}}</label>
-  <button type="button" class="btn btn-secondary espacio col" (click)="reasignarpedido()" >ACEPTAR</button>
-  <button type="button" class="btn btn-danger espacio col" (click)="rechazarpedido()" >RECHAZAR</button>
+  <a type="button" class="btn btn-secondary espacio" (click)="reasignarpedido()" >ACEPTAR</a>
+  <a type="button" class="btn btn-danger espacio" (click)="rechazarpedido()" >RECHAZAR</a>
 </div>
+
+
+

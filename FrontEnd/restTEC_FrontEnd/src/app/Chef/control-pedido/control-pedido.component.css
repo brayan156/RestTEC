@@ -27,7 +27,10 @@ button:hover{
 }
 
 
-#myAlert{
-  width: 50%;
-  margin-left: 25%;
+.myAlert{
+  position: fixed;
+  margin-top: 25px;
+  margin-left: 30%;
+  border-radius: 35px;
+  background: linear-gradient(40deg, #d4d4ce, #f6f1e8);
 }
