@@ -182,14 +182,9 @@ export class Tab2Page {
   doRefresh(event) {
     setTimeout(() => {
       var cont = 0;
-      this.menu.forEach(element => {
+      this.menu = this.objetos.getplatos_menu();
 
-        if (element.cant == 0) {
-          this.menu.splice(cont, 1);
-        }
-        cont += 1
-      });
-    }, 1000)
+  }, 1000);
   }
 
 

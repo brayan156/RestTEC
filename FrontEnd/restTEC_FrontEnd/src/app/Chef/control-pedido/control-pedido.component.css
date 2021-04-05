@@ -26,3 +26,8 @@ button:hover{
   background: linear-gradient(65deg, #f58800, #d87800);
 }
 
+
+#myAlert{
+  width: 50%;
+  margin-left: 25%;
+}

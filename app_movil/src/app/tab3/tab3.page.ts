@@ -135,8 +135,10 @@ export class Tab3Page implements OnInit {
     
   }
 
-  doRefresh() {
-    
+  doRefresh(event) {
+    setTimeout(() => {
+      this.pedidosMuestra = this.objetos.obtener_pedidos();
+    }, 1000)
   }
 
   ngOnInit() {
