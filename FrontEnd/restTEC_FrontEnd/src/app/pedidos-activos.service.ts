@@ -8,6 +8,9 @@ import { CarritoGenera } from "./form-usuario/Comunicacion/carrito-genera";
 import { Menu } from "./form-usuario/Comunicacion/menu";
 import { PlatosEnMenu } from "./form-usuario/Comunicacion/platos-en-menu";
 import { Pedido } from "./form-usuario/Comunicacion/pedido";
+import { Cliente } from "./form-usuario/Comunicacion/cliente";
+import { Factura } from "./form-usuario/Comunicacion/factura";
+import { Feedback } from "./form-usuario/Comunicacion/feedback";
 
 @Injectable({
   providedIn: 'root'
@@ -241,7 +244,27 @@ export class PedidosActivosService {
   GetGanancias(datos) {
     return this.http.post(this.Url + "Informes/platos_ganancia", datos, { responseType: "blob" });
   }
+  GetOrdenes(datos) {
+    return this.http.post(this.Url + "Informes/mayor_ordenes", datos, { responseType: "blob" });
+  }
 
+  public getClientes() {
+    return this.http.get<Cliente[]>(this.Url + "Cliente");
+  }
+
+  public getCarritos() {
+    return this.http.get<Carrito[]>(this.Url + "Carrito");
+  }
+
+  public getCarritoGenera() { return this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera"); }
+
+  public getFacturas() { return this.http.get<Factura[]>(this.Url + "Factura"); }
+
+  public getFeedbacks() { return this.http.get<Feedback[]>(this.Url + "Feedback"); }
+
+  GetPromedio(datos) {
+    return this.http.post(this.Url + "Informes/mejor_feedback", datos, { responseType: "blob" });
+  }
 }
 
 
