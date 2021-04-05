@@ -140,7 +140,7 @@ export class GestionDelMenuComponent implements OnInit {
       plato_menu.N_Menu = menus[0].Numero_menu;
       this.pedidosActivosSistema.crearplatoenmenu(plato_menu).subscribe(respuesta => {
         if (respuesta === "registro ingresado correctamente") {
-          this.editarPlato();
+          this.agredarPlato();
           this.ngOnInit();
         }
       });

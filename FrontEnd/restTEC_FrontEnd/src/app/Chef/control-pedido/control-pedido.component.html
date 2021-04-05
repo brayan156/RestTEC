@@ -1,13 +1,13 @@
 <app-navbar-chef></app-navbar-chef>
 
-
+<h2> Pedidos aceptados a terminar</h2>
 
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
     <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">
       <p>ID-DEL-PEDIDO: {{item.Numero}}</p>
-      <p> TIEMPO DEL PEDIDO: {{item.Tiempo_estimado}} mins. </p>
-      <p> TIEMPO DEL RESTANTE: {{item.Tiempo_restante}} mins. </p>
+      <p> Tiempo estimado: {{item.Tiempo_estimado}} mins. </p>
+      <p> Tiempo restante: {{item.Tiempo_restante}} mins. </p>
 
     </button>
   </ul>

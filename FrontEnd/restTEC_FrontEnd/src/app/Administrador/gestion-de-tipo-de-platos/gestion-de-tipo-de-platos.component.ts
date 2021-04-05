@@ -102,10 +102,25 @@ export class GestionDeTipoDePlatosComponent implements OnInit {
    * @param id ID del plato que se desea eliminar
    */
 
-  eliminarPlato(id:number): void {
-    this.service.eliminarplato(id).subscribe(respuesta => {
-      alert(respuesta);
-      this.ngOnInit();
+  eliminarPlato(id: number): void {
+    this.service.getCarritos_almacena().subscribe(almacen => {
+      if (almacen.some(al => al.N_plato === id)) {
+        alert(
+          "El plato ya ha sido comprado y contiene informacion valiosa para el sistema, si desea retirarlo, eliminelo del menu");
+      } else {
+        this.service.getPlatoenmenu().subscribe(platomenus => {
+          if (platomenus.some(p => p.N_plato === id)) {
+            alert("elimina primero la conexion del plato al menu");
+          } else {
+            this.service.eliminarplato(id).subscribe(respuesta => {
+              alert(respuesta);
+              this.ngOnInit();
+            });
+          }
+        });
+      }
     });
+
+
   }
 }

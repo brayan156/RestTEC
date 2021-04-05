@@ -28,7 +28,7 @@ export class ReasignacionDePedidosComponent implements OnInit {
     this.pedidoActual = new Pedido;
     this.pedidosActivosSistema.obtenerPedidos().subscribe(data => {
       this.todos_pedidos = data;
-      this.sin_pedidos = data.filter(ped => (ped.Cedula_chef_asignado !== this.Cedula && ped.Cedula_chef_asignado!==0));
+      this.sin_pedidos = data.filter(ped => (ped.Cedula_chef_asignado !== this.Cedula && ped.Estado==="Cocinando"));
     });
 
   }
@@ -59,10 +59,8 @@ export class ReasignacionDePedidosComponent implements OnInit {
    * Alertas para la reasignacion de pedidos
    */
   reasignarPlato(): void{
-    alert('El pedido ha sido  pedido');
+    alert('El pedido ha sido  solicitado');
   }
-  aceptarPlato(): void{
-    alert('El plato ha sido aceptado');
-  }
+
 
 }

@@ -1,7 +1,10 @@
 .contenedor{
   background-color: white;
 }
-
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
 .espacio{
   margin-left: 10px;
 }

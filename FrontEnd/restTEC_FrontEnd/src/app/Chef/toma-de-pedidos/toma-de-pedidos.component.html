@@ -1,10 +1,13 @@
 <app-navbar-chef></app-navbar-chef>
+
+<h2> Pedidos sin asignar</h2>
 <body class="h">
   <div class="contenedor h">
     <div *ngFor="let item of sin_pedidos">
       <ul class="list-group">
         <button type="button" class="btn contenedor" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
-        </button>
+        <p> Tiempo estimado: {{item.Tiempo_estimado}} mins. </p>
+          </button>
       </ul>
     </div>
   </div>

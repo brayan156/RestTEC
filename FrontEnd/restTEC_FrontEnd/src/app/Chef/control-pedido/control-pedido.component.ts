@@ -74,7 +74,7 @@ export class ControlPedidoComponent implements OnInit {
     this.pedidoalerta.Estado = "Cocinando"
     this.pedidosActivosSistema.editarpedido(this.pedidoalerta).subscribe(r => {
 
-      if (r === "registro editado exitosamente") { this.terminaPlato(); }
+      if (r === "registro editado exitosamente") { alert("Solicitud rechazada"); }
       this.ngOnInit();
     });
   }
@@ -87,7 +87,7 @@ export class ControlPedidoComponent implements OnInit {
     this.pedidoalerta.Estado = "Cocinando"
     this.pedidosActivosSistema.editarpedido(this.pedidoalerta).subscribe(r => {
 
-      if (r === "registro editado exitosamente") { this.terminaPlato(); }
+      if (r === "registro editado exitosamente") { alert("el pedido ha sido reasignado"); }
       this.ngOnInit();
     });
   }

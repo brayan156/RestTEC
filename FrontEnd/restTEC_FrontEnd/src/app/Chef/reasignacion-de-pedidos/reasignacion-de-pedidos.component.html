@@ -1,8 +1,9 @@
 <app-navbar-chef></app-navbar-chef>
-
+<h2> Solicitar pedidos activos de otros chefs</h2>
 <div *ngFor="let item of sin_pedidos">
   <ul class="list-group">
-    <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Ver_platos_pedido(item)">ID-DEL-PEDIDO: {{item.Numero}}
+      <p> Tiempo estimado: {{item.Tiempo_estimado}} mins. </p>
     </button>
   </ul>
 </div>
