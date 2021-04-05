@@ -135,9 +135,10 @@ export class Tab3Page implements OnInit {
     
   }
 
-  doRefresh(event) {
+  doRefresh(evento) {
     setTimeout(() => {
       this.pedidosMuestra = this.objetos.obtener_pedidos();
+      evento.target.complete();
     }, 1000)
   }
 

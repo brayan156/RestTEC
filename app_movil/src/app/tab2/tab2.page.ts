@@ -180,11 +180,11 @@ export class Tab2Page {
    * @param event 
    */
   doRefresh(event) {
+    
     setTimeout(() => {
-      var cont = 0;
       this.menu = this.objetos.getplatos_menu();
-
-  }, 1000);
+      event.target.complete();
+    }, 1000);
   }
 
 
