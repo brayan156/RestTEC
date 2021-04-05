@@ -73,6 +73,8 @@ export class ControlPedidoComponent implements OnInit {
    */
   terminarPedido() {
     this.pedidoActual.Estado ="Preparado"
+    this.pedidoActual.Tiempo_restante = 0;
+    this.pedidoActual.Tiempo_transcurrido = this.pedidoActual.Tiempo_estimado;
     this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
 
       if (r === "registro editado exitosamente") { this.terminaPlato(); }

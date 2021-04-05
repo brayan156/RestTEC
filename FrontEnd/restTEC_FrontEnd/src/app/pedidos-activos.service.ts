@@ -237,36 +237,75 @@ export class PedidosActivosService {
     return this.http.put<String>(this.Url + "Platos_en_Menu", platoenmenu);
   }
 
-
+  /**
+   * Se comunica con el API para obtener los datos presentes en carritoAlmacena
+   */
   public getCarritos_almacena() {
     return this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena");
   }
 
+  /**
+   * Retorna el pdf de mayores ventas
+   * @param datos datos dentro del pdf de mayores ventas
+   * @constructor
+   */
   GetVentas(datos) {
     return this.http.post(this.Url +"Informes/platos_vendidos",datos ,{ responseType: "blob" });
   }
 
+  /**
+   * retorna pdf de mayores ganacias
+   * @param datos datos necesarios para crear el pdf de mayores ganacias
+   * @constructor
+   */
+
   GetGanancias(datos) {
     return this.http.post(this.Url + "Informes/platos_ganancia", datos, { responseType: "blob" });
   }
+
+  /**
+   * retorna el pdf de top ordenes
+   * @param datos datos para crear este pdf
+   * @constructor
+   */
   GetOrdenes(datos) {
     return this.http.post(this.Url + "Informes/mayor_ordenes", datos, { responseType: "blob" });
   }
 
+  /**
+   * Hace un get al API para obtener los datos dentro de Cliente
+   */
   public getClientes() {
     return this.http.get<Cliente[]>(this.Url + "Cliente");
   }
 
+  /**
+   * Hace un get al API para obtener los datos dentro de Carrito
+   */
   public getCarritos() {
     return this.http.get<Carrito[]>(this.Url + "Carrito");
   }
 
+  /**
+   Hace un get al API para obtener los datos dentro de Carrito_Genera
+   */
   public getCarritoGenera() { return this.http.get<CarritoGenera[]>(this.Url + "Carrito_genera"); }
 
+  /**
+   Hace un get al API para obtener los datos dentro de Factura
+   */
   public getFacturas() { return this.http.get<Factura[]>(this.Url + "Factura"); }
 
+  /**
+   Hace un get al API para obtener los datos dentro de Feedback
+   */
   public getFeedbacks() { return this.http.get<Feedback[]>(this.Url + "Feedback"); }
 
+  /**
+   * paramentros para crear el pdf para los platos con mejor FeedBack
+   * @param datos paramentros para hacer los promedio y crear el pdf
+   * @constructor
+   */
   GetPromedio(datos) {
     return this.http.post(this.Url + "Informes/mejor_feedback", datos, { responseType: "blob" });
   }

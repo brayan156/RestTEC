@@ -28,6 +28,9 @@ export class Top10FeedbackComponent implements OnInit {
   constructor(private pedidosActivosSistema: PedidosActivosService) {
   }
 
+  /**
+   * Inicialisa todas las variables necesarias para la pantalla de de TOP Fedback
+   */
   ngOnInit(): void {
 
     this.pedidosActivosSistema.getFeedbacks().subscribe(feedbacks => {
@@ -45,6 +48,9 @@ export class Top10FeedbackComponent implements OnInit {
     });
   }
 
+  /**
+   * Funcion para obtener los mejores platos segun el fedback de los pedidos
+   */
   public obtenerMejoresFeedback() {
     let Plato_puntuacion = [];
     this.feedbacks.forEach(feedback => {
@@ -70,7 +76,11 @@ export class Top10FeedbackComponent implements OnInit {
     this.PlatosFeedback = platossorted;
   }
 
-
+  /**
+   * Obtiene lo platos para calcular su feddback
+   * @param id_pedido ID DEL PEDIDO
+   * @constructor
+   */
   public Obtenerplatos_feedback(id_pedido) {
     let carritogenera: CarritoGenera = this.CarritoGeneras.find(carritognera => carritognera.Id_pedido === id_pedido);
     console.log(this.CarritoGeneras);
@@ -80,7 +90,9 @@ export class Top10FeedbackComponent implements OnInit {
     return this.Platos.filter(plato => almacen.some(dato => dato.N_plato === plato.Numero_plato));
   }
 
-
+  /**
+   * Llama a la funvion para generar el reporte con crystalReports
+   */
   public generarpdf(): void {
     this.pedidosActivosSistema.GetPromedio(this.PlatosFeedback).subscribe(res => {
       var newBlob = new Blob([res], { type: "application/pdf" });

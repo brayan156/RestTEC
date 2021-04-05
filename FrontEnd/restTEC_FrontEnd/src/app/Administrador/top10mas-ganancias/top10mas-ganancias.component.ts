@@ -18,6 +18,9 @@ export class Top10masGananciasComponent implements OnInit {
   constructor(private pedidosActivosSistema: PedidosActivosService) {
   }
 
+  /**
+   * Inicializa las variables necesarias para la pantalla de top 10 platos con mas ganancias
+   */
   ngOnInit(): void {
 
       this.pedidosActivosSistema.getPlatos().subscribe(platos => {
@@ -27,6 +30,9 @@ export class Top10masGananciasComponent implements OnInit {
       });
   }
 
+  /**
+   * Obtiene los platos con mas ganacias para mostrar en el HTML
+   */
   public obtenerPlatosGanancias() {
     let Ganancias = [];
     var platossorted = this.Platos.sort((b, a) => a.Ganancia - b.Ganancia);
@@ -37,6 +43,10 @@ export class Top10masGananciasComponent implements OnInit {
     this.Ganancias = Ganancias;
   }
 
+  /**
+   * Funcion que es llamada por el boton para generar un reporte de la tabla de los plastos con mas ganacias
+   * esto se realiza con crystal reports
+   */
   public generarpdf(): void {
     this.pedidosActivosSistema.GetGanancias(this.Ganancias).subscribe(res => {
       var newBlob = new Blob([res], { type: "application/pdf" });
@@ -45,7 +55,7 @@ export class Top10masGananciasComponent implements OnInit {
         window.navigator.msSaveOrOpenBlob(newBlob);
         return;
       }
-      // For other browsers: 
+      // For other browsers:
       // Create a link pointing to the ObjectURL containing the blob.
       const data = window.URL.createObjectURL(newBlob);
 
