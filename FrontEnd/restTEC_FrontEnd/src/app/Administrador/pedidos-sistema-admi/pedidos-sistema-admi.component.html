@@ -20,8 +20,8 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ID del Pedido:</h5>
-          <small>Tiempo del pedido:</small>
+          <h5 class="modal-title" id="exampleModalLabel">ID del Pedido: <!--{{pedidoActual.Nombre}}--> </h5>
+          <small>Tiempo del pedido: <!--{{pedidoActual.Tiempo_estimado}}--> </small>
         </div>
         <div *ngFor = "let valor of platos_con_nombre" class="modal-body">
           Nombre del Plato:{{valor.nombre}} Cantidad de Platos: {{valor.cantidad}}
