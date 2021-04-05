@@ -148,7 +148,7 @@ Desde esta vista el chef tiene la posibilidad de visualizar los pedidos que han 
 ## App móvil.
 ### Sobre el ingreso.
 La aplicación le pedirá ingresar su nombre y contraseña de usuario. Si no tiene uno, debe darle al botón de registro e ingresar los datos solicitados. 
-![login](https://user-images.githubusercontent.com/38998436/113542197-00c33b00-95a1-11eb-8c25-1c99587d39b7.PNG =250x)![register](https://user-images.githubusercontent.com/38998436/113542196-00c33b00-95a1-11eb-8d7b-22e6d903be13.PNG =250x)
+![login](https://user-images.githubusercontent.com/38998436/113542197-00c33b00-95a1-11eb-8c25-1c99587d39b7.PNG)![register](https://user-images.githubusercontent.com/38998436/113542196-00c33b00-95a1-11eb-8d7b-22e6d903be13.PNG)
 
 
 
@@ -159,7 +159,7 @@ Cuando esté satisfecho con la orden que está construyendo, puede tocar el bot�
 
 A continuación, se le desplegará la factura de pero su compra ya está en progreso. Tocando el botón de continuar, accederá a la pestaña de pedidos.
 
-![carrito](https://user-images.githubusercontent.com/38998436/113542194-002aa480-95a1-11eb-8c31-44b575b24d8a.PNG =250x) ![factura](https://user-images.githubusercontent.com/38998436/113542191-ff920e00-95a0-11eb-9848-21b2e4f444f4.PNG =250x)
+![carrito](https://user-images.githubusercontent.com/38998436/113542194-002aa480-95a1-11eb-8c31-44b575b24d8a.PNG) ![factura](https://user-images.githubusercontent.com/38998436/113542191-ff920e00-95a0-11eb-9848-21b2e4f444f4.PNG)
 
 
 
@@ -169,6 +169,6 @@ En esta pestaña tiene acceso a tres tablas importantes: pedidos viejos, pedidos
 - Pedido en progreso: se muestran los pedidos en progreso.
 - Feedback: permite enviar una calificación del 1 al 5 según tu parecer en relación a un pedido específico. Solamente se permite enviar una calificación por pedido.
 
-![pedidos](https://user-images.githubusercontent.com/38998436/113542198-00c33b00-95a1-11eb-8c9d-0453fa24ec56.PNG =250x)
+![pedidos](https://user-images.githubusercontent.com/38998436/113542198-00c33b00-95a1-11eb-8c9d-0453fa24ec56.PNG)
 
 
