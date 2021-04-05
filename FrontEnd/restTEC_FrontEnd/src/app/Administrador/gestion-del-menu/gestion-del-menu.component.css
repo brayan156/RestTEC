@@ -35,7 +35,23 @@
   border-radius: 20px;
   box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
 }
-
+.color{
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+}
+.fondo{
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  align-items: center;
+  font-weight: 600;
+  color: #051821;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
 #acordeon:hover{
   background: linear-gradient(65deg, #f58800, #d87800);
 }

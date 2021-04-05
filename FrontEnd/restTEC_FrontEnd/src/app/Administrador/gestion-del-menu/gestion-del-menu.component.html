@@ -3,15 +3,15 @@
 </app-navbar-administrador>
 
 
-  <div *ngIf="mostrar">
+  <div class="fondo" *ngIf="mostrar">
     <div *ngFor="let item of datosActual">
-      <div class="list-group list-group-item-light">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
+      <div class="list-group list-group-item-light color">
+        <div class="list-group-item list-group-item-action color">
+          <div class="d-flex w-100 justify-content-between color">
             <h5 class="mb-1">Nombre del Plato: {{item.plato.Nombre}}</h5>
             <small class="text-muted">TIPO DE PLATO: {{menuActual.Tipo}}</small>
-          </div>
-          <div id=''class="text-center">
+          </div >
+          <div id=''class="text-center color">
             <h5>CALORIAS:</h5>
             <p>{{item.datosMenu.Calorias}}</p>
             <h5>PRECIO:</h5>

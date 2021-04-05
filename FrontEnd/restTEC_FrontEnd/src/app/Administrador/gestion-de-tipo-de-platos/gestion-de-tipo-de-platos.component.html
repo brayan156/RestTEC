@@ -16,7 +16,7 @@
         <p class="card-text">{{item.Descripcion}}</p>
         <a class="btn btn-secondary posicion" data-bs-toggle="modal" data-bs-target="#editarPlato" href="modal"
           (click)="ver(item)">Editar Plato</a>
-        <a class="btn btn-secondary posicion" (click)="eliminarPlato(item.Numero_plato)">Eliminar Plato</a>
+        <a class="btn btn-danger posicion" (click)="eliminarPlato(item.Numero_plato)">Eliminar Plato</a>
       </div>
     </div>
   </div>
