@@ -20,6 +20,9 @@ export class ReasignacionDePedidosComponent implements OnInit {
 
   }
 
+  /**
+   * Inicializa la reasignacion de pedidos
+   */
   ngOnInit(): void {
     this.Cedula = this.pedidosActivosSistema.cedula;
     this.pedidoActual = new Pedido;
@@ -30,10 +33,19 @@ export class ReasignacionDePedidosComponent implements OnInit {
 
   }
 
+  /**
+   * Funcin para navegar en los pedidos
+   * @param pedido valor de pedido
+   * @constructor
+   */
   Ver_platos_pedido(pedido: Pedido): void {
     this.pedidoActual = pedido;
     this.platos_con_nombre = this.pedidosActivosSistema.sacar_nombre_cantidad(pedido.Numero);
   }
+
+  /**
+   * Funcio par recivir el pedido
+   */
   pedirPedido() {
     this.pedidoActual.Estado = "pedir,"+this.Cedula;
     this.pedidosActivosSistema.editarpedido(this.pedidoActual).subscribe(r => {
