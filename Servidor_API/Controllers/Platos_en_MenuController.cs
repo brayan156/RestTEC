@@ -13,7 +13,10 @@ namespace Servidor_API.Controllers
     public class Platos_en_MenuController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Platos_en_Menu.json");
-        // GET api/values
+        // * Funcion Get de Platos_en_Menu
+        // * @param 
+        // * @returns una lista con todos los registros de Platos_en_Menu
+        // */
         [HttpGet]
         public List<Platos_en_Menu> Get()
         {
@@ -22,7 +25,12 @@ namespace Servidor_API.Controllers
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Platos_en_Menu>>(jsontext);
             return lista;
         }
-
+        /**
+* Funcion Get de Platos_en_Menu con parametros de filtro
+* @param n_plato
+* @returns  Platos_en_Menu que contengan el valor del
+* atributo del parametro
+*/
         [Route("Platos_en_Menu/nplato/{n_plato:int}")]
         [HttpGet]
         public Platos_en_Menu Getbyplato( int n_plato)
@@ -56,7 +64,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
+        /**
+        * Funcion Post de Platos_en_Menu que añade el registro a la base
+        * @param  Plato_en_Menu
+        * @returns un string de respuesta del completado
+        */
 
         [HttpPost]
         public string Post([FromBody] Platos_en_Menu plato_en_Menu)
@@ -97,7 +109,11 @@ namespace Servidor_API.Controllers
             return respuesta;
         }
 
-        // PUT api/values/5
+        /**
+        // * Funcion Put de Platos_en_Menu que edita el registro de la base
+        // * @param  Platos_en_Menu
+        // * @returns un string de respuesta del completado
+        // */
         [HttpPut]
         public string Put([FromBody] Platos_en_Menu plato_en_Menu)
         {
@@ -132,7 +148,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // DELETE api/values/5
+        /**
+        // * Funcion Delete de Menu que elimina el registro de la base
+        // * @param  numero_plato, n_menu
+        // * @returns un string de respuesta del completado
+        // */
         [Route("Platos_en_Menu/{n_menu:int}/{n_plato:int}")]
         [HttpDelete]
         public string Delete(int n_menu,int n_plato)

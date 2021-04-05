@@ -14,7 +14,10 @@ namespace Servidor_API.Controllers
     public class MenuController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Menu.json");
-        // GET api/values
+        // * Funcion Get de Menu
+        // * @param 
+        // * @returns una lista con todos los registros de Menu
+        // */
         [HttpGet]
         public List<Menu> Get()
         {
@@ -23,7 +26,12 @@ namespace Servidor_API.Controllers
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Menu>>(jsontext);
             return lista;
         }
-
+        /**
+* Funcion Get de Menu con parametros de filtro
+* @param numero_menu
+* @returns  Menu que contengan el valor del
+* atributo del parametro
+*/
         [Route("Menu/nmenu/{numero_menu:int}")]
         [HttpGet]
         public Menu Getbyplato(int numero_menu)
@@ -57,8 +65,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
-
+        /**
+        * Funcion Post de Menu que añade el registro a la base
+        * @param  Menu
+        * @returns un string de respuesta del completado
+        */
         [HttpPost]
         public string Post([FromBody] Menu menu)
         {
@@ -98,7 +109,11 @@ namespace Servidor_API.Controllers
             return respuesta;
         }
 
-        // PUT api/values/5
+        /**
+        // * Funcion Put de Menu que edita el registro de la base
+        // * @param  Menu
+        // * @returns un string de respuesta del completado
+        // */
         [HttpPut]
         public string Put([FromBody] Menu menu)
         {
@@ -133,7 +148,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // DELETE api/values/5
+        /**
+        // * Funcion Delete de Menu que elimina el registro de la base
+        // * @param  numero_menu
+        // * @returns un string de respuesta del completado
+        // */
         [Route("Menu/{numero_menu:int}")]
         [HttpDelete]
         public string Delete(int numero_menu)

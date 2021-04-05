@@ -15,7 +15,10 @@ namespace Servidor_API.Controllers
     public class CarritoController : ApiController
     {
         string path= HttpContext.Current.Server.MapPath(@"~/bases/Carrito.json");
-        // GET api/values
+        // * Funcion Get de Carrito
+        // * @param 
+        // * @returns una lista con todos los registros de Carrito
+        // */
         [HttpGet]
         public List<Carrito> Get()
         {
@@ -28,7 +31,12 @@ namespace Servidor_API.Controllers
             }
             return lista;
         }
-
+        /**
+* Funcion Get de Carrito con parametros de filtro
+* @param cedula_cliente
+* @returns  Carrito que contengan el valor del
+* atributo del parametro si no existe crea el primero carrito del cliente
+*/
         [Route("Carrito/obtener_carrito_actual_cedula/{cedula_cliente:int}")]
         [HttpGet]
         public Carrito Getby_cedula_cliente(int cedula_cliente)
@@ -80,7 +88,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
+        /**
+        * Funcion Post de Carrito que añade el registro a la base
+        * @param  Carrito
+        * @returns el Carrito añadido
+        */
 
         [HttpPost]
         public Carrito Post([FromBody] Carrito carrito)
@@ -121,7 +133,11 @@ namespace Servidor_API.Controllers
             return carrito;
         }
 
-        // PUT api/values/5
+        /**
+        * Funcion Put de Carrito que edita el registro de la base
+        * @param  Carrito
+        * @returns un string de respuesta del completado
+        */
         [HttpPut]
         public string Put([FromBody] Carrito carrito)
         {
@@ -154,40 +170,6 @@ namespace Servidor_API.Controllers
             }
             return respuesta;
 
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Carrito carrito)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Carrito> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Carrito>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id == carrito.Id && lista[i].Id_cliente == carrito.Id_cliente && lista[i].N_compra == carrito.N_compra)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
         }
     }
 }

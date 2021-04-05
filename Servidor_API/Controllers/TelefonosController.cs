@@ -14,7 +14,11 @@ namespace Servidor_API.Controllers
     public class TelefonosController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Telefonos.json");
-        // GET api/values
+
+        // * Funcion Get de Telefonos
+        // * @param 
+        // * @returns una lista con todos los registros de Telefonos
+        // */
         [HttpGet]
         public List<Telefonos> Get()
         {
@@ -25,8 +29,11 @@ namespace Servidor_API.Controllers
         }
 
 
-        // POST api/values
-
+        /**
+        * Funcion Post de Platos_en_Menu que añade la lista de registros a la base
+        * @param  lista de telefonos del cliente
+        * @returns un string de respuesta del completado
+        */
         [HttpPost]
         public string Post([FromBody] Telefonos[] telefonos)
         {
@@ -38,86 +45,18 @@ namespace Servidor_API.Controllers
             {
                 lista = new List<Telefonos>();
             }
+
             bool existe = false;
 
 
-                Debug.WriteLine("crear");
-                lista.AddRange(telefonos);
-                respuesta = "registro ingresado correctamente";
-            
+            Debug.WriteLine("crear");
+            lista.AddRange(telefonos);
+            respuesta = "registro ingresado correctamente";
+
 
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
 
-            return respuesta;
-        }
-
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Telefonos telefonos)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Telefonos> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Telefonos>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Telefonos>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
-                {
-                    lista[i] = telefonos;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Telefonos telefonos)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Telefonos> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Telefonos>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Telefonos>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].ID_cliente == telefonos.ID_cliente && lista[i].Telefono == telefonos.Telefono)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
             return respuesta;
         }
     }

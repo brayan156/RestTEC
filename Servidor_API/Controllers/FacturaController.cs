@@ -14,7 +14,10 @@ namespace Servidor_API.Controllers
     {
 
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Factura.json");
-        // GET api/values
+        // * Funcion Get de Factura
+        // * @param 
+        // * @returns una lista con todos los registros de Factura
+        // */
         [HttpGet]
         public List<Factura> Get()
         {
@@ -24,9 +27,11 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
-
-        // POST api/values
-
+        /**
+        * Funcion Post de Factura que añade el registro a la base
+        * @param  monto del pedido
+        * @returns la Factura añadida
+        */
         [HttpPost]
         public Factura Post([FromBody] int monto)
         {
@@ -53,73 +58,5 @@ namespace Servidor_API.Controllers
             return factura;
         }
 
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Factura factura)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Factura> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Factura>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Factura>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id == factura.Id)
-                {
-                    lista[i] = factura;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Factura factura)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Factura> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Factura>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Factura>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id == factura.Id)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-        }
     }
 }

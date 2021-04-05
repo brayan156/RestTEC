@@ -13,7 +13,10 @@ namespace Servidor_API.Controllers
     public class UsuarioController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Usuario.json");
-        // GET api/values
+        // * Funcion Get de Usuario
+        // * @param 
+        // * @returns una lista con todos los registros de Usuario
+        // */
         [HttpGet]
         public List<Usuario> Get()
         {
@@ -24,7 +27,10 @@ namespace Servidor_API.Controllers
         }
 
 
-
+        // * Funcion Get que valida si el email y la contraseña ingresada son correctas
+        // * @param email, contraseña
+        // * @returns el Usuario con quien coincide los parametros sino envia Usuario de cedula 0
+        // */
         [Route("Usuario/validar_usuario/{email}/{contraseña}")]
         [HttpGet]
         public Usuario ValidarUsuario(string email, string contraseña)
@@ -57,114 +63,5 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
-
-        [HttpPost]
-        public string Post([FromBody] Usuario usuario)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Usuario> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Usuario>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Usuario>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Cedula == usuario.Cedula )
-                {
-                    existe = true;
-                    respuesta = "registro ya existente";
-                    break;
-                }
-            }
-
-            if (usuario.Cedula == 0)
-            {
-                respuesta = "registro necesita un identificador";
-            }
-            else if (!existe)
-            {
-                lista.Add(usuario);
-                respuesta = "registro ingresado correctamente";
-            }
-
-            jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-            System.IO.File.WriteAllText(path, jsontext);
-
-            return respuesta;
-        }
-
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Usuario usuario)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Usuario> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Usuario>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Usuario>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Cedula == usuario.Cedula)
-                {
-                    lista[i] = usuario;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Usuario usuario)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Usuario> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Usuario>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Usuario>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Cedula == usuario.Cedula)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-        }
     }
 }

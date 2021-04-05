@@ -14,7 +14,12 @@ namespace Servidor_API.Controllers
     public class Carrito_almacenaController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Carrito_almacena.json");
-        // GET api/values
+
+        /**
+        * Funcion Get de Carrito_almacena
+        * @param 
+        * @returns una lista con todos los registros de Carrito_almacena
+        */
         [HttpGet]
         public List<Carrito_almacena> Get()
         {
@@ -25,7 +30,12 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
-
+        /**
+        * Funcion Get de Carrito_almacena con parametros de filtro
+        * @param id_carrito
+        * @returns una lista con todos los registros de Carrito_almacena que contengan el valor del
+         * atributo del parametro
+        */
         [Route("Carrito_almacena/carrito_id/{id_carrito:int}")]
         [HttpGet]
         public List<Carrito_almacena> Getby_carritoid(int id_carrito)
@@ -51,7 +61,12 @@ namespace Servidor_API.Controllers
             return lista_carrito_almacena;
         }
 
-
+        /**
+        * Funcion Get de Carrito_almacena con parametros de filtro
+        * @param id_carrito,n_compra
+        * @returns una lista con todos los registros de Carrito_almacena que contengan el valor de los
+         * atributos de los parametros
+        */
         [Route("Carrito_almacena/carrito/{id_carrito:int}/{n_compra:int}")]
         [HttpGet]
         public List<Carrito_almacena> Getby_carrito(int id_carrito, int n_compra)
@@ -78,8 +93,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
-
+        /**
+        * Funcion Post de Carrito_almacena que añade todos los registros a la base
+        * @param lista de carrito_almacena
+        * @returns un string de completado
+        */
         [HttpPost]
         public string Post([FromBody] Carrito_almacena[] carrito_almacena)
         {
@@ -104,73 +122,5 @@ namespace Servidor_API.Controllers
             return respuesta;
         }
 
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Carrito_almacena carrito_almacena)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Carrito_almacena> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Carrito_almacena>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_carrito == carrito_almacena.Id_carrito && lista[i].N_compra == carrito_almacena.N_compra && lista[i].N_plato == carrito_almacena.N_plato)
-                {
-                    lista[i] = carrito_almacena;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Carrito_almacena carrito_almacena)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Carrito_almacena> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_almacena>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Carrito_almacena>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_carrito == carrito_almacena.Id_carrito)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-        }
     }
 }

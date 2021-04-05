@@ -17,6 +17,12 @@ namespace Servidor_API.Controllers
     [Route("Informes")]
     public class InformesController : ApiController
     {
+
+        /**
+        * Funcion Post de Informes que crea el pdf de los platos más vendidos
+        * @param  lista de datos
+        * @returns pdf de los platos más vendidos
+        */
         [Route("Informes/platos_vendidos")]
         [HttpPost]
         public HttpResponseMessage obtenerReportePlatosVendidos(List<dynamic> data)
@@ -85,7 +91,11 @@ namespace Servidor_API.Controllers
 
         }
 
-
+        /**
+* Funcion Post de Informes que crea el pdf de los platos con más ganancia
+* @param  lista de datos
+* @returns pdf de los platos con más ganancia
+*/
         [Route("Informes/platos_ganancia")]
         [HttpPost]
         public HttpResponseMessage obtenerReportePlatosGanancia(List<dynamic> data)
@@ -114,6 +124,11 @@ namespace Servidor_API.Controllers
 
         }
 
+        /**
+* Funcion Post de Informes que crea el pdf de los platos con mejor feedback
+* @param  lista de datos
+* @returns pdf de los platos con mejor feedback
+*/
         [Route("Informes/mejor_feedback")]
         [HttpPost]
         public HttpResponseMessage obtenerReportePlatosFeedback(List<dynamic> data)
@@ -141,6 +156,12 @@ namespace Servidor_API.Controllers
             return obtener_Response(objRpt);
         }
 
+
+        /**
+* Funcion Post de Informes que crea el pdf de los cliente con mayor cantidad de ordenes
+* @param  lista de datos
+* @returns pdf de los cliente con mayor cantidad de ordenes
+*/
         [Route("Informes/mayor_ordenes")]
         [HttpPost]
         public HttpResponseMessage obtenerReporteClienteOrdenes(List<dynamic> data)
@@ -168,7 +189,11 @@ namespace Servidor_API.Controllers
             return obtener_Response(objRpt);
         }
 
-
+        /**
+* Funcion que crea el pdf y lo convierte a un httpresponseMessage para enviar por http
+* @param  pbjeto de Crystal report que contiene la tabla del pdf a generar
+* @returns httpResponseMessage del pdf
+*/
         public HttpResponseMessage obtener_Response(ReportClass objRpt)
         {
 

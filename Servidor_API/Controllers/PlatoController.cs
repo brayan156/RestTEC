@@ -13,7 +13,10 @@ namespace Servidor_API.Controllers
     public class PlatoController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Plato.json");
-        // GET api/values
+        // * Funcion Get de Plato
+        // * @param 
+        // * @returns una lista con todos los registros de Plato
+        // */
         [HttpGet]
         public List<Plato> Get()
         {
@@ -24,8 +27,11 @@ namespace Servidor_API.Controllers
         }
 
 
-        // POST api/values
-
+        /**
+        * Funcion Post de Plato que añade el registro a la base
+        * @param  Plato
+        * @returns un string de respuesta del completado
+        */
         [HttpPost]
         public string Post([FromBody] Plato plato)
         {
@@ -54,7 +60,6 @@ namespace Servidor_API.Controllers
                 }
             }
 
-
              if (!existe)
             {
                 plato.Numero_plato = n_plato + 1;
@@ -68,7 +73,11 @@ namespace Servidor_API.Controllers
             return respuesta;
         }
 
-        // PUT api/values/5
+        /**
+        // * Funcion Put de Plato que edita el registro de la base
+        // * @param  Plato
+        // * @returns un string de respuesta del completado
+        // */
         [HttpPut]
         public string Put([FromBody] Plato plato)
         {
@@ -103,6 +112,12 @@ namespace Servidor_API.Controllers
 
         }
 
+
+        /**
+        // * Funcion Put de Plato que suma las ganancias y ventas de una lista de platos
+        // * @param  lista de Platos
+        // * @returns un string de respuesta del completado
+        // */
         [Route("Plato/sumarganancias")]
         [HttpPut]
         public string sumarganancias([FromBody] Plato[] platos)
@@ -140,7 +155,11 @@ namespace Servidor_API.Controllers
 
 
 
-            // DELETE api/values/5
+        /**
+        // * Funcion Delete de Menu que elimina el registro de la base
+        // * @param  numero_plato
+        // * @returns un string de respuesta del completado
+        // */
         [Route("Plato/{numero_plato:int}")]
         [HttpDelete]
         public string Delete(int numero_plato)

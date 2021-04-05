@@ -13,7 +13,10 @@ namespace Servidor_API.Controllers
     public class ClienteController : ApiController
     {
         string path= HttpContext.Current.Server.MapPath(@"~/bases/Cliente.json");
-        // GET api/values
+        // * Funcion Get de Carrito
+        // * @param 
+        // * @returns una lista con todos los registros de Carrito
+        // */
         [HttpGet]
         public List<Cliente> Get()
         {
@@ -23,7 +26,10 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
-
+        // * Funcion Get que valida si el email y la contraseña ingresada son correctas
+        // * @param email, contraseña
+        // * @returns el Cliente con quien coincide los parametros sino envia Cliente de cedula 0
+        // */
         [Route("Cliente/validar_cliente/{email}/{contraseña}")]
         [HttpGet]
         public Cliente ValidarCliente(string email,string contraseña)
@@ -57,8 +63,11 @@ namespace Servidor_API.Controllers
 
         }
 
-        // POST api/values
-
+        /**
+        * Funcion Post de Cliente que añade el registro a la base
+        * @param  Cliente
+        * @returns un string de respuesta del completado
+        */
         [HttpPost]
         public string Post([FromBody] Cliente cliente)
         {
@@ -95,76 +104,6 @@ namespace Servidor_API.Controllers
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
 
-            return respuesta;
-        }
-
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Cliente cliente)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Cliente> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cliente>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Cliente>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Cedula == cliente.Cedula)
-                {
-                    lista[i] = cliente;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [Route("Cliente/{cedula:int}")]
-        [HttpDelete]
-        public string Delete(int cedula)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Cliente> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Cliente>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Cliente>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Cedula == cedula)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
             return respuesta;
         }
     }

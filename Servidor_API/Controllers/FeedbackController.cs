@@ -15,7 +15,11 @@ namespace Servidor_API.Controllers
     {
 
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Feedback.json");
-        // GET api/values
+
+        // * Funcion Get de Feedback
+        // * @param 
+        // * @returns una lista con todos los registros de Feedback
+        // */
         [HttpGet]
         public List<Feedback> Get()
         {
@@ -26,8 +30,11 @@ namespace Servidor_API.Controllers
         }
 
 
-        // POST api/values
-
+        /**
+* Funcion Post de Feedback que añade el registro a la base
+* @param  Feedback
+* @returns un string de respuesta del completado
+*/
         [HttpPost]
         public string Post([FromBody] Feedback feedback)
         {
@@ -39,6 +46,7 @@ namespace Servidor_API.Controllers
             {
                 lista = new List<Feedback>();
             }
+
             bool existe = false;
             Debug.WriteLine("hola");
             Debug.WriteLine(feedback.Id_pedido);
@@ -72,73 +80,5 @@ namespace Servidor_API.Controllers
             return respuesta;
         }
 
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Feedback feedback)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Feedback> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Feedback>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Feedback>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_pedido == feedback.Id_pedido)
-                {
-                    lista[i] = feedback;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Feedback feedback)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Feedback> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Feedback>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Feedback>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_pedido == feedback.Id_pedido)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-        }
     }
 }

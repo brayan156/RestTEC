@@ -13,15 +13,16 @@ namespace Servidor_API.Controllers
     public class PedidoController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Pedido.json");
-        // GET api/values
+        // * Funcion Get de Pedido
+        // * @param 
+        // * @returns una lista con todos los registros de Pedido
+        // */
         [HttpGet]
         public List<Pedido> Get()
         {
             try
             {
-
-
-            string jsontext = System.IO.File.ReadAllText(path);
+                string jsontext = System.IO.File.ReadAllText(path);
             List<Pedido> lista = new List<Pedido>();
             lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
             return lista;
@@ -35,7 +36,11 @@ namespace Servidor_API.Controllers
         }
 
 
-        // POST api/values
+        /**
+        * Funcion Post de Pedido que añade el registro a la base
+        * @param  tiempo de duracion del pedido
+        * @returns el pedido añadido
+        */
         [HttpPost]
         public Pedido Post([FromBody]  int tiempo_estimado)
         {
@@ -68,7 +73,11 @@ namespace Servidor_API.Controllers
             }
         }
 
-        // PUT api/values/5
+        /**
+        // * Funcion Put de Pedido que edita el registro de la base
+        // * @param  Pedido
+        // * @returns un string de respuesta del completado
+        // */
         [HttpPut]
         public string Put([FromBody] Pedido pedido)
         {
@@ -107,40 +116,6 @@ namespace Servidor_API.Controllers
                 Console.WriteLine(e);
                 return "error";
             }
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Pedido pedido)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Pedido> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Pedido>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Pedido>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Numero == pedido.Numero)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
         }
     }
 }

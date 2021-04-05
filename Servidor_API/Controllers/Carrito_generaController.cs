@@ -13,7 +13,11 @@ namespace Servidor_API.Controllers
     public class Carrito_generaController : ApiController
     {
         string path = HttpContext.Current.Server.MapPath(@"~/bases/Carrito_genera.json");
-        // GET api/values
+        /**
+// * Funcion Get de Carrito_genera
+// * @param 
+// * @returns una lista con todos los registros de Carrito_genera
+// */
         [HttpGet]
         public List<Carrito_genera> Get()
         {
@@ -23,7 +27,12 @@ namespace Servidor_API.Controllers
             return lista;
         }
 
-
+        /**
+* Funcion Get de Carrito_genera con parametros de filtro
+* @param n_factura
+* @returns  Carrito_genera que contengan el valor del
+ * atributo del parametro
+*/
         [Route("Carrito_genera/nfactura/{n_factura:int}")]
         [HttpGet]
         public Carrito_genera Getby_nfactura(int n_factura)
@@ -56,7 +65,12 @@ namespace Servidor_API.Controllers
             return carrito_genera;
 
         }
-
+        /**
+* Funcion Get de Carrito_genera con parametros de filtro
+* @param n_pedido
+* @returns  Carrito_genera que contengan el valor del
+* atributo del parametro
+*/
         [Route("Carrito_genera/npedido/{n_pedido:int}")]
         [HttpGet]
         public Carrito_genera Getby_npedido(int n_pedido)
@@ -90,7 +104,12 @@ namespace Servidor_API.Controllers
 
         }
 
-
+        /**
+* Funcion Get de Carrito_genera con parametros de filtro
+* @param id_carrito
+* @returns una lista con todos los registros de Carrito_genera que contengan el valor del
+ * atributo del parametro
+*/
         [Route("Carrito_genera/Id_carrito/{id_carrito:int}")]
         [HttpGet]
         public List<Carrito_genera> Getby_idcarrito(int id_carrito)
@@ -120,7 +139,11 @@ namespace Servidor_API.Controllers
 
 
 
-        // POST api/values
+        /**
+        * Funcion Post de Carrito_genera que añade el registro a la base
+        * @param  Carrito_genera
+        * @returns un string de completado
+        */
         [HttpPost]
         public string Post([FromBody] Carrito_genera carrito_genera)
         {
@@ -159,78 +182,6 @@ namespace Servidor_API.Controllers
             jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
             System.IO.File.WriteAllText(path, jsontext);
 
-            return respuesta;
-        }
-
-
-        // PUT api/values/5
-        [HttpPut]
-        public string Put([FromBody] Carrito_genera carrito_genera)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Carrito_genera> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_genera>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Carrito_genera>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_carrito == carrito_genera.Id_carrito && lista[i].Id_Factura == carrito_genera.Id_Factura &&
-                    lista[i].Id_pedido == carrito_genera.Id_pedido && lista[i].N_compra == carrito_genera.N_compra)
-                {
-                    lista[i] = carrito_genera;
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro editado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
-            return respuesta;
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete]
-        public string Delete(Carrito_genera carrito_genera)
-        {
-            string respuesta = "";
-
-            string jsontext = System.IO.File.ReadAllText(path);
-            List<Carrito_genera> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Carrito_genera>>(jsontext);
-            if (lista == null)
-            {
-                lista = new List<Carrito_genera>();
-            }
-            bool existe = false;
-
-            for (int i = 0; i < lista.Count; i++)
-            {
-                if (lista[i].Id_carrito == carrito_genera.Id_carrito && lista[i].Id_Factura == carrito_genera.Id_Factura &&
-                    lista[i].Id_pedido == carrito_genera.Id_pedido && lista[i].N_compra == carrito_genera.N_compra)
-                {
-                    lista.RemoveAt(i);
-                    jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
-                    System.IO.File.WriteAllText(path, jsontext);
-                    existe = true;
-                    respuesta = "registro eliminado exitosamente";
-                    break;
-                }
-            }
-
-            if (!existe)
-            {
-                respuesta = "el registro no existe";
-            }
             return respuesta;
         }
     }
