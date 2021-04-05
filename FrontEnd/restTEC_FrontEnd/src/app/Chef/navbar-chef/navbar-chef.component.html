@@ -1,7 +1,9 @@
 
 <!--Navbar del chef desde este navbar se puede aceder a los siguientes componenetes utilizando lo diferentes botonos los cuales
 redireciona la URL para mostrar las pantallas que son necesarias-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light nav">
   <div class="container-fluid">
     <a class="navbar-brand">Chef: {{Cedula}}</a>
     <button class="navbar-toggler" type="button"  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -11,13 +13,13 @@ redireciona la URL para mostrar las pantallas que son necesarias-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link btn btn-light" (click)="navegation('tomaPedido')">Tomar Pedido</a>
+          <a class="nav-link btn " (click)="navegation('tomaPedido')">Tomar Pedido</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  btn btn-light" (click)="navegation('controlPedido')" >Control de pedido</a>
+          <a class="nav-link  btn " (click)="navegation('controlPedido')" >Control de pedido</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-light" (click)="navegation('reasignarPedido')">Reasignar Pedido</a>
+          <a class="nav-link btn " (click)="navegation('reasignarPedido')">Reasignar Pedido</a>
         </li>
       </ul>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" routerLink="">
@@ -25,4 +27,4 @@ redireciona la URL para mostrar las pantallas que son necesarias-->
     </div>
   </div>
 </nav>
-
+</body>

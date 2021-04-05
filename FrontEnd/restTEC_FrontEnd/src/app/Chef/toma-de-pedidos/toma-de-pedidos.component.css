@@ -5,3 +5,17 @@
 .contenedor{
   background-color: white;
 }
+.h{
+  background: #d4d4ce;
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position:relative;
+  top: 0;
+  left: 0;
+}

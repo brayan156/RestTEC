@@ -1,0 +1,49 @@
+nav{
+  background: linear-gradient(65deg, #051821, #266867);
+
+}
+
+a {
+  color: #f6f1e8;
+}
+
+li {
+  width: auto;
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+ul {
+  background: transparent;
+  border: transparent;
+
+}
+
+#myLi {
+  color: #051821;
+  background: linear-gradient(65deg, #d4d4ce, #f6f1e8);
+  border-radius: 20px;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+}
+
+#myLi:hover {
+  color: #f6f1e8;
+  background: linear-gradient(65deg, #051821, #266867);
+}
+
+/* button {
+  margin-top: 25px;
+  width: auto;
+  height: 48px;
+  font-size: 18px;
+  text-transform: initial;
+  border-radius: 50px;
+  background-color: #051821;
+  box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+  --box-shadow: none;
+
+} */
+
+li:hover{
+  background-color: #266867;
+}
