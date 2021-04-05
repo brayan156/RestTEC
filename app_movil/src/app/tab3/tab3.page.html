@@ -20,11 +20,11 @@
       <p>
         <ion-label color='primary'>
           <ion-icon name="checkmark-circle"></ion-icon> <strong> {{(pedido.pedido.Estado.slice(0,5) == 'pedir') ?
-            'Completado' : pedido.pedido.Estado}} </strong>
+            'Cocinando' : pedido.pedido.Estado}} </strong>
         </ion-label>
       </p>
       <p>
-        <ion-icon name="fast-food"></ion-icon> CHEF: {{pedido.pedido.Cedula_chef_asignado}}
+        <ion-icon name="fast-food"></ion-icon> Id del pedido: {{pedido.pedido.Numero}}
       </p>
       <ion-button [attr.disabled]="(pedido.pedido.Estado!='Preparado') ? true : false "
         (click)='presentarFeedback(pedido)' shape="round" size='small'>Feedback</ion-button>
