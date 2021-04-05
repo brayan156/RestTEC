@@ -74,7 +74,7 @@ namespace Servidor_API.Controllers
 
             for (int i = 0; i < lista.Count; i++)
             {
-                if (lista[i].Cedula == cliente.Cedula)
+                if (lista[i].Cedula == cliente.Cedula || lista[i].Email==cliente.Email)
                 {
                     existe = true;
                     respuesta = "registro ya existente";

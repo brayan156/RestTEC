@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PedidosActivosService } from "../../pedidos-activos.service";
 
 @Component({
   selector: 'app-top10-feedback',
@@ -9,9 +10,12 @@ export class Top10FeedbackComponent implements OnInit {
   /**
    * Constructor para la visualizacion de los platos con mejor feedback
    */
-  constructor() { }
+  constructor(private pedidosActivosSistema: PedidosActivosService) {
+
+  }
 
   ngOnInit(): void {
+
   }
 
 }

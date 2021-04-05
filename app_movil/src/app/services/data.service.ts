@@ -10,6 +10,7 @@ import { Carrito } from "../objetos/carrito";
 import { Factura } from "../objetos/factura";
 import { Pedido } from "../objetos/pedido";
 import { CarritoGenera } from "../objetos/carrito-genera";
+import { Plato } from "../objetos/plato";
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,10 @@ export class DataService {
     var platos_con_nombre = [];
     var tiempo_total = 0;
 
+
+    var platos_ganancia: Plato[] = [];
+
+
     data.forEach(plato_app => {
       tiempo_total += plato_app.tiempo_preparacion * plato_app.cant;
 
@@ -73,6 +78,15 @@ export class DataService {
       platos.push(plato_almacena);
       let plato_con_nombre = { cantidad: plato_almacena.Cantidad, nombre: plato_app.plato };
       platos_con_nombre.push(plato_con_nombre);
+
+      let plato: Plato = new Plato;
+      plato.Numero_plato = plato_app.n_plato;
+      plato.Descripcion = plato_app.descripcion;
+      plato.Nombre = plato_app.plato;
+      plato.Tiempo_preparacion = plato_app.tiempo_preparacion;
+      plato.Ganancia = plato_app.cant * (plato_app.precio as any);
+      plato.Ventas = plato_app.cant;
+      platos_ganancia.push(plato);
     });
     this.http.post<String>(this.Url + "Carrito_almacena", platos).subscribe(car => {
       console.log("platos almacenados");
@@ -94,8 +108,8 @@ export class DataService {
               this.objetos.carrito.N_compra += 1;
               this.objetos.carrito.Monto = 0;
               this.factura = factura;
+              this.http.put(this.Url + "Plato/sumarganancias", platos_ganancia).subscribe(r=>console.log(r));
             });
-
           });
         });
       });

@@ -23,7 +23,7 @@ export class GestionDelMenuComponent implements OnInit {
   public platoenMenu=new PlatosEnMenu;
   public datosActual=[];
   public Cedula;
-  public platos_sin_menu=[]
+  public platos_sin_menu=[];
   public mostrar = false;
   public enlaceCreado = { Tipo: "", Calorias: 0, Precio: 0 };
   public tipo_menu="";

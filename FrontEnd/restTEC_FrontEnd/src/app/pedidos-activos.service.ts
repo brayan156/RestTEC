@@ -107,6 +107,7 @@ export class PedidosActivosService {
       })
     });
     return car;
+
   }
   public obtener_platos() {
     var platos: Plato[] = [];
@@ -160,6 +161,19 @@ export class PedidosActivosService {
   }
   public editarplatoenmenu(platoenmenu: PlatosEnMenu) {
     return this.http.put<String>(this.Url + "Platos_en_Menu", platoenmenu);
+  }
+
+
+  public getCarritos_almacena() {
+    return this.http.get<CarritoAlmacena[]>(this.Url + "Carrito_almacena");
+  }
+
+  GetVentas(datos) {
+    return this.http.post(this.Url +"Informes/platos_vendidos",datos ,{ responseType: "blob" });
+  }
+
+  GetGanancias(datos) {
+    return this.http.post(this.Url + "Informes/platos_ganancia", datos, { responseType: "blob" });
   }
 
 }

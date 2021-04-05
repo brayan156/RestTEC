@@ -163,6 +163,8 @@ export class ObjetosService {
                         var plato_con_nombre = { cantidad: dato_almacen.Cantidad, nombre: plato.Nombre };
                         platos_con_nombre.push(plato_con_nombre);
                         console.log(plato_con_nombre);
+
+
                       }
                     });
                   }

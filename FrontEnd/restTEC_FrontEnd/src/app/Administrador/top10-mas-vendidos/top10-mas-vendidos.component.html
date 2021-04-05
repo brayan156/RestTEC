@@ -1,66 +1,24 @@
 <app-navbar-administrador></app-navbar-administrador>
+
+
+
+
 <div class="margenes">
+  <button type="button" class="btn btn-primary" (click)="generarpdf()">Generar pdf</button>
   <table class="table table-secondary">
     <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre del plato</th>
-      <th scope="col">Cantidad de ventas</th>
-    </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre del plato</th>
+        <th scope="col">Cantidad de ventas</th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>GalloPinto</td>
-      <td>54</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Cereal con leche</td>
-      <td>52</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Chicharrones</td>
-      <td>46</td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Picadillo de aracache</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>Lentejas con platano maduro</td>
-      <td>30</td>
-    </tr>
-
-    <tr>
-      <th scope="row">6</th>
-      <td>Sopa negra</td>
-      <td>28</td>
-    </tr>
-
-    <tr>
-      <th scope="row">7</th>
-      <td>Sopa Azteca</td>
-      <td>25</td>
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td>Picadillo de aracache</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th scope="row">9</th>
-      <td>Hamburguesa con papas</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <th scope="row">10</th>
-      <td>Tacos Mexicanos</td>
-      <td>11</td>
-    </tr>
+      <tr *ngFor="let item of Vendidos; let i = index" [attr.data-index]="i">
+        <th scope="row">{{i}}</th>
+        <td>{{item.Nombre}}</td>
+        <td>{{item.Cantidad}}</td>
+      </tr>
     </tbody>
   </table>
 </div>

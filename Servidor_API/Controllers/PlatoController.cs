@@ -103,7 +103,44 @@ namespace Servidor_API.Controllers
 
         }
 
-        // DELETE api/values/5
+        [Route("Plato/sumarganancias")]
+        [HttpPut]
+        public string sumarganancias([FromBody] Plato[] platos)
+        {
+            string respuesta = "";
+
+            string jsontext = System.IO.File.ReadAllText(path);
+            List<Plato> lista = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Plato>>(jsontext);
+            if (lista == null)
+            {
+                lista = new List<Plato>();
+            }
+
+            bool existe = false;
+
+            for (int j = 0; j < platos.Length; j++)
+            {
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    if (lista[i].Numero_plato == platos[j].Numero_plato)
+                    {
+                        lista[i].Ganancia += platos[j].Ganancia;
+                        lista[i].Ventas += platos[j].Ventas;
+                        existe = true;
+                        respuesta = "registro editado exitosamente";
+                    }
+                }
+            }
+            jsontext = Newtonsoft.Json.JsonConvert.SerializeObject(lista);
+            System.IO.File.WriteAllText(path, jsontext);
+
+            return respuesta;
+
+            }
+
+
+
+            // DELETE api/values/5
         [Route("Plato/{numero_plato:int}")]
         [HttpDelete]
         public string Delete(int numero_plato)

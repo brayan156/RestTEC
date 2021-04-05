@@ -12,7 +12,7 @@ using Servidor_API.clases;
 namespace Servidor_API.Controllers
 {
     [Route("Carrito")]
-    public class ValuesController : ApiController
+    public class CarritoController : ApiController
     {
         string path= HttpContext.Current.Server.MapPath(@"~/bases/Carrito.json");
         // GET api/values

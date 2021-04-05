@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\Administrador",
-    "\\src\\app\\Administrador\\gestion-de-tipo-de-platos",
-    "\\src\\app\\Administrador\\gestion-del-menu",
     "\\src\\app\\Administrador\\navbar-administrador",
     "\\src\\app\\Administrador\\pedidos-sistema-admi",
+    "\\src\\app\\Administrador\\top10-feedback",
+    "\\src\\app\\Administrador\\top10-mas-vendidos",
     "\\src\\app\\form-usuario",
     "\\src\\app\\form-usuario\\Comunicacion"
   ],
-  "SelectedNode": "\\src\\app\\Administrador\\gestion-del-menu\\gestion-del-menu.component.ts",
+  "SelectedNode": "\\src\\app\\Administrador\\top10-mas-vendidos\\top10-mas-vendidos.component.ts",
   "PreviewInSolutionExplorer": false
 }

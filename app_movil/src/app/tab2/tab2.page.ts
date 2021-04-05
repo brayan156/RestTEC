@@ -190,6 +190,7 @@ export class Tab2Page {
       }
       cont += 1
     });
+
   }
 
 
